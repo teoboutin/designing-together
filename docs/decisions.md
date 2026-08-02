@@ -433,9 +433,10 @@ git-ignored per-discussion scratch, deleted at harvest.
 
 ### 2026-08-02 — skill revision from the geargame field report
 
-**Verdict: change.** Four edits land in `SKILL.md`; four candidate
+**Verdict: change.** Five edits land in `SKILL.md`; four candidate
 edits were rejected or reverted on their own control arms. The file
-goes from 423 to 486 lines.
+goes from 423 to 486 lines. (An earlier draft of this entry said four
+and then listed five; the count was wrong, not the list.)
 
 **Mechanism**: a rule earns its place only where a control arm — the
 skill without that wording, on a scenario built to tempt the failure —

@@ -156,10 +156,12 @@ as a repeatable harness. It is meant to be launched by a supervisor
 session (the model calls the Workflow tool; the user asks for it in
 words — "run the skill regression"), not by hand:
 
-- Invocation from a session inside this repo:
-  `Workflow({name: 'skill-regression', args: {model: 'opus', mode: 'quick'}})`.
-  From a session elsewhere, pass `scriptPath` (absolute path to the
-  .js) and `args.repo` (absolute path of this repo) — workflow agents
+- **Always invoke by `scriptPath`, never by name** — see the gotcha
+  below: a name resolves the INSTALLED plugin's pinned copy, not this
+  repo's. From a session inside this repo:
+  `Workflow({scriptPath: '<abs>/.claude/workflows/skill-regression.js',
+  args: {model: 'opus', mode: 'quick', repo: '<abs>'}})`. Pass
+  `args.repo` as an absolute path from anywhere — workflow agents
   resolve relative paths from the SESSION's working directory, not
   from the script's location.
 - `args`: `model` (tier under test, day-to-day `opus`), `mode`
