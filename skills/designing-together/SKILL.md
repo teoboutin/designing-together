@@ -278,17 +278,25 @@ thread is promoted to a thread of its own, explicitly.
    different; it carries the user's ruling, and the Reopening rule
    governs it.
 
-   Grounding also runs outward. When a thread names a problem class
-   that exists outside this project — pointer ownership, retry
-   semantics, cache invalidation — say so and propose a prior-art
-   survey: name the class, the candidate sources, and the cost, then
-   run it only on the user's word. This is available at any point in
-   the discussion, not only at the start, and it is not
+   Grounding also runs outward, under a narrow test. Propose a
+   prior-art survey only when other projects have faced THE SAME
+   question and shipped inspectable mechanisms answering it — pointer
+   ownership in an immediate-mode UI, retry semantics, cache
+   invalidation. Then name the class, the candidate sources, and the
+   cost, and run it only on the user's word. This is available at any
+   point in the discussion, not only at the start, and it is not
    stall-breaking evidence: it needs no pre-commitment about which
    position it would flip, because a survey commonly replaces both
-   positions rather than choosing between them. A problem defined by
-   this project's own structure has no prior art; do not propose a
-   survey for one.
+   positions rather than choosing between them.
+
+   An adjacent literature is not prior art. When the answer turns on
+   facts private to this project — its own data, its own contracts,
+   its own two conflicting definitions — no outside mechanism answers
+   the question, and surveying the general area spends a round on
+   material that cannot discriminate. Nearly every problem has a
+   general framing; having one is not the trigger. The test is
+   concrete: if you cannot name a project that faced this same
+   question and say what it built, do not propose the survey.
 2. **Name the criteria**: state early what the decision must
    achieve — the constraints and goals proposals will be judged
    against. Criteria are threads too: they can be argued, refined,
