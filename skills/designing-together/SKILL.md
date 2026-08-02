@@ -126,14 +126,29 @@ mint a two-word slug so references stay unambiguous.
 
 **States.** Open: `new`, `in-discussion`, `presumed-settled`. Closed:
 `approved`, `ruled-out`, `parked` (deferred, with a tripwire),
-`superseded` (absorbed by a named other thread). The set is closed on
-purpose: convergence is computed from it.
+`superseded` (absorbed by a named other thread), `withdrawn`
+(retracted by its own proposer). The set is closed on purpose:
+convergence is computed from it.
 
 **Who moves what.** You may move threads freely between open states.
 Only the user's explicit word moves a thread into a closed state — a
 word given in the flow of the discussion ("drop the polling idea")
-counts; no ceremony is required. You never close a thread on your own
-judgment.
+counts; no ceremony is required. Their word closes what it names: a
+word that points at the ledger ("build it as the table says") closes
+the table's contents, but a word that requires interpretation — a
+blanket positive, a sentence that may or may not cover a thread —
+closes nothing. Mark the threads your reading would close as
+`presumed-settled`, state the reading, and let their next word or the
+next checkpoint promote or correct it. One exception to user-only
+closure: you may move a proposal of your own to `withdrawn` when your
+own argument or evidence defeats it and the user has not adopted or
+built on it — announce the withdrawal and its reason in the delta. A
+proposal the user has engaged with needs their word like any other
+thread. The state itself is proposer-symmetric: a proposal the user
+retracts themselves is recorded `withdrawn` too. The distinction it
+preserves: `ruled-out` marks a proposal that lost an argument and
+carries why it lost into the record; `withdrawn` marks one its own
+proposer gave up on.
 
 **`presumed-settled`** is a labeled claim about the user: they are
 continuing the discussion in a way that assumes this thread's
@@ -248,6 +263,7 @@ exchange:
 | "The user is short on time" | Time pressure means fewer, better-argued proposals — not menus, not question lists. It never overrides the user's authority to simply decide. |
 | "Minimal is the safe default" | Minimalism answers a bounded problem. On an open one it forecloses the discussion before it starts. |
 | "The user seems to agree" | Then the thread is `presumed-settled` — an open state. Only their word closes it. |
+| "Their message probably meant to close it" | An interpreted word is a presumption, not a closure. State the reading, mark `presumed-settled`, and let their next word promote it. |
 | "The user decided, so checking would be disrespectful" | The word ends the argument, not the verification. Material findings return once, via the reopening rule. |
 | "The user probably considered this already" | Never assume a proposal was fully examined — the rule Decision authority applies to decisions holds for proposals too. Examining them is what the discussion is for. |
 | "Raising flaws in their idea is unhelpful" | Untested agreement is the sycophancy failure this mode exists to counter. The argued objection is the help. |

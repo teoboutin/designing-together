@@ -58,11 +58,13 @@ override) was run on three model tiers with the skill active:
   fork on "sounds mostly right" ("I need one word"), and shipped a
   decision record with every losing argument and tripwire in place.
 - **Sonnet-class**: the machinery holds — legal states, consistent
-  tables, a usable decision record with losing arguments — but closure
-  discipline bends under friendly ambiguity (threads closed on an
-  *interpretation* of vague approval, flagged but closed), and the
-  technical stress-testing runs shallower. Usable, with those two
-  weaknesses known.
+  tables, a usable decision record with losing arguments. In the
+  original test its closure discipline bent under friendly ambiguity
+  (threads closed on an *interpretation* of vague approval); the
+  interpretation-is-presumption rule added in response corrected that
+  failure in a follow-up probe on the same tier. The remaining known
+  weakness is depth: its technical stress-testing runs shallower than
+  Opus-class, so expect fewer found forks, not broken bookkeeping.
 - **Haiku-class**: reproduces the format, not the discipline. In the
   test run it endorsed the weak proposal instead of testing it,
   invented states outside the enum, misapplied `presumed-settled` to
