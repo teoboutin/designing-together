@@ -11,34 +11,53 @@ about an existing architecture — the assistant:
 
 - opens with argued proposals (its own ideas included), not a menu of
   options or a battery of clarifying questions;
-- tracks the discussion as named threads with explicit states, and
-  closes a thread only on the user's word — the user owns every
-  decision, and a summary table makes the standing state contestable
-  at a glance;
-- pushes back and expects push-back, reversing when a better argument
-  or evidence lands;
+- tracks the discussion as named threads with explicit states; the
+  user's explicit word closes threads (an interpreted word only marks
+  a presumption), with three declared exceptions the assistant
+  announces — withdrawing its own defeated proposals, parking its own
+  overruled dissent, superseding threads absorbed by a proposal the
+  user approves by name; a summary table makes the standing state
+  contestable at a glance;
+- pushes back and expects push-back — the exchange is symmetric until
+  a decision: the user's proposal is a claim to test, held to the
+  same slots (why it works, what it costs, what it rules out) as the
+  assistant's own — and reverses when a better argument or evidence
+  lands;
+- yields immediately to the user's explicit decision at any point,
+  converged or not — then still verifies what the choice entails, and
+  brings back a material finding exactly once, with the decided shape
+  as the standing default;
+- scales the ceremony to reversal cost: a cheap-to-reverse decision
+  gets one round and a one-line record; the full machinery is
+  reserved for expensive-to-reverse forks;
 - builds discriminating evidence (a failing test, a prototype, a
   benchmark) when the discussion stalls on intuitions — with both
   parties stating beforehand which outcome would flip them;
-- detects convergence (every thread closed, no new arguments arriving)
-  instead of requesting approval, and runs a premortem before
+- proposes convergence (every thread closed, the round quiescent) by
+  showing the full thread table for one batch confirmation, instead
+  of asking approval questions — and runs a premortem before
   recording;
 - records the outcome with the losing arguments kept, wherever the
-  project keeps decisions;
+  project keeps decisions; after convergence, the design is written
+  as a spec for the user's review before planning, and the record
+  lands in the same change as the implementation;
 - writes in plain technical English: explicit quantities and invariants
   over qualitative wording, no idioms, no aphorisms.
 
 For genuinely bounded problems (clear requirement, main risk is
-over-building) it stands down and proposes a narrowing elicitation
-instead — the [superpowers](https://github.com/obra/superpowers)
-`brainstorming` skill, where installed. The two are complementary; this
+over-building) it proposes a narrowing elicitation instead — after
+presenting the strongest open reading alongside, so the user rules on
+the classification — the
+[superpowers](https://github.com/obra/superpowers) `brainstorming`
+skill, where installed. The two are complementary; this
 skill covers the open-ended territory where narrowing questionnaires
 lose the design.
 
 It also carries a keep-or-change discipline for questioning incumbent
-designs: own-session trend framing, direction split from migration
-cost, falsifiable verdicts with tripwires, losing arguments absorbed
-rather than deleted.
+designs: fresh-discussion trend framing (a new session when the
+incident still dominates the context), direction argued before
+migration cost inside one decision, falsifiable verdicts with
+tripwires, losing arguments absorbed rather than deleted.
 
 ## Model requirements
 
@@ -90,13 +109,14 @@ The skill was designed from practice and mapped against published work
 afterwards; the correspondence below is claimed at the level of
 mechanisms, not as experimental validation of the skill itself.
 
-- **Convergence detected, never requested.** [RFC 7282, "On Consensus
+- **Convergence proposed, never requested.** [RFC 7282, "On Consensus
   and Humming in the IETF"](https://www.rfc-editor.org/rfc/rfc7282.html)
   describes the same test: consensus is looked for throughout the
   discussion rather than asked for at the end, and the absence of
   standing objections matters more than expressed agreement. The
-  skill's thread table — every issue enumerated, closure only on the
-  user's word — is that test made mechanical.
+  skill's checkpoint table — every issue enumerated, closure
+  confirmed by one batch word over the whole ledger — is that test
+  made mechanical.
 - **Argued push-back over agreement-seeking.** Structured conflict
   (devil's advocacy, dialectical inquiry) produced better decisions
   than consensus-seeking in
@@ -190,5 +210,6 @@ where the argued-exchange mode repeatedly out-performed narrowing
 elicitation on open design questions (one structural pivot found, one
 harmful implicit behavior removed). Project-specific machinery
 (document conventions, engine invariants) was stripped; the loop, the
-red flags, the language rules, and the keep-or-change discipline are
-the parts that generalize.
+thread-and-state machinery, the decision-authority rules, the red
+flags, the language rules, and the keep-or-change discipline are the
+parts that generalize.
