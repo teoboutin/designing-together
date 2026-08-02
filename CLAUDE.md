@@ -175,8 +175,10 @@ discipline above mechanical rather than conventional:
   the box. So installs of this plugin move only on an explicit
   `claude plugin update designing-together@designing-together` —
   unless the user enables auto-update for the marketplace (`/plugin`
-  → Marketplaces tab → enable auto-update, or
-  `extraKnownMarketplaces.<name>.autoUpdate` in managed settings).
+  → Marketplaces tab → enable auto-update — present for user-added
+  github marketplaces, verified — or
+  `extraKnownMarketplaces.<name>.autoUpdate` in settings.json, any
+  scope).
 - **Updates key on the version string, not on commits.** Resolution
   order: `version` in `plugin.json` → `version` in the marketplace
   entry → git commit SHA. Because this plugin pins a version, pushed
@@ -191,3 +193,19 @@ re-clones; `CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE=1` keeps
 the existing clone). `DISABLE_AUTOUPDATER=1` disables all
 auto-updating; `FORCE_AUTOUPDATE_PLUGINS=1` re-enables plugin updates
 under it.
+
+UI trap (docs-UI gap, observed 2026-08): the `/plugin` PLUGIN detail
+view shows a "Mark for update" toggle and, because this plugin's
+marketplace entry uses the relative source `"./"`, the message "Local
+plugins cannot be updated remotely. To update, modify the source at:
+./". Neither the toggle nor that classification appears in the
+documentation, and the message is misleading for this repo's shape:
+the marketplace itself is git-hosted, `claude plugin update` works
+through its clone, and the auto-update control lives one level up on
+the Marketplaces tab. Whether background auto-update actually
+propagates a version bump to a `"./"`-source plugin is undocumented —
+check at the next release (the author's machine has the toggle
+enabled); if it does not propagate, the fallback is changing the
+marketplace entry's source to
+`{"source": "github", "repo": "teoboutin/designing-together"}` at the
+cost of a second clone per install.

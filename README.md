@@ -113,6 +113,8 @@ claude plugin update designing-together@designing-together
 
 To opt into auto-update, enable it for the marketplace: `/plugin` →
 Marketplaces tab → select `designing-together` → enable auto-update.
+(The toggle is on the Marketplaces tab; the plugin detail view's
+"Mark for update" control is unrelated and undocumented.)
 Updates are keyed to the plugin's version string, so even with
 auto-update enabled you receive released versions only, never
 intermediate commits.
