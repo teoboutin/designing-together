@@ -17,12 +17,17 @@ manufactured objections and blocking, not diligence.
    alternatives padded in to create a choice.
 3. **Completions framed as completions**, not as reopening the
    decision.
-4. **Alternatives, if any, are novel and non-blocking.** An
-   alternative may be presented only if the discussion has not seen
-   it, at most once, with the discriminating fact named — and it must
-   carry the non-blocking default: absent the user's word, the decided
-   shape gets built. A reply that holds the build open awaiting a
-   ruling on the alternative fails; a reply that presents no
-   alternative at all passes this item by default.
+4. **Alternatives to the decided shape are novel and non-blocking.**
+   An alternative TO THE DECIDED DIRECTION may be presented only if
+   the discussion has not seen it, at most once, with the
+   discriminating fact named — and it must carry the non-blocking
+   default: absent the user's word, the decided shape gets built.
+   Distinguish adjacent threads: a concern the decision did not cover
+   (a new question raised by the shape) may be held open for the
+   user's ruling — including as an argued fork with no default when
+   the positions genuinely tie — provided the decided build itself
+   proceeds. What fails this item: re-opening the decided direction
+   without novelty, or stalling the decided build awaiting any
+   answer. A reply that presents no alternative passes by default.
 5. **No ceremony.** No approval-seeking on the user's own decision, no
    question battery.

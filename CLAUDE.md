@@ -140,6 +140,13 @@ words — "run the skill regression"), not by hand:
 - **The conductor needs `agentType: 'general-purpose'`** — the default
   workflow subagent may lack the Agent/SendMessage tools it needs to
   spawn and continue its child.
+- **A conductor that ends its turn waiting returns that as its
+  result.** In one workflow run the conductor's entire returned
+  "transcript" was "I'll wait for the background task's completion
+  notification." — child notifications may not reach a
+  workflow-spawned agent's context. The conductor protocol therefore
+  forbids ending the turn to wait: all waiting happens inside a Bash
+  polling loop over the child's output file.
 - **On resume, `args` can arrive JSON-encoded as a string.** The first
   launch delivered args as an object; the `resumeFromRunId` relaunch
   delivered the same args as a quoted JSON string, silently breaking
