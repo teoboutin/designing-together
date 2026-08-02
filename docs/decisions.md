@@ -430,3 +430,129 @@ the assistant cannot reconstruct it; or a cross-session resumption
 produces a checkpoint a participant contests as wrong. Either fires
 and the shape is already designed — append-only, identity first line,
 git-ignored per-discussion scratch, deleted at harvest.
+
+### 2026-08-02 — skill revision from the geargame field report
+
+**Verdict: change.** Four edits land in `SKILL.md`; four candidate
+edits were rejected or reverted on their own control arms. The file
+goes from 423 to 486 lines.
+
+**Mechanism**: a rule earns its place only where a control arm — the
+skill without that wording, on a scenario built to tempt the failure —
+shows the behavior does not reproduce on its own.
+
+**What landed, with the numbers.**
+
+- **Delta and checkpoint format** (field findings F1, F2, F4). The
+  delta gains a fourth *note* column carrying relations between
+  threads, material findings pending on a closed thread, retracted
+  assertions, and closure conditions; criteria move to their own
+  table. The checkpoint's assembly rule learns the criteria bucket.
+  Control: `interpretation-trap` items 5-6 fail, `assumed-convergence`
+  item 8 fails in all five conducted runs and 0/2 against clean 0.3.0
+  text. With: 2/2 and 2/2.
+- **`delegated`** (F5), a closed state for a thread whose judgement
+  the user handed over under named constraints, with the grant
+  boundary deciding whether a later finding is the assistant's to act
+  on or returns through the material-findings protocol. Control:
+  `delegation-in-grant` 0/3, the forbidden ceremony verbatim in every
+  rep ("Unless you say otherwise, I proceed with the repair below";
+  "your word is what reopens it"). With: 2/2. Note the halves differ:
+  `delegation-out-of-grant` passed items 1-7 3/3 on the control, so
+  the out-of-grant text is a boundary on the new rule, not a new
+  behavior.
+- **The round is the unit, not the arrival** (F7): parallel
+  evidence bearing on the same threads reports as one round, with an
+  explicit statement that this is not a licence for shorter turns.
+  No control arm; the field report's evidence is unambiguous.
+  Verified by `parallel-burst`.
+- **Prior-art survey as a proposed move** (F6), bounded to problem
+  classes where other projects shipped inspectable mechanisms. The
+  bound was found in testing, not in the discussion: the first wording
+  over-fired 0/3 on two successive fixtures, offering surveys of dbt,
+  Cube, LookML, Kimball and the DAU/MAU literature for a question
+  about one company's own two definitions. Bounded: 3/3 both arms,
+  confirmed five times.
+- **A verdict is not a decision** (the report's grounding note): a
+  record carrying a verdict but no ruling grounds a discussion without
+  settling it. Its control passed 3/3 and the user kept it anyway,
+  which was their call to make. It is bounded against decision
+  records — unbounded it would have told an agent to argue against
+  this ledger at every grounding step. `verdict-grounding-decided`
+  exists to hold that bound and passes 3/3.
+
+**What did not land, and why.**
+
+- **Material findings keyed on endorsement** (F3). Control 3/3, and
+  the transcripts showed why the rule was wrong rather than merely
+  redundant: the skill already routes an endorsed but OPEN thread
+  through free movement between open states, which is cheaper than
+  the closed-thread protocol this would have imposed.
+- **Naming assumed closing facts at convergence** (F8). Landed, then
+  reverted. Its supporting number came from a rubric item demanding
+  two of four facts chosen in advance, which assumes a design shape
+  the assistant may not build. Against the corrected item — the facts
+  the built design actually depends on — clean 0.3.0 text passes 2/2.
+- **A sweep clause for that rule.** Landed, then reverted with it.
+- **`edges-as-threads`** and leaving relations in prose: both lost to
+  the note column; the unreadable-graph reason is recorded in
+  `3bec85b`.
+
+**Two results nobody designed for.** Against clean 0.3.0 text, one rep
+proposed convergence with "no checkpoint table at all" (item 4, 1/2)
+and one invented `open` and the compound `approved, amended` as states
+(item 7, 1/2). Both are clean under the edited text. The plausible
+mechanism — a better-specified checkpoint format makes agents likelier
+to produce the checkpoint, and pinned columns leave less room to
+improvise a state cell — is a hypothesis from two reps, not a finding.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"The failures are the agent losing track of threads."* Half right,
+  and the half that held pointed at bucketing, not tracking: states
+  were correct in every run. Absorbed by the assembly rule's criteria
+  bucket. The other half became the state-artifact question, decided
+  separately above.
+- *"Skill text should stay short."* Retired as a criterion (entry
+  above): a line count stands in for attention dilution and measures
+  the wrong thing.
+- *"A failing fixture means the rule is wrong."* Twice it meant the
+  fixture was wrong, and twice acting on that reading was tested: once
+  refuted by a re-run, once confirmed. Fixture bugs and rule bugs are
+  distinguishable only by re-running, which is why both were re-run.
+
+**Tripwires**: an edit lands correctly while a previously passing
+rubric item regresses with no textual conflict; `delegated` appears in
+a real session recorded as `approved` anyway; a prior-art survey is
+proposed for a problem whose answer turns on facts private to the
+project.
+
+**Also decided, and carried forward** (the spec that held these is
+deleted in this change):
+
+- **Parked — `criteria-axis`**: proposals scored against every live
+  criterion at convergence. Tripwire: a checkpoint where an unstated
+  relation between a proposal and a live criterion changed a decision.
+  Re-entry: the next revision review.
+- **Parked — `prior-art-skill`**: the survey methodology as a second
+  plugin skill. Tripwire: live testing shows the methodology needs
+  constraining, or agents need guidance to run a usable survey.
+  Re-entry: after the prior-art move has fired in real sessions.
+- **Open — `resumption-honesty`**: the skill's third checkpoint moment
+  is "when resuming a discussion across sessions", but a checkpoint is
+  assembled by sweeping prior deltas, which a fresh session does not
+  have. Either that clause is unexercised or it cannot be complied
+  with. Not fixed here; it wants a real resumption to have happened
+  first.
+- **Observations for a future report**, seen in testing and not acted
+  on: states outside the enum appeared three times across roughly a
+  dozen conducted rounds (`blocked`, `open`, `approved, amended`); and
+  one otherwise well-grounded reply fabricated a citation, claiming a
+  README taught an idiom that the file's own text contradicts.
+
+**Coverage limit, stated plainly**: the last full-suite run (17 of 19,
+both failures since traced to rubric bugs and fixed) was against text
+that predates the criteria clause and this reversion. The criteria
+clause was verified separately at 2/2. The reversion is unverified by
+choice — the decision was to let real use answer whether the reverted
+rules are missed.
