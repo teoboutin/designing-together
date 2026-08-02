@@ -152,9 +152,12 @@ purpose: convergence is computed from it.
 
 **Summaries and checkpoints.** When a round changed any state, end
 the turn with a delta: thread / state / one-line position, per
-changed thread. A **checkpoint** is a display of the full table —
-EVERY thread the discussion has opened, none omitted, grouped into
-state buckets, closed buckets first — and it
+changed thread. A **checkpoint** is a display of the full table,
+and it is ASSEMBLED, not recalled: sweep every prior delta and
+collect every slug ever minted; each appears exactly once, in its
+current bucket, closed buckets first. A slug you cannot place is a
+tracking failure to repair on the spot, not a row to drop. The
+checkpoint
 happens at three moments: when proposing convergence, before
 recording (on the full path — the one-round path in Decision
 authority skips the table), and when resuming a discussion across
