@@ -126,7 +126,7 @@ function mechanicalStateCheck(text) {
   let m
   while ((m = rowRe.exec(text)) !== null) found.add(m[1].trim().toLowerCase())
   // table furniture, not states: harvesting rows also catches header cells
-  const HEADER_TOKENS = ['state', 'thread', 'position', 'why', 'status', 'note', 'decision', 'detail', 'criterion', 'verdict']
+  const HEADER_TOKENS = ['state', 'thread', 'position', 'why', 'status', 'note', 'decision', 'detail', 'criterion', 'verdict', 'threads', 'delta', 'relation', 'notes']
   const unknown = [...found].filter(
     (t) =>
       !STATES.includes(t) &&
