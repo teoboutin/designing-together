@@ -77,26 +77,70 @@ every probe prompt instructs them to disregard project-specific
 instructions. Scenarios use neutral stacks (a web app, a Python
 service) unrelated to any host project.
 
-## The review process (repeatable)
+## The pre-release review (repeatable)
 
-The 0.3.0 revision came from three independent passes, worth repeating
-for any major revision:
+A release is gated on a multi-axis review. Each axis gets its OWN
+fresh subagent: independence is the point, so one agent never runs two
+axes, and no agent is told what another found. Every prompt carries
+the same three constraints — disregard any host-project instructions
+in context, modify nothing, and return FINDINGS rather than
+replacement wording. A proposed patch from a reviewer is worse than
+useless here: under the editing discipline above, a finding is only
+step-1 evidence and any wording still needs its own probes.
 
-1. **Cold flaw review**: a subagent with no project context reviews the
-   skill text alone, hunting self-compliance violations (the skill must
-   obey its own Language section — by that section's own jurisdiction
-   test, this repo's prose is working prose), loopholes, harmful
-   over-application, internal contradictions, unfalsifiable rules, and
-   missing pieces.
-2. **Literature mapping**: a research subagent maps each mechanism to
-   published work with a verdict per mechanism — supported,
-   contradicted, refinable, or no evidence — citing checkable sources
-   and flagging unverified ones. The README's literature section is the
-   durable output.
-3. **Pressure probes**: scenarios for behaviors reading cannot judge —
-   what the skill makes an agent do when the user overrides the mode,
-   when convergence is tempting but unearned, on an ordinary opening
-   turn.
+Axes 1 to 4 are COLD: the agent is given the skill file alone and told
+not to read the README, the tests, or anything else. Their value is
+arriving without context. Axes 5 to 7 need the surrounding material
+and are given exactly what they need and no more.
+
+1. **Cold flaw review** — internal contradictions, loopholes an agent
+   could comply through, unfalsifiable or uncheckable rules,
+   underspecified mechanics, missing situations, dead text. Ranked by
+   severity, each finding quoting the text and naming a concrete bad
+   outcome.
+2. **Language self-compliance** — the skill audited against its own
+   Language section, which by its jurisdiction clause governs the
+   skill itself. Idioms, undefined metaphors, qualitative claims doing
+   closing work, vague wording where a quantity belongs, sentences
+   that need a second reading. A rule the document visibly breaks is a
+   weakened rule. This axis also reports what is exemplary, so a later
+   revision does not damage it.
+3. **Over-application** — for each rule, a realistic scenario where
+   its trigger is satisfied but its behavior is wrong, rated by
+   likelihood and damage. Distinct from axis 1 and worth its own
+   agent: the prior-art move over-fired 0/3 on two successive
+   fixtures, and nothing but a dedicated over-firing check would have
+   caught it.
+4. **Self-sufficiency** — does each rule still bind in a repository
+   with no documents, no decision record, and no conventions? This is
+   the standing risk below, asked rule by rule. Includes the second
+   question of whether the skill assumes vocabulary the USER has not
+   been given.
+5. **Test suite review** — coverage of rules by fixtures, rubric items
+   that test something other than what their scenario claims,
+   scenarios that hand the assistant a conclusion it should have had
+   to discover, fires/holds pairs where the holds arm is arguably a
+   true positive, and places a strict judge fails a correct transcript.
+   This axis has demonstrated value: the 0.4.x revision found two
+   rubric bugs and one miscalibrated scenario, and each had already
+   produced a misleading result.
+6. **Document coherence** — `SKILL.md`, `README.md`, `docs/decisions.md`
+   and this file checked against each other. Rules with no ledger
+   entry, ledger entries the skill does not implement, stale paths and
+   section names, README claims the skill no longer satisfies, and
+   whether any document is doing another's job under the
+   audience-separation rule.
+7. **Literature mapping** — each mechanism mapped to published work
+   with a verdict of supported, contradicted, refinable, or no
+   evidence found, citing checkable sources and flagging unverified
+   ones. Run it for mechanisms added since the last mapping, not the
+   whole set. The README's literature section is the durable output,
+   and a contradicted verdict is the most valuable result it can
+   produce.
+
+Behavioral questions that reading cannot answer are NOT a review axis:
+they belong to the regression harness below, which supersedes the
+ad-hoc pressure probes used before 0.3.0.
 
 ## The standing risk to edit against
 
