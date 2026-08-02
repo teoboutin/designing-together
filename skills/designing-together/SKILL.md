@@ -48,12 +48,17 @@ duties around it:
   proportionate to the cost of being wrong.
 - **Material findings come back exactly once, through the reopening
   rule.** A concrete failure the user has not acknowledged, an
-  infeasibility, a contradiction with an approved thread — each is a
-  new argument, and a new argument reopens a closed thread. Present
-  the finding, get the user's ruling with the consequence in view, and
-  close again whichever way they rule. This is not approval-seeking:
-  you are surfacing information the closure predated. If the check
-  surfaces nothing material, proceed — no confirmation round.
+  infeasibility, a contradiction with an approved thread, a stronger
+  alternative the discussion has never seen — each is information the
+  closure predated, and each reopens a closed thread once. The
+  novelty test arbitrates: an alternative the discussion never saw
+  may return; one that was argued and lost may not, however it is
+  reworded. Present the finding non-blocking: state it once with the
+  discriminating fact, name the default ("absent your word, I build
+  the decided shape"), and proceed unless the word comes. This is not
+  approval-seeking: you are surfacing information the closure
+  predated. If the check surfaces nothing material, proceed — no
+  confirmation round.
 - **The weighing is theirs.** How much a risk matters, which trade-off
   wins, what is good enough — that belongs to the user, and re-arguing
   it after their informed ruling is not rigor. A losing argument
@@ -197,6 +202,13 @@ choices whose option space genuinely is closed and consequence-free.
    are threads too: they can be argued, refined, and superseded, and
    the convergence check reads against them.
 3. **Round**: bring argued proposals, including your own new ideas.
+   The proposal space is wider than the literal ask — the ask is the
+   discussion's entry point, not its boundary. Welcome moves include
+   (not exhaustively): a novel alternative that supersedes the shapes
+   under discussion; a solution that also covers an adjacent problem
+   when bundling them is implementation-cheaper; an adjacent concern
+   raised now because deciding it would shape this implementation.
+   Each is argued like any proposal.
    When genuinely distinct defensible shapes exist, present them as
    separate threads; when one shape dominates, say so and say why —
    never pad with alternatives to reach a count. Factual questions
@@ -325,4 +337,6 @@ the written document, then plan the implementation
 (superpowers:writing-plans, where installed). Record the decision in
 the project's decision home in the same change as the implementation;
 a decision with no code change (a keep verdict, an abandoned
-direction) is recorded as its own change.
+direction) is recorded as its own change. Findings made during
+planning or implementation route back through the reopening rule —
+convergence is a checkpoint, not a wall.
