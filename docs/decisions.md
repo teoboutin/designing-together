@@ -44,9 +44,10 @@ produce no useful output; their role in this workflow is as
 implementation workers conducted by a frontier model, not as the
 counterpart in the design discussion.
 
-Two consequences bind edits. Rule budget is judged against frontier
-attention only — "a smaller model would not follow this" is not an
-argument for or against any wording. And `survey` mode in the
+Two consequences bind edits. "A smaller model would not follow this"
+is not an argument for or against any wording, and skill text is not
+kept short on its account — see the entry below on why length is not
+the binding constraint. And `survey` mode in the
 regression harness is a **capability probe** for tiers that are not
 supported: it asks whether a non-target tier has become capable
 enough to be worth reconsidering. Its failures are not regressions and
@@ -291,3 +292,38 @@ was retired.
 
 **Tripwires**: a session needs git history to answer a question about
 a resolved finding, meaning the resolving entry carried too little.
+
+### 2026-08-02 — length is not the binding constraint on skill text
+
+**Verdict: change.** Skill text carries no size budget. An edit is
+judged on whether it changes behavior, which the editing discipline
+already governs; the separate rule-budget criterion is retired.
+
+**Mechanism**: a size bound was standing in for attention dilution,
+and it measures the wrong thing — a short skill full of inert rules
+dilutes attention exactly as much as a long one full of binding ones.
+
+**Evidence at decision time**: two sessions with the 423-line 0.3.0
+skill active held its machinery across many rounds without drift —
+this repository's own revision discussion, and the geargame session
+that also conducted a prior-art survey across roughly ten user
+interface libraries and game engines in the same discussion. Both
+sustained the thread ledger, the closure rules and the delta format
+throughout. The skill-revision spec's seven pending edits take the
+file to roughly 478 lines.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"Every added rule dilutes attention."* True, and unaddressed by a
+  line count. The absorption is per-edit: the control arm measures
+  whether a specific wording binds, which is the dilution question
+  asked where it can be answered.
+- *"Accessibility to smaller models argues for brevity."* Void under
+  the frontier-only non-goal above.
+
+**Tripwires**: an edit that lands correctly in isolation while a
+previously-passing rubric item regresses with no textual conflict
+between them — that is attention dilution becoming observable, and it
+reopens the question of a size bound. Evidence bounding the limit from
+above at any concrete length would also reopen it: the two sessions
+show 423 lines is below the limit, not where the limit is.
