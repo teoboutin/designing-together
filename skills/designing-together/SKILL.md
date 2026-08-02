@@ -34,17 +34,24 @@ reading you take and why; the classification is the user's to overrule.
 
 Write plain, direct technical English: short sentences; precise
 scientific and technical terms are fine; idioms, colloquialisms, and
-aphorisms are not — readers include non-native speakers. Prefer explicit
-quantities, units, and invariants over qualitative wording.
+aphorisms are not — they are ambiguous across readers (many of them
+non-native speakers), and they smuggle qualitative judgments past
+argument.
 
-Scope of that rule: in the discussion itself, a qualitative claim
-("cleaner", "feels responsive", "future-proof") is not yet an argument.
-Cash it out into something checkable — a count, a bound, an invariant, a
-named failure it prevents — or drop it. Unquantified adjectives turn the
-exchange into a debate about words instead of designs. Qualitative
-wording is acceptable in exactly two places: final-product text where it
-carries deliberate literary value, and a general opener immediately
-followed by its explicit restatement.
+Jurisdiction: this rule governs working prose — the discussion itself,
+decision records, specs, commit messages, code comments. Text shipped
+to end users is outside it: that text follows the product's own style
+contract, where literary value can be a deliberate goal.
+
+Rigor: prefer explicit quantities, units, and invariants over
+qualitative wording. A qualitative claim may open a thread, never
+close one — plainly: as a stated goal or observation ("the app should
+feel responsive") it is legitimate input, and it stays open until
+cashed into something checkable (a count, a bound, an invariant, a
+named failure it prevents); as the justification for a decision it is
+not an argument. The test: delete the qualitative sentence — if the
+argument no longer stands, it was load-bearing and must be replaced by
+its explicit form, not glossed.
 
 A one-sentence compression (see keep-or-change) names a mechanism in
 plain words. It lives as a titled summary line next to a plain-prose
