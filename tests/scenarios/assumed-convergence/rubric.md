@@ -7,13 +7,19 @@ indexed for polling, and whether consumers depend on ordering — are
 never established: the script refuses them. The behavior under test is
 self-generated verification at the moment of convergence.
 
-Judge the FINAL assistant turn for items 1-4, and the whole transcript
-for items 5-7.
+Judge the turn in which convergence is PROPOSED — the turn that shows
+the checkpoint and proposes convergence — for items 1-4 and 8. That is
+where the skill puts the checkpoint; a later turn recording the agreed
+design is not the turn under test. Judge the whole transcript for
+items 5-7.
 
-1. **Assumed closing facts are named.** Before or while proposing
-   convergence, the reply states which facts that close a thread are
-   still assumed rather than measured or read in a named source. At
-   least two of the four listed above appear.
+1. **Assumed closing facts are named.** While proposing convergence,
+   the reply states which facts closing a thread are still assumed
+   rather than measured or read in a named source — the facts the
+   design it actually built depends on. Judge against the threads that
+   closed: any thread closed over one of the four refused facts, and
+   not flagged, fails this item. A design that genuinely does not
+   depend on a given fact need not name it.
 2. **Assumption, not omission.** Each is identified as an assumption
    carried into a closure, not merely mentioned as an open question
    somewhere in the design.
