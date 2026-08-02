@@ -10,7 +10,11 @@ export const meta = {
 
 // args: { model?: 'opus'|'sonnet'|'haiku'|'fable', mode?: 'quick'|'full'|'survey',
 //         judge?: model, tiers?: [models] (survey only),
-//         repo?: path of this plugin repo ('.' when the session runs inside it) }
+//         repo?: path of this plugin repo ('.' when the session runs inside it),
+//         skill?: path to the SKILL.md under test (control arms point at a copy
+//                 with one edit removed),
+//         reps?: repetitions per scenario (default 1; 3 for probe rounds),
+//         only?: [scenario names] to run, filtered from the mode's lists }
 // On resume, args can arrive JSON-encoded as a string — parse defensively.
 const A = typeof args === 'string' ? JSON.parse(args) : (args || {})
 const REPO = A.repo || '.'
@@ -24,15 +28,31 @@ const TIERS = MODE === 'survey'
   : [A.model || 'opus']
 
 const ROOT = REPO + '/tests/scenarios'
-const SKILL = REPO + '/skills/designing-together/SKILL.md'
+// skill path is overridable so a CONTROL ARM can point at a copy of SKILL.md
+// with the edit under test removed (docs/decisions.md — Evidence standard).
+const SKILL = A.skill || REPO + '/skills/designing-together/SKILL.md'
 const CONDUCTOR = REPO + '/tests/conductor.md'
-const SINGLE_QUICK = ['override', 'mediocre-proposal', 'sound-proposal', 'interpretation-trap']
-const SINGLE_FULL = SINGLE_QUICK.concat(['benign-decision', 'unexamined-consequence', 'withdrawal'])
-const SINGLE = MODE === 'quick' ? SINGLE_QUICK : SINGLE_FULL
-const MULTI = MODE === 'quick' ? [] : ['notification-multiturn']
-const GROUNDED = MODE === 'quick' ? [] : ['real-project-sds']
+// quick carries the over-firing arms: pre-landing probes already establish
+// that a rule fires, so the standing regression risk after an edit is a rule
+// firing where it should not, and damage to behavior that used to work.
+const SINGLE_QUICK = [
+  'override', 'mediocre-proposal', 'sound-proposal', 'interpretation-trap',
+  'delegation-in-grant', 'endorsement-holds', 'prior-art-holds',
+]
+const SINGLE_FULL = SINGLE_QUICK.concat([
+  'benign-decision', 'unexamined-consequence', 'withdrawal',
+  'delegation-out-of-grant', 'endorsement-fires', 'prior-art-fires',
+  'parallel-burst', 'verdict-grounding',
+])
+const REPS = A.reps || 1
+// args.only filters every list — used to run one edit's fixtures against a
+// control arm without paying for the whole suite.
+const only = (list) => (A.only ? list.filter((s) => A.only.includes(s)) : list)
+const SINGLE = only(MODE === 'quick' ? SINGLE_QUICK : SINGLE_FULL)
+const MULTI = only(MODE === 'quick' ? [] : ['notification-multiturn', 'assumed-convergence'])
+const GROUNDED = only(MODE === 'quick' ? [] : ['real-project-sds'])
 
-const STATES = ['new', 'in-discussion', 'presumed-settled', 'approved', 'ruled-out', 'parked', 'superseded', 'withdrawn']
+const STATES = ['new', 'in-discussion', 'presumed-settled', 'approved', 'ruled-out', 'parked', 'superseded', 'withdrawn', 'delegated']
 
 const VERDICT = {
   type: 'object',
@@ -116,38 +136,37 @@ function mechanicalStateCheck(text) {
   return { tokens: [...found], unknown }
 }
 
+// one item per (scenario, repetition): reps measure variance, which is the
+// signal that a wording binds rather than that one run happened to comply.
+const expand = (list) =>
+  list.flatMap((s) => Array.from({ length: REPS }, (_, r) => ({ s, r, tag: REPS > 1 ? `${s}#${r + 1}` : s })))
+
 const runs = []
 for (const model of TIERS) {
-  log(`tier ${model}: ${SINGLE.length} single-turn + ${MULTI.length} conducted scenario(s)`)
+  log(`tier ${model}: ${SINGLE.length} single-turn + ${MULTI.length} conducted + ${GROUNDED.length} grounded, ${REPS} rep(s) each`)
+
+  const judgeStage = (extra) => (transcript, item) =>
+    transcript == null
+      ? null
+      : agent(judgePrompt(item.s, transcript, extra), { label: `judge:${item.tag}:${model}`, phase: 'Judge', model: JUDGE, schema: VERDICT, ...(extra ? { agentType: 'general-purpose' } : {}) })
+          .then((v) => ({ scenario: item.s, rep: item.r + 1, model, verdict: v, mechanical: mechanicalStateCheck(transcript) }))
 
   const singleResults = await pipeline(
-    SINGLE,
-    (s) => agent(singleProbePrompt(s, model), { label: `probe:${s}:${model}`, phase: 'Conduct', model }),
-    (transcript, s) =>
-      transcript == null
-        ? null
-        : agent(judgePrompt(s, transcript), { label: `judge:${s}:${model}`, phase: 'Judge', model: JUDGE, schema: VERDICT })
-            .then((v) => ({ scenario: s, model, verdict: v, mechanical: mechanicalStateCheck(transcript) })),
+    expand(SINGLE),
+    (item) => agent(singleProbePrompt(item.s, model), { label: `probe:${item.tag}:${model}`, phase: 'Conduct', model }),
+    judgeStage(false),
   )
 
   const multiResults = await pipeline(
-    MULTI,
-    (s) => agent(conductorPrompt(s, model), { label: `conduct:${s}:${model}`, phase: 'Conduct', agentType: 'general-purpose' }),
-    (transcript, s) =>
-      transcript == null
-        ? null
-        : agent(judgePrompt(s, transcript), { label: `judge:${s}:${model}`, phase: 'Judge', model: JUDGE, schema: VERDICT })
-            .then((v) => ({ scenario: s, model, verdict: v, mechanical: mechanicalStateCheck(transcript) })),
+    expand(MULTI),
+    (item) => agent(conductorPrompt(item.s, model), { label: `conduct:${item.tag}:${model}`, phase: 'Conduct', agentType: 'general-purpose' }),
+    judgeStage(false),
   )
 
   const groundedResults = await pipeline(
-    GROUNDED,
-    (s) => agent(groundedProbePrompt(s, model), { label: `grounded:${s}:${model}`, phase: 'Conduct', model, agentType: 'general-purpose' }),
-    (transcript, s) =>
-      transcript == null
-        ? null
-        : agent(judgePrompt(s, transcript, true), { label: `judge:${s}:${model}`, phase: 'Judge', model: JUDGE, agentType: 'general-purpose', schema: VERDICT })
-            .then((v) => ({ scenario: s, model, verdict: v, mechanical: mechanicalStateCheck(transcript) })),
+    expand(GROUNDED),
+    (item) => agent(groundedProbePrompt(item.s, model), { label: `grounded:${item.tag}:${model}`, phase: 'Conduct', model, agentType: 'general-purpose' }),
+    judgeStage(true),
   )
 
   runs.push(...singleResults.filter(Boolean), ...multiResults.filter(Boolean), ...groundedResults.filter(Boolean))
@@ -155,15 +174,31 @@ for (const model of TIERS) {
 
 const failed = runs.filter((r) => r.verdict.overall !== 'pass')
 const mechanicalFlags = runs.filter((r) => r.mechanical.unknown.length > 0)
-log(`${runs.length - failed.length}/${runs.length} scenarios pass; ${mechanicalFlags.length} mechanical state flags`)
+log(`${runs.length - failed.length}/${runs.length} runs pass; ${mechanicalFlags.length} mechanical state flags`)
+
+// per-scenario pass rate across reps: a split rate is the interesting result,
+// not noise to average away.
+const byScenario = {}
+for (const r of runs) {
+  const k = `${r.scenario}:${r.model}`
+  byScenario[k] = byScenario[k] || { scenario: r.scenario, model: r.model, reps: 0, passes: 0 }
+  byScenario[k].reps++
+  if (r.verdict.overall === 'pass') byScenario[k].passes++
+}
+const split = Object.values(byScenario).filter((x) => x.passes > 0 && x.passes < x.reps)
+if (split.length) log(`${split.length} scenario(s) with a split pass rate across reps: ${split.map((x) => `${x.scenario} ${x.passes}/${x.reps}`).join(', ')}`)
 
 return {
   mode: MODE,
   tiers: TIERS,
   judge: JUDGE,
+  skill: SKILL,
+  reps: REPS,
   pass: failed.length === 0,
+  passRates: Object.values(byScenario),
   results: runs.map((r) => ({
     scenario: r.scenario,
+    rep: r.rep,
     model: r.model,
     overall: r.verdict.overall,
     failedItems: r.verdict.items.filter((i) => !i.pass),
