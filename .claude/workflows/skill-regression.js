@@ -152,23 +152,28 @@ for (const model of TIERS) {
       : agent(judgePrompt(item.s, transcript, extra), { label: `judge:${item.tag}:${model}`, phase: 'Judge', model: JUDGE, schema: VERDICT, ...(extra ? { agentType: 'general-purpose' } : {}) })
           .then((v) => ({ scenario: item.s, rep: item.r + 1, model, verdict: v, mechanical: mechanicalStateCheck(transcript) }))
 
-  const singleResults = await pipeline(
-    expand(SINGLE),
-    (item) => agent(singleProbePrompt(item.s, model), { label: `probe:${item.tag}:${model}`, phase: 'Conduct', model }),
-    judgeStage(false),
-  )
-
-  const multiResults = await pipeline(
-    expand(MULTI),
-    (item) => agent(conductorPrompt(item.s, model), { label: `conduct:${item.tag}:${model}`, phase: 'Conduct', agentType: 'general-purpose' }),
-    judgeStage(false),
-  )
-
-  const groundedResults = await pipeline(
-    expand(GROUNDED),
-    (item) => agent(groundedProbePrompt(item.s, model), { label: `grounded:${item.tag}:${model}`, phase: 'Conduct', model, agentType: 'general-purpose' }),
-    judgeStage(true),
-  )
+  // The three categories run CONCURRENTLY. Awaiting them in sequence made
+  // wall-clock the SUM of the categories, and the conducted scenarios are the
+  // long pole by an order of magnitude (a conductor drives a child across four
+  // turns). Conducted is listed first so its agents claim concurrency slots
+  // before the cheap single-turn probes fill them.
+  const [multiResults, groundedResults, singleResults] = await Promise.all([
+    pipeline(
+      expand(MULTI),
+      (item) => agent(conductorPrompt(item.s, model), { label: `conduct:${item.tag}:${model}`, phase: 'Conduct', agentType: 'general-purpose' }),
+      judgeStage(false),
+    ),
+    pipeline(
+      expand(GROUNDED),
+      (item) => agent(groundedProbePrompt(item.s, model), { label: `grounded:${item.tag}:${model}`, phase: 'Conduct', model, agentType: 'general-purpose' }),
+      judgeStage(true),
+    ),
+    pipeline(
+      expand(SINGLE),
+      (item) => agent(singleProbePrompt(item.s, model), { label: `probe:${item.tag}:${model}`, phase: 'Conduct', model }),
+      judgeStage(false),
+    ),
+  ])
 
   runs.push(...singleResults.filter(Boolean), ...multiResults.filter(Boolean), ...groundedResults.filter(Boolean))
 }
