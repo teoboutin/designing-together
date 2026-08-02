@@ -161,6 +161,13 @@ words — "run the skill regression"), not by hand:
   from disk — which is what makes the mismatch hard to see. **After
   editing the script, always invoke with `scriptPath` pointing at
   `.claude/workflows/skill-regression.js` in this repo.**
+- **Never edit `SKILL.md` while a run is in flight.** Probe agents read
+  the file when their turn starts, not when the workflow launches, so
+  concurrent edits give different reps different skill text. Observed
+  2026-08-02: one rep of a control run was judged against the
+  four-column delta format while a sibling rep was judged against the
+  three-column one, in the same run. Freeze a copy and pass
+  `args.skill` at it whenever the working tree may move.
 - **Grandchild notifications bubble to the launcher in real time.**
   The conductor's child (the tested assistant) emits a
   task-notification to the top-level session after EVERY turn, before
