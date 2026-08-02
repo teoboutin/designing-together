@@ -149,6 +149,18 @@ words — "run the skill regression"), not by hand:
 
 ### Gotchas observed in practice (keep this list current)
 
+- **`Workflow({name: 'skill-regression'})` runs the INSTALLED PLUGIN's
+  copy, not this repo's.** The plugin ships `.claude/workflows/`, so a
+  name-based invocation resolves the version in
+  `plugins/cache/designing-together/<version>/` — pinned, and blind to
+  every edit made here since that release. Observed 2026-08-02: a run
+  launched by name executed the 0.3.0 script, silently ignoring
+  `args.only` and `args.reps` and running the old scenario list; the
+  persisted script was byte-identical to the plugin cache copy.
+  Fixtures are unaffected — the agents read `tests/scenarios/` live
+  from disk — which is what makes the mismatch hard to see. **After
+  editing the script, always invoke with `scriptPath` pointing at
+  `.claude/workflows/skill-regression.js` in this repo.**
 - **Grandchild notifications bubble to the launcher in real time.**
   The conductor's child (the tested assistant) emits a
   task-notification to the top-level session after EVERY turn, before
