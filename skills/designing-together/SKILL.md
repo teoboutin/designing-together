@@ -360,10 +360,7 @@ thread is promoted to a thread of its own, explicitly.
    closed introduced no new thread, no reopening, no new argument.
    Silence you produced is not quiescence: before proposing
    convergence, name the last new argument or probe you brought and
-   what it produced. Name also which facts closing a thread are still
-   assumed rather than measured or read in a named source. Step 4
-   required a tripwire on each; convergence is where they are
-   collected, not where they are discovered.
+   what it produced.
 
    Convergence is PROPOSED, never requested: show the checkpoint
    table with the `presumed-settled` bucket in view — the batch word
