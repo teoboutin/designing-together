@@ -29,9 +29,13 @@ and the model name for the child.
    design content.
 5. SendMessage resumes the child in the background. To collect the
    reply, poll the child's output file (the path appears in the
-   SendMessage/spawn results): loop `sleep 5` + check until the JSONL
+   SendMessage/spawn results): loop `sleep 10` + check until the JSONL
    gains a new final assistant message, then extract that message's
-   text blocks. Expect up to a few minutes for long turns.
+   text blocks. Expect up to a few minutes for long turns. NEVER end
+   your turn to wait for a completion notification — in some execution
+   contexts it does not reach you, and a turn ended waiting becomes
+   your final output. Waiting happens only inside the Bash polling
+   loop.
 6. Assemble the transcript: for each round, `## User` with what you
    sent, `## Assistant` with the child's reply verbatim.
 7. Return ONLY the assembled transcript. No commentary, no scoring,
