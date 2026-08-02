@@ -338,3 +338,74 @@ between them — that is attention dilution becoming observable, and it
 reopens the question of a size bound. Evidence bounding the limit from
 above at any concrete length would also reopen it: the two sessions
 show 423 lines is below the limit, not where the limit is.
+
+### 2026-08-02 — no durable state artifact for the thread ledger
+
+**Verdict: keep.** The thread ledger stays in the discussion. The
+skill writes no state file, no per-thread schema, and ships no script
+to validate one. A delta log is parked with a tripwire; the three
+larger forms are rejected.
+
+**Mechanism**: the failure a state artifact prevents — losing the
+ledger to compaction or to a session boundary — does not occur in this
+skill's usage, which starts a discussion rather than resuming one; and
+the artifact's cost is paid every round, in the discussion the skill
+exists to protect.
+
+**Evidence at decision time.** A conducted-run failure (assumed
+closing facts not swept at convergence) was first read as evidence for
+an artifact. It was not: the thread STATES were correct in every run,
+and correcting a mis-specified rubric item removed the failure
+entirely. What remained was a bucketing gap, fixed in the skill text.
+
+A prior-art survey then produced three findings that argue against
+building. **The reliable tier is code-written**: across OpenHands,
+LangGraph, aider, Letta and Manus, append-only logs are produced by
+code, while every system that lets a MODEL overwrite state caps it
+hard (Letta's memory blocks default to 2000 characters). A
+model-written, uncapped ledger has no precedent. **Manus argues the
+opposite of its reputation**: its leaked system prompt shows
+code-generated plan events in an event stream, with the written rule
+"Task planning takes precedence over todo.md" — the model-maintained
+checklist is subordinate. **Vendors name their model-written tiers as
+the unreliable ones**: Cascade's documentation tells users to prefer
+rules files "for knowledge you want Cascade to reliably reuse rather
+than relying on auto-generated Memories"; LangChain documents that a
+maintained profile "can become error-prone as the profile gets
+larger", and that maintaining it in the hot path forces the agent to
+"multitask between memory creation and its other responsibilities,
+potentially affecting the quantity and quality of memories created".
+
+The strongest evidence FOR an artifact also undercuts our version of
+it. The superpowers plan-scoped-workspace eval found 25 of 25
+controllers refused to trust a stale ledger — the hypothesized failure
+did not reproduce — and that agents reject even truthful ledgers that
+fail to corroborate against ground truth. That ledger corroborates
+against git; a thread ledger's only corroborant is the conversation,
+which is exactly what compaction removes.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"A file makes the convergence sweep mechanical."* The sweep was not
+  the problem: states were tracked correctly throughout. The bucketing
+  gap it pointed at is absorbed by the checkpoint assembly rule, which
+  now names the criteria table.
+- *"Recitation keeps the ledger in attention."* Manus's stated reason
+  for rewriting `todo.md`. Already delivered by the checkpoint
+  display, in context, at three defined moments — at no storage cost.
+- *"Cross-session resumption needs it."* Real in principle, absent in
+  this skill's usage. Left as `resumption-honesty`: the skill's third
+  checkpoint moment assumes deltas a fresh session does not have, so
+  either that clause is unexercised or it cannot be complied with.
+  Recorded as a candidate for the next revision, not fixed here.
+- *"A script could validate the artifact."* No precedent found
+  anywhere: the closest analogue's script resolves a path and
+  validates nothing, Claude Code's task tools fire no hooks at all
+  (anthropics/claude-code#20243), and a code search for skills
+  maintaining state tables returned empty.
+
+**Tripwires**: a real discussion loses its ledger to compaction and
+the assistant cannot reconstruct it; or a cross-session resumption
+produces a checkpoint a participant contests as wrong. Either fires
+and the shape is already designed — append-only, identity first line,
+git-ignored per-discussion scratch, deleted at harvest.
