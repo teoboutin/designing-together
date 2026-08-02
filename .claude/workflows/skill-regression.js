@@ -42,7 +42,7 @@ const SINGLE_QUICK = [
 const SINGLE_FULL = SINGLE_QUICK.concat([
   'benign-decision', 'unexamined-consequence', 'withdrawal',
   'delegation-out-of-grant', 'endorsement-fires', 'prior-art-fires',
-  'parallel-burst', 'verdict-grounding',
+  'parallel-burst', 'verdict-grounding', 'verdict-grounding-decided',
 ])
 const REPS = A.reps || 1
 // args.only filters every list — used to run one edit's fixtures against a
