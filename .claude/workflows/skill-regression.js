@@ -125,7 +125,8 @@ function mechanicalStateCheck(text) {
   const rowRe = /\|[^|\n]*\|\s*([a-zA-Z-]{3,25})\s*(?:→|->)?\s*\|/g
   let m
   while ((m = rowRe.exec(text)) !== null) found.add(m[1].trim().toLowerCase())
-  const HEADER_TOKENS = ['state', 'thread', 'position', 'why', 'status']
+  // table furniture, not states: harvesting rows also catches header cells
+  const HEADER_TOKENS = ['state', 'thread', 'position', 'why', 'status', 'note', 'decision', 'detail', 'criterion', 'verdict']
   const unknown = [...found].filter(
     (t) =>
       !STATES.includes(t) &&
