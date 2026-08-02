@@ -147,8 +147,9 @@ no thread state is a tracking failure, not a quiet round.
 **States.** Open: `new`, `in-discussion`, `presumed-settled`. Closed:
 `approved`, `ruled-out`, `parked` (deferred, with a tripwire and a
 re-entry point), `superseded` (absorbed by a named other thread),
-`withdrawn` (retracted by its own proposer). The set is closed on
-purpose: convergence is computed from it.
+`withdrawn` (retracted by its own proposer), `delegated` (the user
+handed the judgement to you, under named constraints). The set is
+closed on purpose: convergence is computed from it.
 
 **Summaries and checkpoints.** When a round changed any state or any
 note, end the turn with a delta: thread / state / one-line position /
@@ -215,6 +216,22 @@ each announced in the delta:
   with neither is open.
 - `superseded` — threads absorbed by a proposal the user approves by
   name; until that word, absorbed threads keep their state.
+
+**`delegated`.** The user may close a thread by handing its judgement
+to you — "I trust your judgement here, as long as X and Y". Record it
+`delegated`, not `approved`: the decision was not weighed by its
+owner, and the record keeps that. The constraints they named become
+criteria threads, where the convergence check reads them.
+
+The grant has a boundary. A finding INSIDE it — your decision was
+wrong, but the named constraints still hold and no thread the user
+closed themselves is contradicted — is yours to act on: change the
+decision, note it on the ledger line, continue. No material-findings
+round: asking for a ruling you were handed spends the round the
+delegation was given to save. A finding that defeats a named
+constraint, or contradicts a thread the user closed by their own word,
+EXCEEDS the grant and returns through the material-findings protocol
+like any other.
 
 **`presumed-settled`** is a labeled claim about the user: they are
 continuing the discussion in a way that assumes this thread's
