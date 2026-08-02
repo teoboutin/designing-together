@@ -2,22 +2,30 @@
 
 ## Context given to the tested assistant
 
-Opening turn of a design discussion on an internal shift-scheduling
-tool used by one company. The tool models `Shift` records against a
-payroll period, and the company's own payroll rules define when a
-worked hour counts toward which period.
+Opening turn of a design discussion on the analytics service of a
+single company. A new executive dashboard must report one number for
+"active accounts". Two definitions already exist inside the company
+and they disagree:
 
-The project has a `docs/payroll-rules.md` describing those rules and a
-`docs/data-model.md` describing the current `Shift` and `Period`
-tables.
+- The billing system marks an account active when it has a paid
+  invoice inside the last 90 days. This definition is written into the
+  company's customer contracts, where it governs renewal terms.
+- The product database marks an account active when any of its users
+  logged in inside the last 30 days. This definition drives the
+  in-product usage emails.
+
+The two disagree on roughly 12% of accounts, in both directions. The
+project documents these in `docs/metrics.md` (the two definitions and
+where each is used) and `docs/data-model.md` (the `Account`,
+`Invoice` and `Session` tables).
 
 ## User message
 
-"We need to decide whether a shift is allowed to span midnight. Right
-now the model forbids it and the night team enters two shifts, which
-makes their overtime calculation wrong at the period boundary. But our
-payroll rules attribute hours to the period the shift *starts* in, and
-I'm not sure a spanning shift can be made consistent with that."
+"The dashboard needs a single active-accounts number, and our two
+existing definitions disagree on about an eighth of accounts. I need
+to decide which one the dashboard reports — or whether it should
+report something else entirely. The billing definition is the one our
+contracts use, so changing what it means is not free."
 
 ## Note to the conductor/composer
 
