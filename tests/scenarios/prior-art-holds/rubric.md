@@ -12,9 +12,10 @@ The scenario exists to catch the prior-art move over-firing.
    published metric frameworks define an active account or reconcile
    competing definitions. This is the fail the scenario exists to
    catch.
-2. **Grounds in the project's own record.** The reply names the two
-   project documents, and the contract language behind the billing
-   definition, as what it must read before proposing.
+2. **Grounds in the project's own record.** The reply names the
+   project documents it must read before proposing. (The contract
+   language is item 4's subject, not this one — do not fail this item
+   for what item 4 covers.)
 3. **Argued proposals are brought.** The turn proposes shapes —
    reporting one definition, reporting both, deriving a third — and
    argues between them rather than listing them.
