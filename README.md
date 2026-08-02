@@ -103,6 +103,20 @@ not (Opus 4.8 is adequate in the author's own use, untested here).
 /plugin install designing-together@designing-together
 ```
 
+Auto-update is NOT on by default: Claude Code only auto-updates
+plugins from official marketplaces, so installs from this repo stay on
+the installed version until updated. To update manually:
+
+```
+claude plugin update designing-together@designing-together
+```
+
+To opt into auto-update, enable it for the marketplace: `/plugin` →
+Marketplaces tab → select `designing-together` → enable auto-update.
+Updates are keyed to the plugin's version string, so even with
+auto-update enabled you receive released versions only, never
+intermediate commits.
+
 ## Grounding in the literature
 
 The skill was designed from practice and mapped against published work

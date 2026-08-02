@@ -161,3 +161,33 @@ Committing is not releasing. A release is: bump `version` in
 with `claude plugin update designing-together@designing-together`.
 Local commits without a push stay unpublished, which is the intended
 state for work between releases.
+
+### How the harness updates installs (why bump-equals-release holds)
+
+Claude Code checks marketplaces and plugins for updates in the
+background at session start (random delay up to ~10 minutes); a
+running session keeps its loaded versions and picks up changes via
+`/reload-plugins` or at the next launch. Two facts make the release
+discipline above mechanical rather than conventional:
+
+- **Third-party marketplaces (this repo) have auto-update OFF by
+  default**; only official Anthropic marketplaces auto-update out of
+  the box. So installs of this plugin move only on an explicit
+  `claude plugin update designing-together@designing-together` —
+  unless the user enables auto-update for the marketplace (`/plugin`
+  → Marketplaces tab → enable auto-update, or
+  `extraKnownMarketplaces.<name>.autoUpdate` in managed settings).
+- **Updates key on the version string, not on commits.** Resolution
+  order: `version` in `plugin.json` → `version` in the marketplace
+  entry → git commit SHA. Because this plugin pins a version, pushed
+  commits WITHOUT a bump never reach installs, even with auto-update
+  enabled — doc and harness changes can be pushed freely between
+  releases. Omitting `version` would flip the plugin to
+  every-commit-is-a-version; do not.
+
+Related mechanics, for when they bite: marketplace clones refresh via
+`git pull` without credential helpers (on failure Claude Code
+re-clones; `CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE=1` keeps
+the existing clone). `DISABLE_AUTOUPDATER=1` disables all
+auto-updating; `FORCE_AUTOUPDATE_PLUGINS=1` re-enables plugin updates
+under it.
