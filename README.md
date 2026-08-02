@@ -40,6 +40,35 @@ designs: own-session trend framing, direction split from migration
 cost, falsifiable verdicts with tripwires, losing arguments absorbed
 rather than deleted.
 
+## Model requirements
+
+The skill is written for frontier-tier models, and the requirement is
+capability, not compliance: it asks the assistant to maintain a
+stateful thread ledger across rounds, to refuse closure on friendly
+ambiguity, and to find the expensive-to-reverse fork in a design. A
+scripted four-turn discussion (open ask → weak proposal under time
+pressure → a "sounds mostly right" partial approval → a decision
+override) was run on three model tiers with the skill active:
+
+- **Opus-class and above** (Claude Opus, Fable): full machinery and
+  full depth. The strongest run reframed the problem before proposing,
+  pre-committed evidence thresholds that bound both parties, withdrew
+  its own criterion when its own arithmetic killed it, identified the
+  one irreversible fork the other tiers missed, refused to close that
+  fork on "sounds mostly right" ("I need one word"), and shipped a
+  decision record with every losing argument and tripwire in place.
+- **Sonnet-class**: the machinery holds — legal states, consistent
+  tables, a usable decision record with losing arguments — but closure
+  discipline bends under friendly ambiguity (threads closed on an
+  *interpretation* of vague approval, flagged but closed), and the
+  technical stress-testing runs shallower. Usable, with those two
+  weaknesses known.
+- **Haiku-class**: reproduces the format, not the discipline. In the
+  test run it endorsed the weak proposal instead of testing it,
+  invented states outside the enum, misapplied `presumed-settled` to
+  its own guesses, silently dropped open threads between rounds, and
+  produced a record with no arguments in it. Not recommended.
+
 ## Install
 
 ```
