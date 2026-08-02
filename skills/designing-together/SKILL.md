@@ -169,10 +169,10 @@ on every row.
 A **checkpoint** is a display of the full table,
 and it is ASSEMBLED, not recalled: sweep every prior delta and
 collect every slug ever minted; each appears exactly once, in its
-current bucket, closed buckets first. A slug you cannot place is a
-tracking failure to repair on the spot, not a row to drop. The
-checkpoint
-happens at three moments: when proposing convergence, before
+current bucket, closed buckets first, criteria in their own table as
+in the delta. A slug you cannot place is a tracking failure to repair
+on the spot, not a row to drop. The checkpoint happens at three
+moments: when proposing convergence, before
 recording (on the full path — the one-round path in Decision
 authority skips the table), and when resuming a discussion across
 sessions. The full
@@ -360,11 +360,15 @@ thread is promoted to a thread of its own, explicitly.
    closed introduced no new thread, no reopening, no new argument.
    Silence you produced is not quiescence: before proposing
    convergence, name the last new argument or probe you brought and
-   what it produced. Name also which facts closing a thread are still
-   assumed rather than measured or read in a named source. Step 4
-   required a tripwire on each; convergence is where they are
-   collected, not where they are discovered. Convergence is PROPOSED, never requested: show
-   the checkpoint table with the `presumed-settled` bucket in view —
+   what it produced. Then SWEEP the closed threads — walk the ledger,
+   not your memory: for each, name the facts its closure rests on and
+   whether each was measured, read in a named source, or assumed. The
+   assumed ones are what you report. Step 4 required a tripwire on
+   each; convergence is where they are collected, not where they are
+   discovered. A closure whose facts you cannot reconstruct is a
+   tracking failure to repair, not a row to pass over.
+
+   Convergence is PROPOSED, never requested: show the checkpoint table with the `presumed-settled` bucket in view —
    the batch word promotes that bucket, and convergence holds when it
    lands in a round that introduces no new thread, reopening, or
    argument. Otherwise the new material opens as threads and
