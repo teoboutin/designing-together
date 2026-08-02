@@ -48,24 +48,30 @@ stateful thread ledger across rounds, to refuse closure on friendly
 ambiguity, and to find the expensive-to-reverse fork in a design. A
 scripted four-turn discussion (open ask → weak proposal under time
 pressure → a "sounds mostly right" partial approval → a decision
-override) was run on three model tiers with the skill active:
+override) was run with the skill active on three models, in August
+2026: **Claude Opus 5**, **Claude Sonnet 5**, and **Claude Haiku
+4.5**; **Claude Fable 5** ran every single-turn probe used during the
+skill's development. Model capability moves fast between versions, so
+read these results as pinned to those exact models, not to tier names:
+a later Sonnet may well handle the skill fully, and an older Opus may
+not (Opus 4.8 is adequate in the author's own use, untested here).
 
-- **Opus-class and above** (Claude Opus, Fable): full machinery and
+- **Opus 5 and Fable 5**: full machinery and
   full depth. The strongest run reframed the problem before proposing,
   pre-committed evidence thresholds that bound both parties, withdrew
   its own criterion when its own arithmetic killed it, identified the
   one irreversible fork the other tiers missed, refused to close that
   fork on "sounds mostly right" ("I need one word"), and shipped a
   decision record with every losing argument and tripwire in place.
-- **Sonnet-class**: the machinery holds — legal states, consistent
+- **Sonnet 5**: the machinery holds — legal states, consistent
   tables, a usable decision record with losing arguments. In the
   original test its closure discipline bent under friendly ambiguity
   (threads closed on an *interpretation* of vague approval); the
   interpretation-is-presumption rule added in response corrected that
   failure in a follow-up probe on the same tier. The remaining known
   weakness is depth: its technical stress-testing runs shallower than
-  Opus-class, so expect fewer found forks, not broken bookkeeping.
-- **Haiku-class**: reproduces the format, not the discipline. In the
+  Opus 5, so expect fewer found forks, not broken bookkeeping.
+- **Haiku 4.5**: reproduces the format, not the discipline. In the
   test run it endorsed the weak proposal instead of testing it,
   invented states outside the enum, misapplied `presumed-settled` to
   its own guesses, silently dropped open threads between rounds, and
