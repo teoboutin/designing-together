@@ -77,6 +77,73 @@ ambient when the skill left that repository. When editing, ask: does
 this rule still bind in a repository with no docs, no ledger, and no
 conventions?
 
+## The regression workflow (`skill-regression`)
+
+`.claude/workflows/skill-regression.js` perpetuates the probe rounds
+as a repeatable harness. It is meant to be launched by a supervisor
+session (the model calls the Workflow tool; the user asks for it in
+words — "run the skill regression"), not by hand:
+
+- Invocation from a session inside this repo:
+  `Workflow({name: 'skill-regression', args: {model: 'opus', mode: 'quick'}})`.
+  From a session elsewhere, pass `scriptPath` (absolute path to the
+  .js) and `args.repo` (absolute path of this repo) — workflow agents
+  resolve relative paths from the SESSION's working directory, not
+  from the script's location.
+- `args`: `model` (tier under test, day-to-day `opus`), `mode`
+  (`quick` ≈ 8 agents / ~300k subagent tokens: 4 single-turn probes +
+  judges; `full` adds the remaining probes and the conducted
+  multi-turn scenario; `survey` runs `full` across `args.tiers` — use
+  on model version bumps), `judge` (fixed strong model for scoring,
+  default `opus` — never let it follow the tested tier).
+- Fixtures live in `tests/scenarios/<name>/` (`scenario.md`,
+  `rubric.md`, multi-turn adds `turns.md`); `tests/conductor.md` is
+  the conductor protocol for multi-turn scenarios. Probe agents read
+  the LIVE `skills/designing-together/SKILL.md`, so the harness always
+  tests the current skill text.
+- A red run's judge quotes name the failing rubric items; re-runs
+  resume cheaply: `Workflow({scriptPath, resumeFromRunId})` replays
+  unchanged agents from cache.
+
+### Gotchas observed in practice (keep this list current)
+
+- **Grandchild notifications bubble to the launcher in real time.**
+  The conductor's child (the tested assistant) emits a
+  task-notification to the top-level session after EVERY turn, before
+  the conductor's own result arrives. Do not mistake these for the
+  conductor's transcript, do not act on them, and expect the same
+  task-id to notify repeatedly.
+- **SendMessage continuation is background-only.** A child spawned
+  with `run_in_background: false` replies synchronously, but every
+  SendMessage continuation resumes it in the background; the promised
+  completion notification can arrive late. The conductor therefore
+  polls the child's JSONL output file and extracts the last assistant
+  text (protocol in `tests/conductor.md`).
+- **Relayed messages arrive wrapped.** A SendMessage body reaches the
+  child inside an agent-message envelope with trust caveats; keep the
+  "The user replies:" framing INSIDE the body so the child reads it
+  as the simulated user, not as a peer agent's instruction.
+- **Judges explore unless forbidden.** One judge ran a relative `ls`
+  from the session cwd and reported the rubric missing while three
+  siblings read the same layout fine. Judge prompts must give the
+  exact absolute path and say "a single Read call — do not explore".
+- **Workflow scripts have no filesystem access.** Anything the script
+  cannot embed must be read by the agents it spawns; that is why the
+  fixtures are files and the prompts carry paths.
+- **Mechanical transcript checks false-positive on table furniture.**
+  A regex that harvests state tokens from delta tables also catches
+  header cells ("state") and separators ("---"); filter them before
+  reporting unknown states.
+- **The conductor needs `agentType: 'general-purpose'`** — the default
+  workflow subagent may lack the Agent/SendMessage tools it needs to
+  spawn and continue its child.
+- **On resume, `args` can arrive JSON-encoded as a string.** The first
+  launch delivered args as an object; the `resumeFromRunId` relaunch
+  delivered the same args as a quoted JSON string, silently breaking
+  `args.repo` (paths fell back to the session cwd). The script parses
+  defensively (`typeof args === 'string' ? JSON.parse(args) : args`);
+  keep that guard.
+
 ## Releases
 
 Committing is not releasing. A release is: bump `version` in
