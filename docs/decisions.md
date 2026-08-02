@@ -398,11 +398,15 @@ which is exactly what compaction removes.
   checkpoint moment assumes deltas a fresh session does not have, so
   either that clause is unexercised or it cannot be complied with.
   Recorded as a candidate for the next revision, not fixed here.
-- *"A script could validate the artifact."* No precedent found
-  anywhere: the closest analogue's script resolves a path and
-  validates nothing, Claude Code's task tools fire no hooks at all
-  (anthropics/claude-code#20243), and a code search for skills
-  maintaining state tables returned empty.
+- *"A script could validate the artifact."* No precedent found: the
+  closest analogue's script resolves a path and validates nothing, and
+  Claude Code's task tools fire no hooks at all
+  (anthropics/claude-code#20243). Scope that claim carefully — the
+  code search that returned empty was for skills maintaining a TABLE
+  OF NAMED ITEMS WITH EVOLVING STATES, which is this skill's shape.
+  Memory-bank skills for Claude Code do exist (`fockus/skill-memory-
+  bank` was named), and whether any of them ships validating code was
+  never established. If the tripwire fires, check that first.
 
 **Tripwires**: a real discussion loses its ledger to compaction and
 the assistant cannot reconstruct it; or a cross-session resumption
