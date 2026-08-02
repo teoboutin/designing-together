@@ -376,6 +376,19 @@ larger", and that maintaining it in the hot path forces the agent to
 "multitask between memory creation and its other responsibilities,
 potentially affecting the quantity and quality of memories created".
 
+Failure evidence is not scarce once looked for. Superpowers' own
+tracker carries a ledger read across plan boundaries that "makes a
+second run skip the new plan's tasks — an execution bug, not just
+stale files" (#1936); silent clobbering of artifacts that "carry no
+identity marker, so a subagent dispatched against a clobbered brief
+implements the wrong plan's task and has no way to notice" (#2012,
+#2045); and a model that simply never updates the artifact (#1075).
+Anthropic describes the same shape of failure: "a later agent instance
+would look around, see that progress had been made, and declare the
+job done." And the STALE benchmark puts a ceiling of 55.2% on a
+model's ability to recognize that its own memory has become invalid —
+which is the capability our version would depend on.
+
 The strongest evidence FOR an artifact also undercuts our version of
 it. The superpowers plan-scoped-workspace eval found 25 of 25
 controllers refused to trust a stale ledger — the hypothesized failure
@@ -398,15 +411,19 @@ which is exactly what compaction removes.
   checkpoint moment assumes deltas a fresh session does not have, so
   either that clause is unexercised or it cannot be complied with.
   Recorded as a candidate for the next revision, not fixed here.
-- *"A script could validate the artifact."* No precedent found: the
-  closest analogue's script resolves a path and validates nothing, and
-  Claude Code's task tools fire no hooks at all
-  (anthropics/claude-code#20243). Scope that claim carefully — the
-  code search that returned empty was for skills maintaining a TABLE
-  OF NAMED ITEMS WITH EVOLVING STATES, which is this skill's shape.
-  Memory-bank skills for Claude Code do exist (`fockus/skill-memory-
-  bank` was named), and whether any of them ships validating code was
-  never established. If the tripwire fires, check that first.
+- *"A script could validate the artifact."* Rejected because there is
+  no artifact to validate — NOT because validation is unprecedented.
+  An earlier draft of this entry claimed no precedent existed; that
+  was wrong and is corrected here. `fockus/skill-memory-bank` ships 15
+  deterministic drift checkers, a 30-day staleness threshold, and a
+  hash chain over its `progress.md` that flags "append-only violation
+  — historic entry edited, deleted, or ambiguous", hook-wired. The
+  generalizable lesson, if the tripwire ever fires: what you can
+  validate is whatever has an enumerable contract, and identity or
+  integrity markers are what make corruption DETECTABLE — in
+  superpowers' own bug history the only artifact carrying a
+  self-identifying line was the only one whose collisions could be
+  caught.
 
 **Tripwires**: a real discussion loses its ledger to compaction and
 the assistant cannot reconstruct it; or a cross-session resumption
