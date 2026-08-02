@@ -1,0 +1,16 @@
+{
+  "name": "designing-together",
+  "description": "Design by open, argued exchange: both parties propose and push back, convergence is detected rather than requested, and outcomes are recorded with their losing arguments. Includes a keep-or-change discipline for questioning existing designs.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Teo Boutin",
+    "email": "teo.boutin@proton.me"
+  },
+  "keywords": [
+    "design",
+    "collaboration",
+    "brainstorming",
+    "architecture",
+    "decision-records"
+  ]
+}
