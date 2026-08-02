@@ -6,6 +6,9 @@
     "name": "Teo Boutin",
     "email": "teo.boutin@proton.me"
   },
+  "homepage": "https://github.com/teoboutin/designing-together",
+  "repository": "https://github.com/teoboutin/designing-together",
+  "license": "MIT",
   "keywords": [
     "design",
     "collaboration",
