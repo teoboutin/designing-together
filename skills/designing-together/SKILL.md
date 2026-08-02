@@ -8,11 +8,16 @@ description: Use when a design discussion has an open solution space — require
 ## Overview
 
 Design by open, argued exchange: both parties propose, push back with
-arguments, and converge through rounds. Generate new ideas that build
-on the discussion, not only reactions to the user's. Every proposal
-carries its reasoning: why it should work, what it costs, what it
-enables or forecloses later. Stress-test the user's ideas with the same
-rigor as your own.
+arguments, and converge through rounds. **The discussion is fully
+symmetric; only the decision is not.** Plainly: every proposal,
+whichever party made it, owes the same slots — why it should work,
+what it costs, what it enables or forecloses later — and gets tested
+with the same rigor. When the user's proposal arrives with slots
+unfilled, filling them and then testing them is your job, not a
+courtesy; when a stronger shape exists, propose it against theirs even
+when theirs would work. The asymmetry lives at the end alone: the user
+rules (see Decision authority). Generate new ideas that build on the
+discussion, not only reactions to the user's.
 
 This mode fits an OPEN solution space: what the feature needs is not a
 requirement waiting to be extracted from the user — neither party knows
@@ -184,10 +189,16 @@ choices whose option space genuinely is closed and consequence-free.
    them freely and early. Preference questions need an argued default
    attached, and earn their place only when the answer would change
    your proposal.
-4. **Expect argument back**: push back or agree, both argued. Reverse
-   when the opposing argument explains something your position cannot,
-   or survives an objection your position fails — not merely because
-   the user insists. "Both have merits" with no synthesis proposal is a
+4. **Argue both ways**: the exchange is symmetric until a decision.
+   The user's proposal is a claim to test, not a directive to follow —
+   only an explicit decision converts their statement into a directive
+   (see Decision authority). Fill its missing slots, test it against
+   the criteria, and put a stronger shape against it when one exists;
+   argued agreement is legitimate, and a manufactured objection is the
+   strawman pattern in reverse. In the other direction, reverse when
+   the opposing argument explains something your position cannot, or
+   survives an objection your position fails — not merely because the
+   user insists. "Both have merits" with no synthesis proposal is a
    stall; a synthesis argued as its own proposal (what it takes from
    each side and why) is a legitimate move.
 5. **Build discriminating evidence when stalled**: when positions rest
@@ -238,6 +249,9 @@ exchange:
 | "Minimal is the safe default" | Minimalism answers a bounded problem. On an open one it forecloses the discussion before it starts. |
 | "The user seems to agree" | Then the thread is `presumed-settled` — an open state. Only their word closes it. |
 | "The user decided, so checking would be disrespectful" | The word ends the argument, not the verification. Material findings return once, via the reopening rule. |
+| "The user probably considered this already" | Never assume a proposal was fully examined — the rule Decision authority applies to decisions holds for proposals too. Examining them is what the discussion is for. |
+| "Raising flaws in their idea is unhelpful" | Untested agreement is the sycophancy failure this mode exists to counter. The argued objection is the help. |
+| "I'll build on their idea instead of testing it" | Extending an untested idea is agreement in the form of work. Test first; build on what survives. |
 | "I can recommend the redesign right now" | Mid-bug-hunt, every framing favors repair. Park the observation; argue direction in a fresh discussion. |
 | "Both options have merits" | Without a synthesis proposal, a stall. Argue until one wins, build the evidence that discriminates, or declare an argued tie and hand the pick to the user. |
 | "Everyone knows what 'cleaner' means" | They do not. Convert it into a count, a bound, or an invariant, or drop it. |
