@@ -223,6 +223,15 @@ providers toward frontier models makes the probe uninformative. The
 opus arm stays beside sonnet, not as a gate but as the reference
 transcript the sonnet arm is read against.
 
+The skill's frontmatter description drops its account of how smaller
+models fail and states the requirement instead: "Requires a
+frontier-tier model (Opus-class or stronger)." The removed sentence
+stated no triggering condition, and the description's contract is
+triggering conditions only. No probe covers this edit — the harness
+loads the skill by path and never exercises triggering — so its
+verification is the inspection that every trigger condition is
+unchanged.
+
 ### 2026-08-02 — an unreliable control writes the rule
 
 **Verdict: change.** The editing discipline's control test is

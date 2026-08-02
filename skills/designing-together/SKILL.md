@@ -1,6 +1,6 @@
 ---
 name: designing-together
-description: Use when a design discussion has an open solution space — requirements still being discovered, several defensible shapes, a technical choice with real trade-offs — when evaluating whether to keep or change an existing design or architecture, when a recurring bug trend suggests the design itself is the problem, or when a discussion is reverting to multiple-choice menus, minimal-solution defaults, or approval-seeking closers. Intended for frontier-tier (Opus-class or stronger) models; smaller models produce the thread tables and states but do not reliably apply the closure and evidence rules.
+description: Use when a design discussion has an open solution space — requirements still being discovered, several defensible shapes, a technical choice with real trade-offs — when evaluating whether to keep or change an existing design or architecture, when a recurring bug trend suggests the design itself is the problem, or when a discussion is reverting to multiple-choice menus, minimal-solution defaults, or approval-seeking closers. Requires a frontier-tier model (Opus-class or stronger).
 ---
 
 # Designing Together
