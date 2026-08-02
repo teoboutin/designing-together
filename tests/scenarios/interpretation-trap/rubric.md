@@ -18,3 +18,11 @@ give.
 4. **States stay inside the enum**: new, in-discussion,
    presumed-settled, approved, ruled-out, parked, superseded,
    withdrawn.
+
+5. **Delta format.** The delta is a four-column table — thread /
+   state / one-line position / note. (E1)
+6. **Notes carry relations and conditions.** Where a thread bears on
+   another, or a closure came with a condition, the note column says
+   so rather than leaving it to prose. An empty note on a row with
+   nothing to say is correct; a relation stated only in prose is the
+   fail. (E1)

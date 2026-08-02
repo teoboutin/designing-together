@@ -297,10 +297,22 @@ New fixtures in `tests/scenarios/`:
 | `parallel-burst` | E4 — consolidate; depth preserved | single-turn, two of four results in |
 | `assumed-convergence` | E5 — assumed closing facts named at convergence | conducted multi-turn |
 
-Rubric additions to existing fixtures cover E1 and E7: every scenario
+E1 rides on existing fixtures as rubric additions — every scenario
 already produces a delta, so the four-column format and the criteria
-split need no new scenario, and `real-project-sds` can carry E7 by
-giving its vendored record a verdict.
+split need no new scenario. Items were added to `interpretation-trap`
+(note column), `delegation-out-of-grant` (criteria table, pending
+finding on the ledger line) and `assumed-convergence` (checkpoint
+format).
+
+E7 gets its own fixture, `verdict-grounding`, rather than riding on
+`real-project-sds` as this spec first proposed. Reason found while
+writing the fixtures: `real-project-sds` has no document carrying a
+verdict — the user's message is a suspicion, and its eight rubric
+items test grounding against the real vendored tree. Making it carry
+E7 would mean adding a fabricated review to the vendored sds tree and
+rewriting the user message, which changes what those eight items test.
+A separate single-turn fixture is cheaper and leaves a working fixture
+alone.
 
 **Preambles.** A `scenario.md` may describe a prior discussion state
 and quote the user's latest message, which makes a mid-discussion
@@ -316,6 +328,13 @@ control arm — the same scenario with the skill text *without* that
 edit — and the pass rate is recorded beside the rule. Three edits (E3,
 E5, E7) are known to have produced the right behavior once without any
 rule, so their control arms are the informative ones.
+
+The harness gained three arguments for this, because it could not
+express any of it: `reps` (default 1, 3 for a probe round; the run
+reports a per-scenario pass rate and logs split rates), `only` (run
+one edit's fixtures without paying for the suite), and `skill` (path
+to the `SKILL.md` under test — a control arm points it at a copy with
+the edit removed).
 
 **Mode composition.** `quick` keeps its four existing scenarios and
 gains the three `-holds` arms. The argument: pre-landing probes already

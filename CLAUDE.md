@@ -119,9 +119,11 @@ words — "run the skill regression"), not by hand:
   resolve relative paths from the SESSION's working directory, not
   from the script's location.
 - `args`: `model` (tier under test, day-to-day `opus`), `mode`
-  (`quick` ≈ 8 agents / ~300k subagent tokens: 4 single-turn probes +
-  judges; `full` adds the remaining probes, the conducted multi-turn
-  scenario, and the grounded real-project scenario (`real-project-sds`:
+  (`quick` ≈ 14 agents: 7 single-turn probes + judges, carrying the
+  OVER-FIRING arms — a pre-landing probe already showed a rule fires,
+  so what a post-edit run must catch is a rule firing where it should
+  not; `full` adds the remaining probes, two conducted multi-turn
+  scenarios, and the grounded real-project scenario (`real-project-sds`:
   the tested agent explores a vendored real codebase read-only, and the
   judge verifies its grounding claims against the tree); `survey` runs
   `full` across `args.tiers` — a CAPABILITY PROBE for tiers that are
@@ -129,12 +131,18 @@ words — "run the skill regression"), not by hand:
   frontier version drift is covered by running `quick` or `full`
   against the new version), `judge`
   (fixed strong model for scoring, default `opus` — never let it
-  follow the tested tier).
+  follow the tested tier), `reps` (repetitions per scenario, default 1;
+  use 3 for probe rounds — the run reports a per-scenario pass rate and
+  flags split rates, which is the variance signal that a wording binds),
+  `only` (run just these scenarios), and `skill` (path to the SKILL.md
+  under test — how a CONTROL ARM is run: point it at a copy with the
+  edit under test removed).
 - Fixtures live in `tests/scenarios/<name>/` (`scenario.md`,
   `rubric.md`, multi-turn adds `turns.md`); `tests/conductor.md` is
   the conductor protocol for multi-turn scenarios. Probe agents read
-  the LIVE `skills/designing-together/SKILL.md`, so the harness always
-  tests the current skill text.
+  the LIVE `skills/designing-together/SKILL.md` unless `args.skill`
+  overrides it, so the harness tests the current skill text by
+  default.
 - A red run's judge quotes name the failing rubric items; re-runs
   resume cheaply: `Workflow({scriptPath, resumeFromRunId})` replays
   unchanged agents from cache.
