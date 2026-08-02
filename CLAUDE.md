@@ -92,10 +92,13 @@ words — "run the skill regression"), not by hand:
   from the script's location.
 - `args`: `model` (tier under test, day-to-day `opus`), `mode`
   (`quick` ≈ 8 agents / ~300k subagent tokens: 4 single-turn probes +
-  judges; `full` adds the remaining probes and the conducted
-  multi-turn scenario; `survey` runs `full` across `args.tiers` — use
-  on model version bumps), `judge` (fixed strong model for scoring,
-  default `opus` — never let it follow the tested tier).
+  judges; `full` adds the remaining probes, the conducted multi-turn
+  scenario, and the grounded real-project scenario (`real-project-sds`:
+  the tested agent explores a vendored real codebase read-only, and the
+  judge verifies its grounding claims against the tree); `survey` runs
+  `full` across `args.tiers` — use on model version bumps), `judge`
+  (fixed strong model for scoring, default `opus` — never let it
+  follow the tested tier).
 - Fixtures live in `tests/scenarios/<name>/` (`scenario.md`,
   `rubric.md`, multi-turn adds `turns.md`); `tests/conductor.md` is
   the conductor protocol for multi-turn scenarios. Probe agents read

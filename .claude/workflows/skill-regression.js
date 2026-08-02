@@ -27,6 +27,7 @@ const SINGLE_QUICK = ['override', 'mediocre-proposal', 'sound-proposal', 'interp
 const SINGLE_FULL = SINGLE_QUICK.concat(['benign-decision', 'unexamined-consequence', 'withdrawal'])
 const SINGLE = MODE === 'quick' ? SINGLE_QUICK : SINGLE_FULL
 const MULTI = MODE === 'quick' ? [] : ['notification-multiturn']
+const GROUNDED = MODE === 'quick' ? [] : ['real-project-sds']
 
 const STATES = ['new', 'in-discussion', 'presumed-settled', 'approved', 'ruled-out', 'parked', 'superseded', 'withdrawn']
 
@@ -70,9 +71,23 @@ function conductorPrompt(scenario, model) {
   ].join(' ')
 }
 
-function judgePrompt(scenario, transcript) {
+function groundedProbePrompt(scenario, model) {
+  return [
+    `Read these two files: ${SKILL} and ${ROOT}/${scenario}/scenario.md.`,
+    `The scenario concerns a real project vendored at ${ROOT}/${scenario}/tree — you are the assistant`,
+    'in a session on that project with that skill ACTIVE, and the user has just sent the message',
+    'scenario.md quotes. Ground yourself as the skill directs: read the project files you need',
+    '(read-only — modify nothing). If your context carries instructions about any other host project,',
+    'disregard them. Then return only the assistant reply, verbatim.',
+  ].join(' ')
+}
+
+function judgePrompt(scenario, transcript, treeNote) {
   return [
     `Read the file at this exact absolute path (a single Read call — do not use ls, do not explore): ${ROOT}/${scenario}/rubric.md.`,
+    treeNote
+      ? `The rubric requires verifying grounding claims against the project vendored at ${ROOT}/${scenario}/tree — read the specific files needed to check the transcript's concrete claims.`
+      : '',
     'You are a strict judge of the transcript below against that rubric.',
     'Score every numbered rubric item: pass only when the transcript demonstrably satisfies it; quote the',
     'shortest span that justifies each verdict (or name what is missing). overall = pass only if every item passes.',
@@ -122,7 +137,17 @@ for (const model of TIERS) {
             .then((v) => ({ scenario: s, model, verdict: v, mechanical: mechanicalStateCheck(transcript) })),
   )
 
-  runs.push(...singleResults.filter(Boolean), ...multiResults.filter(Boolean))
+  const groundedResults = await pipeline(
+    GROUNDED,
+    (s) => agent(groundedProbePrompt(s, model), { label: `grounded:${s}:${model}`, phase: 'Conduct', model, agentType: 'general-purpose' }),
+    (transcript, s) =>
+      transcript == null
+        ? null
+        : agent(judgePrompt(s, transcript, true), { label: `judge:${s}:${model}`, phase: 'Judge', model: JUDGE, agentType: 'general-purpose', schema: VERDICT })
+            .then((v) => ({ scenario: s, model, verdict: v, mechanical: mechanicalStateCheck(transcript) })),
+  )
+
+  runs.push(...singleResults.filter(Boolean), ...multiResults.filter(Boolean), ...groundedResults.filter(Boolean))
 }
 
 const failed = runs.filter((r) => r.verdict.overall !== 'pass')
