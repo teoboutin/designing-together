@@ -207,6 +207,12 @@ words — "run the skill regression"), not by hand:
   from disk — which is what makes the mismatch hard to see. **After
   editing the script, always invoke with `scriptPath` pointing at
   `.claude/workflows/skill-regression.js` in this repo.**
+- **A subagent's own children cannot route results back to it.** A
+  research agent that spawned sub-agents could not reach its parent by
+  name (`SendMessage` to `general-purpose` fails), so a completed
+  child's report arrived only as a top-level task notification, twice,
+  once compressed. Expect duplicate and out-of-order delivery, and do
+  not assume a parent's summary contains its children's findings.
 - **Never edit `SKILL.md` while a run is in flight.** Probe agents read
   the file when their turn starts, not when the workflow launches, so
   concurrent edits give different reps different skill text. Observed

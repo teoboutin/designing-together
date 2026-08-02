@@ -173,6 +173,38 @@ harness loads the skill by path).
 
 ---
 
+## Class G — literature mapping (four mechanisms)
+
+All four verdicts are **refinable**; none is cleanly supported. The
+pattern that matters for editing: on two mechanisms the PRACTICE
+survives while its STATED REASON does not. Under the skill's own
+Language rule a load-bearing sentence must be replaced by its
+checkable form, not reworded — so these are justification
+replacements, not rule removals.
+
+| # | Finding | Disposition |
+|---|---|---|
+| G1 | **`delegated` rests on a falsified premise.** Fügener et al. 2022 (*Information Systems Research* 33(2)): AI-delegating-to-humans beat AI alone even with low performers, but **human-delegating-to-AI produced no benefit**, because subjects could not assess their own capabilities and delegated the wrong instances. Algorithm aversion explicitly ruled out. The skill assumes the user is the right party to choose what to delegate and where the boundary falls. | decide |
+| G2 | **Two findings support `delegated` ≠ `approved` and name its risk at once.** Bartling & Fischbacher 2012 (*RES* 79(1)): delegating effectively shifts responsibility, and that is itself a motive for delegating. Feier et al. 2022 (*Sci Eng Ethics* 28:19, n=264): the blame-shifting effect is **stronger for machine delegates than human ones**. So some `delegated` closures will be blame-avoidance rather than trust, and the label cannot distinguish them. | probe |
+| G3 | **Naming constraints is an instruction, and instructions do not fix complacency.** Parasuraman & Manzey 2010 (*Human Factors* 52(3)): automation bias appears in naive and expert users and is not eliminated by practice, training or instructions. Endsley & Kiris 1995 refines rather than refutes — a bounded grant degrades situation awareness less than a full handoff, but still degrades, so the user receiving an escalation is a weaker judge than the user who delegated. | defer |
+| G4 | **The fire-alarm analogy does not hold** and should not be cited if this is ever written up. McCubbins & Schwartz 1984 defines fire-alarm oversight by decentralization to self-interested third parties; here the assistant both acts and decides whether the alarm rings. That is a self-reporting requirement, not fire-alarm oversight. | fix (if cited) |
+| G5 | **No evidence either way that recording `delegated` rather than `approved` changes later behavior.** Nearest adjacent: Lerner & Tetlock 1999 — accountability effects are entirely ground-rule dependent, so a label alone predicts nothing; and Hemmer et al. 2023 (n=196) found outcomes improved on AI-delegated instances **regardless of whether humans knew delegation had occurred**. | defer |
+| G6 | **"Giving arguments state produces an unreadable graph" is unsupported, not merely unconverted.** No verified source claims argument graphs become hard for HUMANS to read at scale. This is the reason recorded in `3bec85b` and quoted in the 0.4 harvest entry as what defeats `edges-as-threads`. Independently flagged by the language axis (D3) as an adjective closing a thread. | fix |
+| G7 | **What actually carries relations-as-annotations is different and better.** Shipman & Marshall 1999: "Typed links — the strongest formalization mechanism provided — were rarely used, and when they were, they were seldom used consistently." gIBIS's own field data: 2,091 nodes against 2,214 links (~1.06 per node) with nine relation types available and free; 31% of Issues had no Position. Cayrol & Lagasquie-Schiex 2013: "support" alone has three mutually incompatible readings. Polberg & Hunter 2018 (n=69): people interpret relations differently and are unsure of their nature. The mechanism's real ground is relation-type instability and reader-side cost. | probe |
+| G8 | **Every canonical scheme does the opposite**, which is worth recording honestly: gIBIS ships nine typed link types, DRL ~16 first-class relations, QOC types its Assessments, and Dung 1995 defines every semantics purely over the attack relation. The counter-position is the mainstream. | defer |
+| G9 | **Two caveats that limit how far Class G's mechanism-2 evidence binds.** The cost evidence assumes a HUMAN pays the formalization cost — false here, and it voids roughly half the support. And the scale is mismatched: gIBIS's disorientation threshold was 40–50 nodes, Halasz's ~500; a per-round delta is one to two orders smaller. | defer |
+| G10 | **"Consolidating costs latency and nothing else" is contradicted — a third axis on the same sentence.** Fitz et al. 2019 (n=237): batching 3×/day improved mood and productivity, hourly was null, and **never-reporting was negative**, so granularity is the active ingredient rather than batching itself. Iqbal & Bailey 2008: content relevance governs breakpoint fineness — highly relevant content warrants an EARLIER breakpoint, the opposite of waiting for the slowest arm. Three 2026 preprints name concrete costs beyond latency, the strongest being that the value of a human exchange decays with elapsed execution (single unreplicated preprints — weigh accordingly). | fix |
+| G11 | **What actually justifies the round-as-unit is narrower than the rule claims.** Hsee's joint-versus-separate evaluation reversals, and Mayer & Anderson's temporal contiguity effect, where simultaneous beats successive presentation **only for materials referring to the same referent** — which maps exactly onto the skill's own "when the pieces bear on the same threads" clause. That clause is doing real work and should be read as the gate it is. | probe |
+| G12 | **The information-overload literature does not apply, and this is worth recording as the null it is.** Its independent variable is amount-per-decision; the mechanism holds amount constant. Malhotra 1982 gives the useful split: overload tracked the number of ALTERNATIVES, not depth per alternative — a mild caution against consolidating many arms at full depth, not a refutation. | defer |
+| G13 | **The prior-art gate selects into the corpus's most harmful property.** Chan et al. 2011: far-field beat near-field on novelty (d=0.56) but neither beat the no-example control; the damage came from **commonness** — common examples searched less of the design space than control (d=−1.03) and produced fewer concepts (d=−0.76). The gate returns shipped, well-known mechanisms by construction. (Also C9.) | probe |
+| G14 | **The gate's exclusion half is well-founded.** Gentner, Rattermann & Forbus 1993's double dissociation: recall tracks surface attributes (.53 surface-only vs .12 analogy-only), judged soundness tracks relational structure. "An adjacent literature is not prior art" is exactly the exclusion of surface matches. Gick & Holyoak: 92% transfer with a hint, 20% without. | defer |
+| G15 | **"Only on the user's word" is the best-supported element in any of the four mechanisms.** Siangliulue et al. 2015 (N=97, four arms): on-demand produced the most novel ideas (p=.0034), above both no-examples and auto-pushed, with 84% versus 53% actual use — and **fixed-interval delivery produced fewer ideas than no examples at all**. | defer |
+| G16 | **Critical posture and expertise both fail to protect against fixation.** Smith 1993: instructions to diverge did not reduce conformity, and a 23-minute delay did not either. Chrysikou & Weisberg 2005: pointing out an example's flaws was insufficient; only instructions to avoid them worked. Linsey 2010 and Viswanathan & Linsey 2013: design faculty fixate as much as novices and "do not know when they are being influenced". Any mitigation resting on reading the survey critically is unsupported. | probe |
+| G17 | **Declining to survey is not a neutral act.** Leahy et al. 2020: students fixated LESS on a provided example than on their own first concept. The no-survey baseline is not fixation-free. Cuts in the mechanism's favour. | defer |
+| G18 | **"Available at any point" is contradicted for the gate's own output.** Tseng et al. 2008: near/same-question material — exactly what the gate produces — works best delivered early, while distant material helps more once work is underway. The clause survives only because delivery is user-initiated at a recognized impasse, which the text does not say. | probe |
+| G19 | **Three legitimate "no evidence found" verdicts**, worth recording so they are not re-derived: the `delegated`/`approved` distinction changing behavior; the content gate itself (no study compares gated versus ungated surveying); and "a retracted relation is recorded as retracted, never deleted". Also: no controlled study shows a case-based design aid improved designer output, so CBR cannot be leaned on. | defer |
+| G20 | **One source is worth an institutional login**: Sio, Kotovsky & Cagan 2015, "Fixation or inspiration? A meta-analytic review", *Design Studies* 39, 70–99 — the only source ranking timing, distance and commonness as moderators across the whole corpus. Citation verified, findings unobtainable through every route tried. Also unread and not to be cited until read: Buckingham Shum & Hammond 1994, and the Karsenty 1996 primary text behind the 41% figure already in the README. | defer |
+
 ## What the axes agreed on without knowing it
 
 Four independent reviewers converged on three things, which is the
@@ -186,6 +218,18 @@ strongest signal in the review:
   three different axes.
 - **The terminal round has no legal move**, found independently by
   cold flaw and over-application.
+
+Two sentences were flagged by three axes each, which is the strongest
+convergence in the review:
+
+- **"giving arguments state produces an unreadable graph"** — language
+  (an adjective closing a thread), literature (the human-readability
+  claim is unsupported), and it is the recorded reason the 0.4 harvest
+  entry cites against `edges-as-threads`.
+- **"Consolidating costs latency and nothing else"** — over-application
+  (false when a returning probe invalidates the others' premise),
+  language (fails the deletion test), literature (three named costs
+  beyond latency, and never-reporting measured as negative).
 
 ---
 
@@ -204,4 +248,8 @@ strongest signal in the review:
 5. **Class D's mechanical half**, which touches no behavior.
 6. **Class C by rank**, and Class F fixtures alongside the edits they
    test.
+6b. **Class G's justification replacements** (G6, G10) travel with the
+   Class D language fixes — same sentences, and the Language rule
+   requires a checkable replacement rather than a rewording. G1's
+   ruling belongs with the Class E decisions.
 7. Release only after 2 has been re-established and 3 has landed.
