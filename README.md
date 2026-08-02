@@ -36,7 +36,7 @@ rather than deleted.
 ## Install
 
 ```
-/plugin marketplace add <your-github-user>/designing-together
+/plugin marketplace add teoboutin/designing-together
 /plugin install designing-together@designing-together
 ```
 
