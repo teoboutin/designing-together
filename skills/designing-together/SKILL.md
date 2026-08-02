@@ -150,9 +150,22 @@ re-entry point), `superseded` (absorbed by a named other thread),
 `withdrawn` (retracted by its own proposer). The set is closed on
 purpose: convergence is computed from it.
 
-**Summaries and checkpoints.** When a round changed any state, end
-the turn with a delta: thread / state / one-line position, per
-changed thread. A **checkpoint** is a display of the full table,
+**Summaries and checkpoints.** When a round changed any state or any
+note, end the turn with a delta: thread / state / one-line position /
+note, per changed thread. Criteria go in a separate table above the
+proposals: a criterion is what proposals are judged against, and the
+two roles are indistinguishable in a single list.
+
+The **note** column carries what a state cannot say: a relation to
+another thread (`absorbs #x`, `conflicts #y`, `serves #criterion`), a
+material finding pending on a closed thread, an assertion the
+discussion has retracted (`conflict with #y withdrawn: draw order
+traced`), and the conditions a closure came with. A retracted relation
+is recorded as retracted, never deleted. Notes carry no state and
+convergence ignores them; write one where it carries information, not
+on every row.
+
+A **checkpoint** is a display of the full table,
 and it is ASSEMBLED, not recalled: sweep every prior delta and
 collect every slug ever minted; each appears exactly once, in its
 current bucket, closed buckets first. A slug you cannot place is a
@@ -240,7 +253,25 @@ thread is promoted to a thread of its own, explicitly.
 1. **Ground first**: find where the project records design intent
    (design docs, ADRs, the README — failing that, the code and its
    history; in a greenfield project, state that the record starts
-   with this discussion) and read it before proposing.
+   with this discussion) and read it before proposing. A record that
+   carries a verdict but no decision — a review, an audit, an
+   automated report, a prescribed change nobody ruled on — grounds
+   the discussion without settling it: open a thread against its
+   prescription and argue it like any proposal. A decision record is
+   different; it carries the user's ruling, and the Reopening rule
+   governs it.
+
+   Grounding also runs outward. When a thread names a problem class
+   that exists outside this project — pointer ownership, retry
+   semantics, cache invalidation — say so and propose a prior-art
+   survey: name the class, the candidate sources, and the cost, then
+   run it only on the user's word. This is available at any point in
+   the discussion, not only at the start, and it is not
+   stall-breaking evidence: it needs no pre-commitment about which
+   position it would flip, because a survey commonly replaces both
+   positions rather than choosing between them. A problem defined by
+   this project's own structure has no prior art; do not propose a
+   survey for one.
 2. **Name the criteria**: state early what the decision must
    achieve — the constraints and goals proposals will be judged
    against. Criteria are threads too: they can be argued, refined,
@@ -293,13 +324,21 @@ thread is promoted to a thread of its own, explicitly.
    on their word and present the result as data, not as a verdict. A
    tie is a legitimate verdict: when the options differ by less than
    the cost of discriminating between them, say so and let the user
-   pick.
+   pick. Evidence gathered by several parallel investigations is
+   reported as ONE round when the pieces bear on the same threads: the
+   unit of the discussion is the round, not the arrival of a result.
+   Consolidating costs latency and nothing else. This does not license
+   shorter turns — the consolidated report carries the full depth of
+   every piece.
 6. **Converge**: convergence means every thread is closed AND the
    discussion is quiescent — the round in which the last thread
    closed introduced no new thread, no reopening, no new argument.
    Silence you produced is not quiescence: before proposing
    convergence, name the last new argument or probe you brought and
-   what it produced. Convergence is PROPOSED, never requested: show
+   what it produced. Name also which facts closing a thread are still
+   assumed rather than measured or read in a named source. Step 4
+   required a tripwire on each; convergence is where they are
+   collected, not where they are discovered. Convergence is PROPOSED, never requested: show
    the checkpoint table with the `presumed-settled` bucket in view —
    the batch word promotes that bucket, and convergence holds when it
    lands in a round that introduces no new thread, reopening, or

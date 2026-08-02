@@ -110,10 +110,21 @@ updated remotely. That classification is undocumented and misleading
 for this repository's shape — the marketplace itself is git-hosted and
 `claude plugin update` works through its clone. Whether background
 auto-update propagates a version bump to a `"./"`-source plugin is
-unverified; it is checked at the next release. If it does not
-propagate, the fallback is changing the marketplace entry's source to
-`{"source": "github", "repo": "teoboutin/designing-together"}`, at the
-cost of a second clone per install.
+unverified; it is checked at the next release.
+
+Two facts about the fallback are established (research pass,
+2026-08-02, against the plugin-marketplace and plugins reference
+documentation). A `github` source object takes `repo`, `ref` and `sha`
+only, so it cannot name a subdirectory — but `git-subdir` can:
+`{"source": "git-subdir", "url": "…", "path": "…"}` clones sparsely,
+and its `url` accepts a GitHub shorthand. So escaping the `"./"`
+classification and shipping only a subdirectory are compatible, not
+alternatives. And there is no exclude mechanism anywhere — no
+`.claudeignore`, no `files` or `exclude` field, and the manifest's
+path keys govern what is LOADED, not what is copied into the install
+cache — so moving files is the only way to trim what ships. A relative
+source does not resolve when a marketplace is added by direct URL to
+`marketplace.json`; git, GitHub and local adds are unaffected.
 
 ## Origin, and the standing risk
 
