@@ -14,6 +14,32 @@ and its grounding in the literature.
   `description` states triggering conditions only, never the workflow
   (a description that summarizes the process becomes a shortcut agents
   follow instead of reading the skill).
+- `docs/decisions.md` — the decision home: a present-tense head plus a
+  dated append-only ledger.
+- `docs/field-reports/` — observations from real sessions using the
+  skill; evidence, not decisions.
+
+**Where a decision lands.** Every decision about this repository goes
+in `docs/decisions.md`: the head is rewritten as if the design had
+always been so, and the dated entry is appended, in the same change as
+the work. This file states the operational rules and points at a
+ledger entry when a rule needs its justification — it does not retell
+the argument. Point at a head for *what* and *how*, at a dated entry
+for *why*, never at a field report or a convergence spec.
+
+**Field reports are ephemeral.** A report is committed under
+`docs/field-reports/`, and deleted from the tip once every one of its
+findings is resolved or rejected — kept in history, recoverable, never
+referenced from a durable document. The entry that resolves a finding
+must carry enough of the evidence to stand without the report. This is
+the lifecycle the origin project gives specs and plans.
+
+**Target tier is a non-goal, not a limitation.** The skill is for
+frontier-tier models and is not simplified for smaller ones; their
+role is as implementation workers conducted by a frontier model. "A
+smaller model would not follow this" argues neither for nor against
+any wording (`docs/decisions.md`, 2026-08-02 — frontier-only is a
+non-goal).
 
 ## Editing discipline: no behavioral change without evidence
 
@@ -24,8 +50,16 @@ requires, in order:
 
 1. **A demonstrated failure or reviewed finding.** Either a baseline
    probe showing the unwanted behavior without the new wording, or a
-   finding from a structured review (below). If a no-guidance control
-   does not exhibit the failure, the guidance is not written.
+   finding from a structured review (below). The control arm — the
+   skill *without* the proposed wording, on a scenario built to tempt
+   the failure — measures whether the wording binds; it does not veto
+   it. A control that NEVER exhibits the failure means the guidance
+   answers a problem nobody has, and it is not written. A control that
+   avoids the failure UNRELIABLY is the case the rule exists for: one
+   unprompted success is not reproduction. There the rule is written
+   and the control's pass rate is recorded beside it
+   (`docs/decisions.md`, 2026-08-02 — an unreliable control writes the
+   rule).
 2. **Probes of the new wording before it lands.** Fresh subagents
    simulate one assistant turn with the skill text embedded, on
    scenarios that tempt the failure. Check three things: the target
@@ -64,18 +98,12 @@ for any major revision:
    when convergence is tempting but unearned, on an ordinary opening
    turn.
 
-## Origin, and the standing risk to edit against
+## The standing risk to edit against
 
-The skill was extracted from a project-specific version that lived
-inside a repository with strong surrounding rules (decision ledgers,
-explicit merge-approval conventions). Those rules acted as invisible
-scaffolding: behaviors the skill appeared to produce were partly
-produced by the environment. The generic skill must stay
-self-sufficient — the Decision authority and Threads-and-states
-sections exist precisely because their guarantees stopped being
-ambient when the skill left that repository. When editing, ask: does
+The generic skill must stay self-sufficient. When editing, ask: does
 this rule still bind in a repository with no docs, no ledger, and no
-conventions?
+conventions? The extraction history that makes this the standing risk
+is in `docs/decisions.md` (head: Origin, and the standing risk).
 
 ## The regression workflow (`skill-regression`)
 
@@ -96,7 +124,10 @@ words — "run the skill regression"), not by hand:
   scenario, and the grounded real-project scenario (`real-project-sds`:
   the tested agent explores a vendored real codebase read-only, and the
   judge verifies its grounding claims against the tree); `survey` runs
-  `full` across `args.tiers` — use on model version bumps), `judge`
+  `full` across `args.tiers` — a CAPABILITY PROBE for tiers that are
+  not supported, whose failures are not regressions and gate nothing;
+  frontier version drift is covered by running `quick` or `full`
+  against the new version), `judge`
   (fixed strong model for scoring, default `opus` — never let it
   follow the tested tier).
 - Fixtures live in `tests/scenarios/<name>/` (`scenario.md`,
@@ -162,50 +193,20 @@ with `claude plugin update designing-together@designing-together`.
 Local commits without a push stay unpublished, which is the intended
 state for work between releases.
 
-### How the harness updates installs (why bump-equals-release holds)
+### How the harness updates installs
 
-Claude Code checks marketplaces and plugins for updates in the
-background at session start (random delay up to ~10 minutes); a
-running session keeps its loaded versions and picks up changes via
-`/reload-plugins` or at the next launch. Two facts make the release
-discipline above mechanical rather than conventional:
+Pushing without a version bump never reaches installs, so
+documentation and harness changes can be pushed freely between
+releases; the argument for why that holds is in `docs/decisions.md`
+(head: Release mechanics), together with the open question about this
+plugin's `"./"` marketplace source.
 
-- **Third-party marketplaces (this repo) have auto-update OFF by
-  default**; only official Anthropic marketplaces auto-update out of
-  the box. So installs of this plugin move only on an explicit
-  `claude plugin update designing-together@designing-together` —
-  unless the user enables auto-update for the marketplace (`/plugin`
-  → Marketplaces tab → enable auto-update — present for user-added
-  github marketplaces, verified — or
-  `extraKnownMarketplaces.<name>.autoUpdate` in settings.json, any
-  scope).
-- **Updates key on the version string, not on commits.** Resolution
-  order: `version` in `plugin.json` → `version` in the marketplace
-  entry → git commit SHA. Because this plugin pins a version, pushed
-  commits WITHOUT a bump never reach installs, even with auto-update
-  enabled — doc and harness changes can be pushed freely between
-  releases. Omitting `version` would flip the plugin to
-  every-commit-is-a-version; do not.
-
-Related mechanics, for when they bite: marketplace clones refresh via
-`git pull` without credential helpers (on failure Claude Code
-re-clones; `CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE=1` keeps
-the existing clone). `DISABLE_AUTOUPDATER=1` disables all
+Operational details: Claude Code checks marketplaces and plugins for
+updates in the background at session start (random delay up to about
+10 minutes); a running session keeps its loaded versions and picks up
+changes via `/reload-plugins` or at the next launch. Marketplace
+clones refresh via `git pull` without credential helpers (on failure
+Claude Code re-clones; `CLAUDE_CODE_PLUGIN_KEEP_MARKETPLACE_ON_FAILURE=1`
+keeps the existing clone). `DISABLE_AUTOUPDATER=1` disables all
 auto-updating; `FORCE_AUTOUPDATE_PLUGINS=1` re-enables plugin updates
 under it.
-
-UI trap (docs-UI gap, observed 2026-08): the `/plugin` PLUGIN detail
-view shows a "Mark for update" toggle and, because this plugin's
-marketplace entry uses the relative source `"./"`, the message "Local
-plugins cannot be updated remotely. To update, modify the source at:
-./". Neither the toggle nor that classification appears in the
-documentation, and the message is misleading for this repo's shape:
-the marketplace itself is git-hosted, `claude plugin update` works
-through its clone, and the auto-update control lives one level up on
-the Marketplaces tab. Whether background auto-update actually
-propagates a version bump to a `"./"`-source plugin is undocumented —
-check at the next release (the author's machine has the toggle
-enabled); if it does not propagate, the fallback is changing the
-marketplace entry's source to
-`{"source": "github", "repo": "teoboutin/designing-together"}` at the
-cost of a second clone per install.

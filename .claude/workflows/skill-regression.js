@@ -1,7 +1,7 @@
 export const meta = {
   name: 'skill-regression',
   description: 'Regression-test the designing-together skill: scripted scenarios, fixed judges',
-  whenToUse: 'After skill edits (mode quick), before a release (mode full), on model version bumps (mode survey with tiers)',
+  whenToUse: 'After skill edits (mode quick), before a release (mode full); mode survey is a capability probe for unsupported tiers and gates nothing',
   phases: [
     { title: 'Conduct', detail: 'run each scenario against the tested model' },
     { title: 'Judge', detail: 'fixed-model judges score transcripts against rubrics' },
@@ -16,8 +16,11 @@ const A = typeof args === 'string' ? JSON.parse(args) : (args || {})
 const REPO = A.repo || '.'
 const MODE = A.mode || 'quick'
 const JUDGE = A.judge || 'opus'
+// survey is a capability probe for tiers the skill does not support: it asks
+// whether one has become capable enough to reconsider. The opus arm is the
+// reference transcript the others are read against, not a gate.
 const TIERS = MODE === 'survey'
-  ? (A.tiers || ['opus', 'sonnet', 'haiku'])
+  ? (A.tiers || ['opus', 'sonnet'])
   : [A.model || 'opus']
 
 const ROOT = REPO + '/tests/scenarios'
