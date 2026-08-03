@@ -352,6 +352,17 @@ words — "run the skill regression"), not by hand:
   workflow-spawned agent's context. The conductor protocol therefore
   forbids ending the turn to wait: all waiting happens inside a Bash
   polling loop over the child's output file.
+- **A background run does not survive the session that launched it.**
+  Observed 2026-08-03: a `full` run filtered to five scenarios was
+  still executing when the session ended, and the next session found
+  no completion record — a stop through the UI or `TaskStop` leaves
+  the same trace, so the two are indistinguishable after the fact.
+  Relaunch with `Workflow({scriptPath, resumeFromRunId})` and pass
+  `args` again; completed agents replay from cache. Before resuming,
+  check whether `SKILL.md` or any rubric moved since the launch: if it
+  did, cached reps were judged against different text than the fresh
+  ones, which is the split-text trap above arriving by a different
+  route.
 - **On resume, `args` can arrive JSON-encoded as a string.** The first
   launch delivered args as an object; the `resumeFromRunId` relaunch
   delivered the same args as a quoted JSON string, silently breaking
