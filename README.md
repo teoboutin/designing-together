@@ -13,11 +13,11 @@ about an existing architecture — the assistant:
   options or a battery of clarifying questions;
 - tracks the discussion as named threads with explicit states; the
   user's explicit word closes threads (an interpreted word only marks
-  a presumption), with three declared exceptions the assistant
-  announces — withdrawing its own defeated proposals, parking its own
-  overruled dissent, superseding threads absorbed by a proposal the
-  user approves by name; a summary table makes the standing state
-  contestable at a glance;
+  a presumption, except against a checkpoint table, where a positive
+  word closes what the table holds), with two declared exceptions the
+  assistant announces — withdrawing its own defeated proposals, and
+  parking its own overruled dissent; a summary table makes the
+  standing state contestable at a glance;
 - pushes back and expects push-back — the exchange is symmetric until
   a decision: the user's proposal is a claim to test, held to the
   same slots (why it works, what it costs, what it rules out) as the
@@ -165,13 +165,18 @@ read these results as pinned to those exact models, not to tier names:
 a later Sonnet may well handle the skill fully, and an older Opus may
 not (Opus 4.8 is adequate in the author's own use, untested here).
 
-- **Opus 5 and Fable 5**: full machinery and
-  full depth. The strongest run reframed the problem before proposing,
-  pre-committed evidence thresholds that bound both parties, withdrew
-  its own criterion when its own arithmetic killed it, identified the
-  one irreversible fork the other tiers missed, refused to close that
-  fork on "sounds mostly right" ("I need one word"), and shipped a
-  decision record with every losing argument and tripwire in place.
+- **Opus 5**: full machinery and full depth. The strongest conducted
+  run reframed the problem before proposing, pre-committed evidence
+  thresholds that bound both parties, withdrew its own criterion when
+  its own arithmetic killed it, identified the one irreversible fork
+  the other tiers missed, refused to close that fork on "sounds mostly
+  right" ("I need one word"), and shipped a decision record with every
+  losing argument and tripwire in place.
+- **Fable 5**: full machinery on every single-turn probe it ran. It
+  was not put through the four-turn conducted script, so it has no
+  evidence on the properties that only a multi-turn run exercises —
+  carrying the thread table across rounds, and holding closure under
+  repeated friendly ambiguity.
 - **Sonnet 5**: the machinery holds — legal states, consistent
   tables, a usable decision record with losing arguments. In the
   original test its closure discipline bent under friendly ambiguity
@@ -309,7 +314,12 @@ anything.
 ### Watched, not acted on
 
 Because the mapping does not govern the skill, a mechanism the
-literature contradicts is recorded here rather than changed. These
+literature contradicts is recorded here rather than changed by that
+contradiction. Two of the five below were changed anyway, on an
+independent ground: their stated reasons also failed the skill's own
+rule against qualitative claims doing closing work, which is a defect
+provable by reading the skill alone. The literature did not open those
+edits; on one of them it happened to agree with a rule that did. These
 came from an August 2026 mapping of four mechanisms added since the
 previous pass. Citations are given as the mapping returned them,
 without links, because they were verified as citations but their
@@ -342,9 +352,9 @@ directly.
   opposite of this skill — gIBIS ships nine typed link types, DRL
   around sixteen, and Dung 1995 defines its semantics purely over the
   attack relation — so the counter-position is the mainstream. The
-  practice stands; its stated reason does not, and that reason is
-  being replaced rather than reworded, under the skill's own rule
-  about qualitative claims doing closing work.
+  practice stands; its stated reason did not, and that reason has been
+  replaced rather than reworded, under the skill's own rule about
+  qualitative claims doing closing work.
 - **"Consolidating costs latency and nothing else" is contradicted.**
   Fitz et al. 2019 (n=237) found batching notifications three times a
   day improved mood and productivity, hourly was null, and
@@ -384,6 +394,6 @@ where the argued-exchange mode repeatedly out-performed narrowing
 elicitation on open design questions (one structural pivot found, one
 harmful implicit behavior removed). Project-specific machinery
 (document conventions, engine invariants) was stripped; the loop, the
-thread-and-state machinery, the decision-authority rules, the red
-flags, the language rules, and the keep-or-change discipline are the
+thread-and-state machinery, the decision-authority rules, the stop
+signals, the language rules, and the keep-or-change discipline are the
 parts that generalize.
