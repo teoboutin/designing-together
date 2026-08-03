@@ -74,8 +74,29 @@ not a gate).
    trigger that cannot fire or cannot fail. A review finding that
    predicts a behavior — this rule will over-fire, this wording will
    be misread — is not a demonstrated problem: park it with a tripwire
-   naming what a real session would show. No synthetic fixture ever
-   originates an edit.
+   naming what a real session would show, which the admission test
+   below defines. No synthetic fixture ever originates an edit.
+
+   For an ADDITION — a new instruction, as opposed to repairing a
+   contradiction, a broken trigger or a factual error — real use is the
+   only originating route, and it admits on two conditions. (1) An
+   observation in one of two forms: a session produced the behavior
+   unprompted, which admits the GAP and never the specific behavior; or
+   the user asked for it mid-session, which is evidence about that
+   behavior directly. (2) The user endorses the result AND names what
+   the session would have lacked without it — the endorsement is their
+   weighing, the named lack is what the dated entry can still be read
+   for once the field report is deleted. A "should have" nobody
+   exhibited meets neither form: it is a prediction, so it parks rather
+   than lands, and the cheap route is to ask for it next session
+   (`docs/decisions.md`, 2026-08-03 — what real use has to show).
+
+   Then state in ONE SENTENCE the mechanism that produced the need. If
+   it names a structural defect, the edit is the structural fix and not
+   the behavior observed. Admission settles necessity only: the
+   weighing below and step 3's control arm still run, and a bare
+   transcription backed by a single session is parked with recurrence
+   as its tripwire.
 
    Then weigh which KIND of gap it is. A capability gap — a move the
    assistant does not have — is worth text. A conformance gap — a move
