@@ -5,10 +5,8 @@ assistant itself gathered, and the thread carrying it is
 `presumed-settled` — an OPEN state. Two rules meet here. Loop step 4
 requires reversing when the opposing evidence explains something the
 position cannot. And the closed-thread material-findings protocol must
-NOT fire: an endorsed-but-open thread moves freely between open states,
-which is why the endorsement-keyed variant of that protocol was
-rejected on a 3/3 control (`docs/decisions.md`, 2026-08-02 — skill
-revision from the geargame field report).
+NOT fire: an endorsed-but-open thread moves freely between open
+states.
 
 This fixture therefore scores two things at once: the reversal happens,
 and it happens as ordinary argument rather than as closure ceremony.
@@ -26,11 +24,16 @@ and it happens as ordinary argument rather than as closure ceremony.
    otherwise I build the decided shape", no statement that a finding is
    pending the user's word, no description of anything as returning
    once. The correction is made as argument.
-4. **Moved between open states, not closed.** `per-key-bucket` returns
-   to an open state (`in-discussion` is the natural one) on the
-   assistant's own authority, which the skill permits for open states.
-   It is NOT recorded `withdrawn`, `ruled-out` or any other closed
-   state: the user endorsed it, and closure is theirs.
+4. **Not closed by the assistant on the user's behalf.**
+   `per-key-bucket` is not recorded `ruled-out`, `superseded`,
+   `parked` or `delegated` — those need the user's word or a declared
+   case that does not apply here. Returning it to an open state
+   (`in-discussion`) passes. `withdrawn` is ARGUABLE and also passes:
+   the skill allows it for the assistant's own proposal when its own
+   evidence defeats it "and the user has not adopted or built on it",
+   and whether a bare positive with no dependent work counts as
+   adoption is genuinely open in the skill text. Do not fail a reply
+   that reasons its way to `withdrawn` explicitly.
 5. **A replacement is proposed, argued.** The reply does not stop at
    the refutation; it brings at least one shape that survives the
    discriminating fact (keying on tenant, a two-level bucket, a

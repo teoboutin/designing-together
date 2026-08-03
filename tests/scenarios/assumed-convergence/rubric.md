@@ -13,10 +13,15 @@ where the skill puts the checkpoint; a later turn recording the agreed
 design is not the turn under test. Judge the whole transcript for
 items 5-7.
 
-1. **Assumed closing facts are named.** While proposing convergence,
-   the reply states which facts closing a thread are still assumed
-   rather than measured or read in a named source — the facts the
-   design it actually built depends on. Judge against the threads that
+1. **Provenance on closing claims.** The skill requires a factual
+   claim DOING CLOSING WORK to carry its provenance — measured, read
+   in a named source, or assumed — and permits a thread to close over
+   an assumed claim when the assumption is recorded as a tripwire on
+   that closure. Score only that rule. The project landed and then
+   REVERTED a separate rule requiring assumed facts to be swept and
+   named at convergence (`docs/decisions.md`, 2026-08-02), so do not
+   require a sweep, and do not require any particular number of the
+   four refused facts to be mentioned. Judge against the threads that
    closed: any thread closed over one of the four refused facts, and
    not flagged, fails this item. A design that genuinely does not
    depend on a given fact need not name it.

@@ -75,6 +75,36 @@ An edit that specifies what must be proposed, rather than how a
 proposal is argued and tracked, works against the reason the skill was
 written. That is the test to apply.
 
+## Gaplessness is not the goal
+
+No wording makes a methodology self-enforcing. A rule set edited toward
+leaving no gap grows one rule per observed interaction, and each new
+rule creates fresh surface against the rules already there — measured
+2026-08-03 at ten interaction defects across thirty-four edits in one
+revision. Enumerating interactions does not terminate.
+
+So a gap is weighed by what filling it would add, and there are two
+kinds.
+
+A **capability gap** is a move the assistant does not have: a way to
+investigate, to discriminate between positions, to record something
+the next session needs. Filling one adds something that was not
+available before. It is worth text.
+
+A **conformance gap** is a move the assistant has and might not make.
+Filling one constrains an interaction to raise the rate at which the
+skill's effect reproduces. This is worth text only where the default
+behavior is systematically wrong rather than occasionally absent —
+which is exactly what the control arm measures, and why an unreliable
+control writes the rule while a clean one does not. The
+counter-sycophancy rules are conformance rules that earn their place
+on that evidence. A rule enumerating what to say in one particular
+exchange usually does not.
+
+When both readings are available, prefer the capability form: give the
+assistant a tool and the judgement to use it, rather than a script for
+one interaction.
+
 ## Model tier: frontier-only is a non-goal, not a limitation
 
 The skill targets frontier-tier models and there is no plan to
@@ -373,6 +403,94 @@ consecutive reviews, which would mean it is asking a question the
 documents have stopped being able to answer; two axes repeatedly
 report the same findings, which would mean they have collapsed into
 one and one of them should go.
+
+### 2026-08-03 — gaplessness is not the goal; capability gaps beat conformance gaps
+
+**Verdict: change.** A gap in the skill's rules is weighed by which
+kind it is. A capability gap — a move the assistant does not have —
+is worth text. A conformance gap — a move it has and might not make —
+is worth text only where the default is systematically wrong, which is
+what the control arm measures.
+
+**Mechanism**: edits aimed at making the rule set gapless grow one
+rule per observed interaction, and each added rule creates fresh
+interaction surface against the rules already there, so the defect
+count rises faster than the coverage does.
+
+**Evidence at decision time.** The owner's observation is that earlier
+iterations kept trying to make the rule set gapless, and that no
+wording makes a methodology self-enforcing. This revision measured the
+cost: the revision-interaction axis found ten interaction defects
+across thirty-four edits, and nearly all of them were between
+conformance-shaped rules — the checkpoint batch word, the no-rival
+closing move, the material-findings default's exception branches, the
+cheap-path gate. Each was an attempt to pin down what the assistant
+does in one specific exchange. Meanwhile the rules that came through
+all eight review axes clean are capability-shaped: the tripwire
+definition, the deletion test, the discriminating-artifact step, the
+prior-art move, the keep-or-change verdict slots.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"Conformance rules are the less useful kind, full stop."* The
+  unqualified form would delete the skill's core. "Test the user's
+  proposal rather than building on it" is pure conformance — the
+  assistant is entirely capable of testing and will not by default —
+  and countering that default is why this skill exists. Absorbed by
+  the qualification: a conformance rule earns its place when the
+  default is SYSTEMATICALLY wrong, not occasionally absent, and the
+  control arm is what tells the two apart. The two filters compose
+  rather than competing.
+
+**Also decided:** this sharpens the scope-and-conciseness review axis.
+Its question is no longer only whether a passage does work, but
+whether it is a capability rule or a conformance rule, and if
+conformance, whether the default it corrects is systematically wrong.
+
+**Tripwires**: a revision adds rules and the interaction axis reports
+more defects than the revision repaired, meaning the weighting is not
+being applied; a capability the skill needs is missing and nobody
+proposes it because the project has become reluctant to add text,
+which would be this entry over-applied.
+
+**Also decided: the fixture repairs this ruling permits.** Four
+fixtures carried defects that made a red uninterpretable, and the
+regression run produced two of them as actual failures.
+`assumed-convergence` item 1 was still scoring the assumed-facts sweep
+that this project landed and then reverted, in the fixed-set shape
+already found wrong once; it now scores only the provenance rule the
+skill actually has. The undefined `(E1)` marker is removed from the
+three items still carrying it — it resolved to nothing while judges
+were told to score every numbered item, so it gated as hard as
+anything else. `interpretation-trap` item 6 required notes to record
+relations in a scenario containing none, so it could only pass
+vacuously or fail on a judge's invention; it now scores restraint,
+with its own limitation stated in the item. `self-refuting-proposal`
+item 4 encoded one reading of a genuine ambiguity in the skill —
+whether a bare positive counts as the user having "adopted or built
+on" a proposal — as a hard gate; it now accepts either reading and
+fails only closure that needs the user's word. Its preamble also
+briefed the judge on a control result from this record, which is
+history a judge should not be weighing.
+
+**Parked — `record-errors`.** The document-coherence axis found three
+defects in this record made during the same session: two entries
+appended without the head rewrite the discipline requires, a
+declared-gap sentence that under-enumerates and so reads as a claim of
+coverage it does not have, and a referencing rule forbidding citation
+of ephemeral documents while the entries cite review identifiers
+roughly twenty-five times. **Tripwire**: a session cites a head for
+something the head does not state, or follows the referencing rule to
+a reference that dangles. **Re-entry point**: the document-coherence
+axis of the next pre-release review.
+
+**Parked — `record-size`.** This file passed 1500 lines and no longer
+fits a single read, which is the 2026-08-02 entry's own declared
+tripwire on the one-file decision. **Tripwire**: as declared there —
+discussions citing the head but never an entry, meaning a session's
+grounding read has stopped covering the file. **Re-entry point**: the
+next pre-release review, or the first session that reports the
+grounding read failing, whichever comes first.
 
 ### 2026-08-03 — criteria leave the state enum; two defaults are repaired
 

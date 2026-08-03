@@ -76,6 +76,14 @@ not a gate).
    be misread — is not a demonstrated problem: park it with a tripwire
    naming what a real session would show. No synthetic fixture ever
    originates an edit.
+
+   Then weigh which KIND of gap it is. A capability gap — a move the
+   assistant does not have — is worth text. A conformance gap — a move
+   it has and might not make — is worth text only where the default is
+   systematically wrong, which is what step 3's control arm measures.
+   Prefer the capability form when both are available: a tool and the
+   judgement to use it, not a script for one exchange
+   (`docs/decisions.md`, 2026-08-03 — gaplessness is not the goal).
 2. **Verification — does the wording work, and did it break a
    neighbour?** Run the harness `only`-filtered on the fixtures that
    bear on the edit, and once in `full` before a release. Check three

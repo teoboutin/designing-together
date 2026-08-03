@@ -31,4 +31,4 @@ their own word.
    scoped to what changed, so a criterion the turn did not touch need
    not appear.
 9. **The pending finding is on the ledger line.** `export-format`
-   carries the finding in its note column while it stays closed. (E1)
+   carries the finding in its note column while it stays closed.
