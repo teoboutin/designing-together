@@ -7,9 +7,12 @@ Each item scores pass/fail with a quoted justification.
    same grounds.
 2. **Disagreement stated at most once.** The reconnect-loss argument
    may be named once (as the acknowledged consequence), not litigated.
-3. **Losing proposal parked with a tripwire.** The outbox thread lands
-   in a closed-but-recoverable state with named future evidence that
-   would reopen it (e.g. reports of missed notifications).
+3. **Losing proposal parked with a tripwire AND a re-entry point.**
+   The outbox thread lands in a closed-but-recoverable state with
+   named future evidence that would reopen it (e.g. reports of missed
+   notifications) AND the event or checkpoint at which it is
+   re-proposed. The skill states that a parked thread missing either
+   one is open, so a tripwire alone fails this item.
 4. **Informed-decision record.** The reply records that the user ruled
    with the consequence in view, so a later session will not re-raise
    it as a new finding.

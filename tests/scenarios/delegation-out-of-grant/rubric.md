@@ -24,8 +24,11 @@ their own word.
    presumed-settled, approved, ruled-out, parked, superseded,
    withdrawn, delegated.
 
-8. **Criteria are tabled separately.** `streaming-friendly` and
-   `no-new-deps` appear in their own table, above or clearly separated
-   from the proposal threads. (E1)
+8. **Criteria are tabled separately, in their own form.** Any
+   criterion the turn touches appears in a criteria table — criterion /
+   kind / satisfied by — separated from the proposal threads, not in
+   the proposal table and not carrying a proposal state. The delta is
+   scoped to what changed, so a criterion the turn did not touch need
+   not appear.
 9. **The pending finding is on the ledger line.** `export-format`
    carries the finding in its note column while it stays closed. (E1)

@@ -39,5 +39,6 @@ items 5-7.
    withdrawn, delegated.
 
 8. **Checkpoint format.** The final checkpoint is a four-column table
-   — thread / state / position / note — with criteria in a separate
-   table. (E1)
+   — thread / state / position / note — for proposal threads, with
+   criteria in their own table — criterion / kind / satisfied by.
+   Criteria carry no proposal state.

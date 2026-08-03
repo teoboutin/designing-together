@@ -374,6 +374,104 @@ documents have stopped being able to answer; two axes repeatedly
 report the same findings, which would mean they have collapsed into
 one and one of them should go.
 
+### 2026-08-03 — criteria leave the state enum; two defaults are repaired
+
+**Verdict: change.** Criteria stop carrying the proposal state enum
+and gain a kind and a satisfaction line. The material-findings
+default's two exceptions are narrowed and given a termination. The
+cheap path's calibration is replaced by four named escalators. And a
+new expectation is added: the user engages toward convergence.
+
+**Mechanism**: the state enum lists fates for a PROPOSAL — won, lost,
+deferred, absorbed, retracted, handed over — and criteria were later
+declared threads without being given a fate, so every closed state
+read wrong for them and the closure machinery inherited a dead end it
+kept patching around.
+
+**Evidence at decision time.** An eight-axis pre-release review and a
+full regression run at three repetitions. The criteria defect was
+found independently by the cold flaw axis (no legal closed state for a
+criterion, so convergence cannot hold or the criterion is marked
+`approved` and the Reopening rule then reads it as a decision a rival
+must defeat) and by the revision-interaction axis (the criteria-table
+rationale says a criterion must not be "closed like" a proposal while
+the grant-boundary clause says a criterion that cannot close blocks
+convergence). It fires in every full-path discussion.
+
+The two default defects were observed, not predicted. In
+`delegation-out-of-grant` the assistant wrote "the choice is outside
+the grant and the turn stops at it", named no default and stopped —
+the infeasibility branch swallowing a case the grant rule routes
+through the protocol with a default. In `delegation-in-grant`, which
+had passed 2/2 when the state landed, two of three repetitions
+produced "Absent a word from you, the length-prefixed format is what
+ships" — the returning-once ceremony appearing inside a grant, where
+the rule already says there is no material-findings round. The
+regression run was otherwise 16 of 19 scenarios green at 3/3.
+
+**What the owner's ruling settled, and what it removed from scope.**
+The review's most severe-sounding findings — convergence can never
+hold, the no-rival thread is permanently unclosable, parked dissent
+traps the discussion — were all premised on a user who never speaks.
+The owner stated that the user is playing under the rules and actively
+seeking convergence; that becomes an expectation in the README, and
+under the scope test those findings describe behavior outside the set.
+Each is escapable by one word from a user who wants to converge. What
+survived the filter is what a cooperative user cannot rescue, because
+they would not know it was happening: an assistant holding work it
+should have proceeded with, an infeasibility branch firing outside its
+case, and a cheap path that escalates a help-string fix.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"Revert the whole eight-edit closure cluster and re-land it as one
+  designed unit."* This was the standing proposal, argued on the
+  grounds that repairing entangled edits one at a time is what
+  produced the damage. It lost to the expectation above, which removes
+  the closure dead ends from scope and shrinks the entangled set to
+  two edits — and two edits can be reasoned about together, which was
+  the whole basis of the objection. Absorbed: the two survivors are
+  repaired in one change, not separately.
+- *"Give criteria their own closed state, meaning the design satisfies
+  this."* Rejected in favour of a satisfaction line, because a state
+  is a fate and satisfaction is a RELATION between a criterion and the
+  approved set. A state could not name which approved threads meet it,
+  which is the thing the owner said matters at convergence.
+- *"Give criteria numeric weights."* Rejected: the Language rule would
+  require the numbers to be checkable, and they would be invented —
+  the same defect the grant-conversion clause produces. Binding versus
+  weighed carries the distinction with no fabricated precision.
+
+**Also decided:**
+
+- **Criteria may be DERIVED** from the project's own recorded rules,
+  not only stated in the discussion. A derived criterion is binding as
+  a stated presumption until the user says otherwise, which is the
+  same machinery `presumed-settled` uses and for the same reason.
+- **"Unmet-and-accepted" needs the user's word naming that criterion**,
+  not a blanket confirmation, or it becomes the rubber stamp the
+  closure discipline exists to prevent.
+- **The parked `criteria-axis` thread is delivered.** Its recorded
+  re-entry point was "the next revision review"; this is that review,
+  so it reopened on its own terms with no new argument required.
+- **The step-5 consolidation escape no longer routes through the
+  material-findings protocol.** That protocol's trigger is information
+  arriving after a thread CLOSED, and at step 5 nothing is closed, so
+  its default ("I build the decided shape") named nothing and its stop
+  branch would have suppressed the other investigations.
+- **A fixture change lands in the same commit as the skill change it
+  tests** (`CLAUDE.md`). The parked-thread re-entry requirement landed
+  this morning while two fixtures kept scoring the old rule, and a
+  full run passed them 3/3 meanwhile.
+
+**Tripwires**: a discussion converges with a binding criterion whose
+satisfaction line was never contested, meaning the line is read as
+ceremony; a criterion is derived from project rules and turns out to
+be wrong for the discussion, meaning the binding-by-presumption
+default is too strong; the material-findings default holds work in a
+case the user reports as obstruction, meaning the this-turn test is
+still drawn too wide.
+
 ### 2026-08-03 — the coherence pass, and three things it found unrecorded
 
 **Verdict: change.** The document-coherence axis was re-run against the

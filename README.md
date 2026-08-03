@@ -79,8 +79,8 @@ proposal is what it is for.
 
 **You give the word that closes a thread, or delegate it explicitly.**
 The assistant can move threads between open states but cannot close
-one for you; that asymmetry is the design. Neither ruling nor
-delegating leaves threads open, and the discussion cannot converge. A
+one for you; that asymmetry is the design. Doing neither leaves
+threads open, and the discussion cannot converge. A
 grant that names its constraints is worth more than a bare one: the
 constraints become the boundary the assistant checks its own decisions
 against, and it states that boundary back to you when it takes the
@@ -128,6 +128,13 @@ other. Resuming a *session* is a different thing and works — if your
 harness restores the full transcript and the project is in the same
 state, the assistant never knows it happened, and bounded changes made
 to the project meanwhile read to it as changes landing mid-discussion.
+
+**You are trying to converge.** The skill assumes you engage toward
+agreement on a set of proposals — arguing, ruling, delegating, or
+saying stop. It does not defend against a participant who simply never
+answers: several of its rules can only be released by your word, and
+withholding one indefinitely leaves the discussion parked rather than
+producing a wrong result.
 
 **You accept a methodology, not a script for every exchange.** The
 skill structures how a discussion is conducted: proposals argued,
