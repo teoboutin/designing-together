@@ -18,8 +18,12 @@ and its grounding in the literature.
   below the bar produces the format without the discipline and the
   description is the only place an installer sees that before running
   it.
-- `docs/decisions.md` — the decision record: a present-tense head plus
-  dated append-only entries.
+- `docs/decisions.md` — the decision record: per-territory sections,
+  each a present-tense head followed by the dated entries that argued
+  it.
+- `docs/open-items.md` — the repository's open state: live tripwires,
+  parked predictions, the literature watch list. Current reality only,
+  by presence.
 - `docs/field-reports/` — observations from real sessions using the
   skill; evidence, not decisions.
 - `docs/reviews/` — consolidated pre-release review findings; the same
@@ -28,45 +32,52 @@ and its grounding in the literature.
   fixtures; `.claude/workflows/skill-regression.js` — the harness.
 
 **Where a decision lands.** Every decision about this repository goes
-in `docs/decisions.md`: the head is rewritten as if the design had
-always been so, and the dated entry is appended, in the same change as
-the work. This file states the operational rules and points at a
-dated entry when a rule needs its justification — it does not retell
-the argument. Point at a head for *what* and *how*, at a dated entry
-for *why*, never at a field report or a convergence spec.
+in `docs/decisions.md`, under the section that owns the territory: the
+head is rewritten as if the design had always been so, and the entry
+is appended beneath it, in the same change as the work. An entry is a
+`**Decided <date>**` paragraph of two to five lines — what changed and
+the discriminating fact — then one `*Rejected: <alternative>* — <why
+it lost>` bullet per losing alternative. Nothing else: the head above
+states the verdict and the mechanism in the present tense, and the
+evidence narrative stays in the commit. Tripwires are not recorded
+there; they are open state and go in `docs/open-items.md`, which an
+entry leaves in the change that fires or voids it. This file states
+the operational rules and points at a section when a rule needs its
+justification — it does not retell the argument. Point at a head for
+*what* and *how*, at a section's dated entry for *why*, never at a
+field report or a convergence spec.
 
 **Field reports and review findings are ephemeral.** A report is
 committed under `docs/field-reports/`, a consolidated review under
 `docs/reviews/`, and each is deleted from the tip once every one of
 its findings is resolved or rejected — kept in history, recoverable,
-never referenced from a durable document. The entry that resolves a
-finding must carry enough of the evidence to stand without it; a
-finding identifier may be cited for traceability but never as the
-carrier of the argument. This is the lifecycle the origin project
+never referenced from a durable document. The *Rejected* bullet that
+resolves a finding must state what the finding said; a finding
+identifier may be cited for traceability but never as the carrier of
+the argument. This is the lifecycle the origin project
 gives specs and plans.
 
 **Target tier is a non-goal, not a limitation.** The skill is for
 frontier-tier models and is not simplified for smaller ones; their
 role is as implementation workers conducted by a frontier model. "A
 smaller model would not follow this" argues neither for nor against
-any wording (`docs/decisions.md`, 2026-08-02 — frontier-only is a
-non-goal).
+any wording (`docs/decisions.md`, *Model tier: frontier-only is a
+non-goal*, 2026-08-02).
 
 ## Editing discipline: no behavioral change without evidence
 
 Skill text is process documentation. Three questions about an edit get
 three different answers, and the harness answers only the middle one
-(`docs/decisions.md`, 2026-08-03 — the regression harness is a canary,
-not a gate).
+(`docs/decisions.md`, *The regression harness*, 2026-08-03).
 
 0. **Scope — is the problem ours?** The README's *What it expects of
    you* states the assumptions about user behavior and project shape
    the skill is built on. A finding describing a behavior outside that
    set is not a gap and no rule is written for it. The set scopes user
    behavior ONLY: a finding that two of the skill's own rules leave no
-   move satisfying both is always in scope (`docs/decisions.md`,
-   2026-08-03 — a documented expectation set bounds the skill's
-   scope). Check this before necessity; a provable gap that is not
+   move satisfying both is always in scope (`docs/decisions.md`, *The
+   expectation set bounds the skill’s scope*, 2026-08-03). Check this
+   before necessity; a provable gap that is not
    ours is still not written.
 1. **Necessity — is there a problem worth text?** Real use of the
    skill, or a review finding whose defect is PROVABLE BY READING: a
@@ -89,7 +100,8 @@ not a gate).
    for once the field report is deleted. A "should have" nobody
    exhibited meets neither form: it is a prediction, so it parks rather
    than lands, and the cheap route is to ask for it next session
-   (`docs/decisions.md`, 2026-08-03 — what real use has to show).
+   (`docs/decisions.md`, *Evidence standard for skill edits*,
+   2026-08-03).
 
    Then state in ONE SENTENCE the mechanism that produced the need. If
    it names a structural defect, the edit is the structural fix and not
@@ -104,7 +116,7 @@ not a gate).
    systematically wrong, which is what step 3's control arm measures.
    Prefer the capability form when both are available: a tool and the
    judgement to use it, not a script for one exchange
-   (`docs/decisions.md`, 2026-08-03 — gaplessness is not the goal).
+   (`docs/decisions.md`, *Gaplessness is not the goal*, 2026-08-03).
 2. **Verification — does the wording work, and did it break a
    neighbour?** Run the harness `only`-filtered on the fixtures that
    bear on the edit, and once in `full` before a release. Check three
@@ -128,7 +140,7 @@ a transcript the skill now calls broken, and nothing detects it until
 a review reads both. Observed 2026-08-03 — the parked-thread re-entry
 requirement landed while `override` and `notification-multiturn` kept
 scoring the old rule, and a full run passed them 3/3 meanwhile
-(`docs/decisions.md`, 2026-08-03 — criteria leave the state enum).
+(`docs/decisions.md`, *Criteria are not threads*, 2026-08-03).
 
 **Honest reporting.** Probe counts are small (often 1–3 per arm);
 results are reported as what they are — weak evidence that wording
@@ -203,15 +215,15 @@ and are given exactly what they need and no more.
    This axis is NON-BINDING and gates nothing: the skill is designed
    from practice and mapped afterwards, so a contradicted verdict goes
    on a watch list rather than opening an edit (`docs/decisions.md`,
-   2026-08-03 — the regression harness is a canary, not a gate).
+   *The regression harness*, 2026-08-03).
 8. **Scope and conciseness** — given the skill and the README's *What
    it expects of you*, find text that does NO WORK: a rule another
    rule already covers, a sentence restating the one before it, an
    example adding nothing its rule does not, a clause handling a user
    behavior the expectation set excludes. **This axis hunts for
    inert text, never for length.** Length is explicitly not a
-   criterion here (`docs/decisions.md`, 2026-08-02 — length is not the
-   binding constraint), and a size budget arriving through this axis
+   criterion here (`docs/decisions.md`, *Evidence standard for skill
+   edits*, 2026-08-02), and a size budget arriving through this axis
    is the failure to guard against. Every finding must name what would
    change behaviorally if the text were deleted; "nothing" is the
    finding, and anything else is not one. Findings that propose
@@ -392,7 +404,7 @@ history of a change: the reasoning is in the conversation, and the
 conversation does not survive. Separate commits by decision, not by
 file. An assistant's general default is to commit only on request;
 this rule overrides it for this repository (`docs/decisions.md`,
-2026-08-03 — commits happen as work completes).
+*Release mechanics*, 2026-08-03).
 
 Committing is not releasing. A release is: bump `version` in
 `.claude-plugin/plugin.json`, commit, push, then refresh local installs

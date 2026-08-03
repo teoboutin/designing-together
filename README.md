@@ -329,8 +329,8 @@ anything.
 Because the mapping does not govern the skill, a mechanism the
 literature contradicts is recorded here rather than changed by that
 contradiction. Two entries that were here concerned the `delegated`
-state and were removed with it (`docs/decisions.md`, 2026-08-03 —
-`delegated` is deleted); the literature's argument for that removal
+state and were removed with it (`docs/decisions.md`, *No delegation
+grant*, 2026-08-03); the literature's argument for that removal
 had already lost on this standard, and the state fell to a rule
 contradiction instead. Of the three below, the first was changed
 anyway, on an independent ground: its stated reason also failed the
