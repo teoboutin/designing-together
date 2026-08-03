@@ -33,18 +33,37 @@ record, and saying so is better than inventing one.
 ## The referencing rule
 
 Point at a head for *what* and *how* — heads are current reality, so a
-head reference stays true. Point at a dated entry for *why* —
-entries are append-only, so the reference cannot dangle. Never point
-at an ephemeral document: field reports, convergence specs and review
-findings are all deleted once harvested, so a reference to one dangles
-by design.
+head reference stays true. Point at a dated entry for *why* — entries
+are append-only, so the LINK cannot dangle. The link, not the content:
+a later decision may defeat an earlier entry, and the earlier entry
+goes on reading in the present tense. So a head is the authority for
+what currently holds, and an entry is the authority only for the
+argument as it stood on its date. Never point at an ephemeral
+document: field reports, convergence specs and review findings are all
+deleted once harvested, so a reference to one dangles by design.
 
-Most of the skill predates this record, and no entry argues it. The
-referencing rule therefore cannot be followed for the loop's steps,
-the state enum, the premortem, the record step, or *When NOT to use*.
-This is stated so it is not rediscovered as a finding every review;
-sections are back-filled when a decision touches them, not on a
-schedule.
+Most of the skill predates this record and no entry argues it, so the
+rule cannot be followed for much of it — the loop's steps, the
+premortem, most of *Keep-or-change*, *Reopening*, *Who moves what*,
+the checkpoint, and more. The gap is not enumerated: it changes with
+every revision, and a list reads as a claim that everything unlisted
+IS argued, which is how the previous enumeration came to be wrong in
+both directions at once. Sections are back-filled when a decision
+touches them, not on a schedule.
+
+**Superseded entries.** A dated entry listed here was defeated by a
+later decision. Read it for the argument as it stood, never for what
+holds now. A decision that reverses an earlier one says so in its own
+entry AND adds the reversed entry here, because a reader can arrive at
+an entry directly without passing the one that defeated it.
+
+- 2026-08-03, *`delegated` is kept; the grant states its boundary* —
+  reversed the same day by *`delegated` is deleted, with its grant and
+  its vocabulary*.
+- 2026-08-02, *no durable state artifact for the thread ledger* — its
+  second tripwire is void, retired by *the in-discussion ledger is not
+  the project's decision record* (2026-08-03). The verdict and the
+  first tripwire stand.
 
 ## Structure the flow, not the content
 
@@ -122,6 +141,47 @@ teaches it, so the vocabulary goes with the state.
 Recording who weighed a decision is the acknowledged cost. A closure
 the owner made on a quick read is recorded `approved` and reads the
 same as one they argued through.
+
+## Criteria are not threads
+
+A thread is a proposal or an open question, and it carries a state. A
+criterion is what threads are judged against, and it carries none:
+threads are judged against criteria, so a criterion that was itself a
+thread would need criteria to judge it. Criteria are tracked in a
+table of their own — criterion, kind, satisfaction line — and never
+enter the ledger, so they have no bucket and no place in the
+checkpoint's sweep over thread slugs. A criterion enters a delta when
+its kind or its satisfaction line changed, having no state to change.
+
+A criterion is binding or weighed. A binding criterion rules out any
+proposal that fails it, and one left unmet blocks convergence: no word
+waives it in place. The moves are to change the proposal, or for the
+user to demote the criterion to weighed — a change to the criterion,
+recorded as one. A weighed criterion makes failure a cost the user
+rules on, and is the only kind whose satisfaction line may read
+`unmet-and-accepted`. Were acceptance available to both, the two kinds
+would differ only in the ceremony of accepting.
+
+## What comes back after a decision
+
+The user's word ends the argument on a point. It does not end the duty
+to verify what the choice entails, and information that arrives after
+a thread closed returns exactly once — per finding rather than per
+thread, at the top of the turn it appears in, with the decided shape
+named as the standing default.
+
+Material is answered by naming rather than by judging: the information
+arrived after the closure, and the part of the closure it defeats can
+be named — a reason the ruling gave, a premise it rested on, or a
+criterion it claimed to meet. What cannot be named to defeat anything
+is not material. A test whose discriminator is an adjective is
+answered by how confident the reader feels, and two readers then apply
+it differently with neither shown wrong.
+
+Two cases defeat the standing default. A finding that the decided
+shape cannot be built at all stops the work, because a default would
+name work that does not exist. And work that cannot be undone is held
+for the user's word while the reversible part proceeds.
 
 ## Gaplessness is not the goal
 
@@ -376,6 +436,64 @@ The standing test for any edit: does this rule still bind in a
 repository with no documents, no decision record, and no conventions?
 
 ## Dated entries
+
+### 2026-08-03 — append-only protects the link, not the content
+
+**Verdict: change.** The referencing rule states that a head is the
+authority for what holds now and an entry only for the argument on its
+date, and it gains a **Superseded entries** list. A decision that
+reverses an earlier one adds the reversed entry there as well as
+saying so in its own entry.
+
+**Mechanism**: a reader can arrive at a dated entry directly, without
+passing the later entry that defeated it, and a defeated entry goes on
+reading in the present tense.
+
+**Evidence at decision time.** The head claimed "entries are
+append-only, so the reference cannot dangle", which is true of the
+link and false of the content. Two live instances: the `delegated`
+KEEP verdict of this morning, reversed this afternoon, still reads as
+current — and both `CLAUDE.md` and the README point into this record;
+and the no-state-artifact entry's second tripwire, retired by the
+ledger entry and marked only there. A third suspected case was checked
+and is not one: an entry voiding a review's own disposition split
+inside itself corrects nothing external.
+
+**Losing arguments and where the winner absorbs them:** editing the
+defeated entry in place was not argued, because append-only is the
+property that makes a citation to an entry safe at all. The list
+costs two lines per reversal and leaves the argument intact.
+
+**Tripwires**: a reversal lands and the list is not updated, which
+would mean the convention needs to sit in `CLAUDE.md` as an
+operational step rather than only here; the list grows past what a
+reader will scan, which would mean reversals are frequent enough to
+want a different mechanism.
+
+**Also decided:**
+
+- **Two heads are back-filled** — *Criteria are not threads* and *What
+  comes back after a decision* — for decisions argued earlier today
+  whose entries landed with no head rewrite. Both were written while
+  the arguments were fresh; neither adds an argument, and the entries
+  remain the authority for why.
+- **The declared-gap sentence is corrected and de-enumerated.** It
+  named five sections the referencing rule could not be followed for
+  and was wrong in both directions: the state enum had since been
+  argued, and the genuinely unargued set was much larger. An
+  enumeration reads as a claim that everything unlisted is argued, so
+  the gap is now stated generally.
+- **Not done, and dropped rather than parked**: back-filling heads for
+  the rules that predate this record. That is ten or more sections of
+  rationale for no behavioral change, and the record's own policy
+  already says sections are back-filled when a decision touches them
+  rather than on a schedule. Applying the scaffold head, this is
+  display and not outcome.
+- **Not done, and parked**: five review identifiers (E5, E10, E11,
+  E12, E13) are cited with no statement of what they said, in a record
+  whose `docs/reviews/` directory is deleted. Traceability only — no
+  decision changes for want of them. **Tripwire**: someone needs to
+  know what one of them said and cannot recover it.
 
 ### 2026-08-03 — the materiality test is answered by naming, and three README claims are repaired
 
