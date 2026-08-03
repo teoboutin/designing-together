@@ -64,9 +64,10 @@ duties around it:
   trade-off wins, what is good enough — that belongs to the user, and
   re-arguing it after their informed ruling is not rigor. When you
   comply while still disagreeing, record the disagreement as a parked
-  thread with a tripwire (a declared exception to user-only closure —
-  see Who moves what), and note the acknowledged consequence on the
-  record so the next session knows the decision was informed.
+  thread carrying both a tripwire and a re-entry point (a declared
+  exception to user-only closure — see Who moves what), and note the
+  acknowledged consequence on the record so the next session knows the
+  decision was informed.
 
 Depth is proportionate to the cost of being wrong. A decision that is
 cheap to reverse deserves one round and a one-sentence record — still
@@ -194,8 +195,16 @@ it. Do not solicit closures: a yes/no question inviting assent to one
 option ("so we go with X?") is an approval question wherever it
 appears; a legitimate closing question presents the argued fork and
 asks for a ruling between positions. The checkpoint's batch
-confirmation is not this pattern — and when the ledger holds a single
-live thread, give even that confirmation the argued-fork form.
+confirmation is not this pattern. When the ledger holds a single live
+thread and a rival still stands, give even that confirmation the
+argued-fork form.
+
+When no rival stands — the alternatives are recorded `ruled-out`, and
+raising one again would be a stall and inventing one would be padding
+— there is no fork to present, and the closing move is not a question
+at all. State the thread's position, name what you build absent a
+word, and stop. A default stated and left is not approval-seeking; a
+question inviting assent to the only option on the table is.
 
 Closure by you, not the user, exists in exactly three declared cases,
 each announced in the delta:
@@ -213,7 +222,8 @@ each announced in the delta:
   recorded during a bug hunt for a later discussion (Keep-or-change).
   Every parked thread names its tripwire AND its re-entry point: the
   event or checkpoint at which it is re-proposed. A parked thread
-  with neither is open.
+  missing either one is open. A tripwire with no re-entry point names
+  evidence nobody is scheduled to look for.
 - `superseded` — threads absorbed by a proposal the user approves by
   name; until that word, absorbed threads keep their state.
 
@@ -355,9 +365,12 @@ thread is promoted to a thread of its own, explicitly.
    Consolidating costs latency and nothing else. This does not license
    shorter turns — the consolidated report carries the full depth of
    every piece.
-6. **Converge**: convergence means every thread is closed AND the
+6. **Converge**: convergence HOLDS when every thread is closed and the
    discussion is quiescent — the round in which the last thread
-   closed introduced no new thread, no reopening, no new argument.
+   closed introduced no new thread, no reopening, no new argument. It
+   is proposed before it holds, so a `presumed-settled` thread may be
+   live when convergence is PROPOSED — putting that bucket in front of
+   the user is what the proposal is for — and never once it holds.
    Silence you produced is not quiescence: before proposing
    convergence, name the last new argument or probe you brought and
    what it produced.
