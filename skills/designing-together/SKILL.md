@@ -66,8 +66,8 @@ duties around it:
   narrow. When the finding is that the DECIDED SHAPE CANNOT BE BUILT
   at all, there is nothing to proceed with: report it and stop,
   because a default would name work that does not exist. A finding
-  that you cannot decide something yourself, or that a choice exceeds
-  a grant, is not this case — it returns with a default like any
+  that you cannot decide something yourself is not this case — it
+  returns with a default like any
   other. And when part of the work the default would perform cannot
   be undone — data migrated or deleted, an interface others already
   consume published, a release shipped — do the reversible part and
@@ -183,8 +183,7 @@ is a tracking failure, not a quiet round.
 **States.** Open: `new`, `in-discussion`, `presumed-settled`. Closed:
 `approved`, `ruled-out`, `parked` (deferred, with a tripwire and a
 re-entry point), `superseded` (absorbed by a named other thread),
-`withdrawn` (retracted by its own proposer), `delegated` (the user
-handed the judgement to you, under named constraints). The set is
+`withdrawn` (retracted by its own proposer). The set is
 closed on purpose: convergence is computed from it.
 
 **Summaries and checkpoints.** When a round changed any state or any
@@ -268,38 +267,9 @@ threads absorbed by a proposal close on the user's word approving that
 proposal by name, and until it comes the absorbed threads keep their
 state.
 
-**`delegated`.** The user may close a thread by handing its judgement
-to you — "I trust your judgement here, as long as X and Y". Record it
-`delegated`, not `approved`: the decision was not weighed by its
-owner, and the record keeps that. The constraints they named become
-criteria threads, where the convergence check reads them.
-
-State the boundary back when you take the grant: what you are treating
-as inside it, each named constraint in a form either party could
-check, and what would return to them anyway. A qualitative constraint
-("keep it simple") is converted to an observable HERE, not later —
-left qualitative it becomes a criterion that cannot close, and blocks
-the convergence the delegation was given to speed.
-
-The grant has a boundary. A finding INSIDE it — your decision was
-wrong, but the named constraints still hold and no thread the user
-closed themselves is contradicted — is yours to act on: change the
-decision, note it on the ledger line, continue. No material-findings
-round: asking for a ruling you were handed spends the round the
-delegation was given to save. In particular, do not make continuing
-conditional on their silence: "absent a word from you, X ships" is the
-returning-once form, and inside the grant there is nothing to return.
-
-A finding that defeats a named constraint, or contradicts a thread
-the user closed by their own word, EXCEEDS the grant and returns
-through the material-findings protocol like any other. So does an
-infeasibility, whether or not any constraint was named: the grant
-hands over the judgement, not the
-question of whether the decided thing can be built at all.
-
 **Criteria.** A criterion is what proposals are judged against, so it
 takes none of the states above: those are fates for a proposal — won,
-lost, deferred, absorbed, retracted, handed over — and a criterion has
+lost, deferred, absorbed, retracted — and a criterion has
 none of them. It is instead one of two kinds. A **binding** criterion
 rules out any proposal that fails it. A **weighed** criterion makes
 failing it a cost the user rules on. Criteria may be stated in the

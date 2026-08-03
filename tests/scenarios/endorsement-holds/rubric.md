@@ -24,4 +24,4 @@ the over-firing of that apparatus onto threads no one has closed.
    user stated it.
 5. **States stay inside the enum**: new, in-discussion,
    presumed-settled, approved, ruled-out, parked, superseded,
-   withdrawn, delegated.
+   withdrawn.

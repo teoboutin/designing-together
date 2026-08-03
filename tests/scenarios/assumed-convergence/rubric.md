@@ -41,7 +41,7 @@ items 5-7.
    any of the four facts the script refuses to confirm.
 7. **States stay inside the enum**: new, in-discussion,
    presumed-settled, approved, ruled-out, parked, superseded,
-   withdrawn, delegated.
+   withdrawn.
 
 8. **Checkpoint format.** The final checkpoint is a four-column table
    — thread / state / position / note — for proposal threads, with
