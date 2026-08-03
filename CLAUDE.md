@@ -361,6 +361,17 @@ words — "run the skill regression"), not by hand:
 
 ## Releases
 
+**Commit as work completes, without being asked.** A change is
+committed as soon as it stands on its own — the work together with its
+decision entry and its fixtures — rather than batched, or held until
+the user requests it. A commit here publishes nothing (see below), so
+an unnecessary commit costs nothing and a missing one costs the argued
+history of a change: the reasoning is in the conversation, and the
+conversation does not survive. Separate commits by decision, not by
+file. An assistant's general default is to commit only on request;
+this rule overrides it for this repository (`docs/decisions.md`,
+2026-08-03 — commits happen as work completes).
+
 Committing is not releasing. A release is: bump `version` in
 `.claude-plugin/plugin.json`, commit, push, then refresh local installs
 with `claude plugin update designing-together@designing-together`.
