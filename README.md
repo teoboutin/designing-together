@@ -110,9 +110,22 @@ least able to recover from.
 If the real authority is someone not in the conversation, the
 discussion converges on a verdict nobody present can act on.
 
-**You do not expect memory beyond what was recorded.** The thread
-ledger lives in the conversation, not in a file. Across sessions, what
-survives is what reached the project's decision record.
+**A discussion runs in one session, and memory does not outlive it.**
+The thread ledger lives in the conversation, not in a file, so what
+survives is what reached the project's decision record. Picking up a
+previous design discussion in a *new* session is not supported: a new
+session starts a new discussion, grounded on the record like any
+other. Resuming a *session* is a different thing and works — if your
+harness restores the full transcript and the project is in the same
+state, the assistant never knows it happened, and bounded changes made
+to the project meanwhile read to it as changes landing mid-discussion.
+
+**You accept a methodology, not a script for every exchange.** The
+skill structures how a discussion is conducted: proposals argued,
+threads tracked, closure held to your word. It does not try to specify
+every way a conversation can go, and it is not extended each time one
+goes a new way. Conduct outside what is described here is the
+assistant's judgement, not a gap to be filled.
 
 Two assumptions are about the project rather than about you:
 
