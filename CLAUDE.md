@@ -424,30 +424,52 @@ file. An assistant's general default is to commit only on request;
 this rule overrides it for this repository (`docs/decisions.md`,
 *Release mechanics*, 2026-08-03).
 
-Committing is not releasing. A release is: bump `version` in
-`plugin/.claude-plugin/plugin.json`, commit, push, then refresh local
-installs with `claude plugin update designing-together@designing-together`.
-Local commits without a push stay unpublished, which is the intended
-state for work between releases.
+**All work happens on `next`; master is reserved for releases.** `next`
+is permanent — every commit lands and is pushed there, at whatever
+cadence the work has. Master's tip is always a release commit, so
+`git log -1 master` answers what installers receive, and the GitHub
+landing page renders the released README. The reason is the install
+cache's keying, `<marketplace>/<plugin>/<version>`: a version names a
+directory, not a commit, so shipped content on master ahead of a bump
+would reach a fresh installer under the previous version's name
+(`docs/decisions.md`, *Release mechanics*, 2026-08-03). Nothing is
+committed to master directly — a non-release commit there breaks the
+fast-forward the release depends on.
 
-**A change to what ships is pushed and verified BEFORE the bump.**
-Because a push without a bump reaches no install, a restructure of
-`plugin/` can be published harmlessly and then checked: push, run
+Committing is not releasing. A release is: bump `version` in
+`plugin/.claude-plugin/plugin.json` on `next`, commit, push `next`,
+FAST-FORWARD master onto it (`git checkout master && git merge --ff-only
+next`), push master, then refresh local installs with `claude plugin
+update designing-together@designing-together`. Work pushed to `next`
+stays unpublished until that fast-forward, which is the intended state
+between releases.
+
+**The one exception: a restructure of `plugin/` reaches master and is
+verified BEFORE the bump.**
+Because master moving without a bump reaches no existing install, a
+restructure of `plugin/` can be published this way and then checked:
+fast-forward master onto the restructure commit and PUSH it — the
+marketplace clone pulls `origin/master`, so a local fast-forward
+verifies nothing — then run
 `claude plugin marketplace update designing-together` and `claude plugin
 update designing-together@designing-together`, and read the install
 cache directory — it must contain the contents of `plugin/` and nothing
-else. Only then bump. The relative source's resolution is verified
-against a filesystem marketplace root, not a cloned one
-(`docs/decisions.md`, *Release mechanics*, 2026-08-03), and this
-ordering is what closes that gap without an installer finding it first.
+else. Only then bump, in the same sitting. The relative source's
+resolution has only ever been verified against a filesystem marketplace
+root, not a cloned one (`docs/decisions.md`, *Release mechanics*,
+2026-08-03) — which is why this check cannot be run from the branch, and
+why the exception exists at all. This ordering closes that gap without
+an installer finding it first.
 
 ### How the harness updates installs
 
-Pushing without a version bump never reaches installs, so
-documentation and harness changes can be pushed freely between
-releases; the argument for why that holds is in `docs/decisions.md`
-(head: Release mechanics). The open question about the `"./plugin"`
-source's classification is in `docs/open-items.md`.
+Pushing without a version bump never reaches an existing install, and
+pushing `next` does not move master, so work in progress reaches nobody
+by either route. A fresh install, however, reads `origin/master`'s tip
+rather than the released version's content — which is why master is
+reserved for releases. The argument is in
+`docs/decisions.md` (head: Release mechanics). The open question about
+the `"./plugin"` source's classification is in `docs/open-items.md`.
 
 Operational details: Claude Code checks marketplaces and plugins for
 updates in the background at session start (random delay up to about
