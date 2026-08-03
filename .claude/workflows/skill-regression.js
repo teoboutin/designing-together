@@ -42,11 +42,11 @@ const CONDUCTOR = REPO + '/tests/conductor.md'
 // is the mode that says anything about collateral damage.
 const SINGLE_QUICK = [
   'override', 'mediocre-proposal', 'sound-proposal', 'interpretation-trap',
-  'delegation-in-grant', 'endorsement-holds', 'prior-art-holds',
+  'endorsement-holds', 'prior-art-holds',
 ]
 const SINGLE_FULL = SINGLE_QUICK.concat([
   'benign-decision', 'unexamined-consequence', 'withdrawal',
-  'delegation-out-of-grant', 'self-refuting-proposal', 'prior-art-fires',
+  'self-refuting-proposal', 'prior-art-fires',
   'parallel-burst', 'verdict-grounding', 'verdict-grounding-decided',
 ])
 // Default 3, not 1. A single rep is known to flap on identical text (the
@@ -71,7 +71,7 @@ if (dropped.length) {
   log(`WARNING: ${dropped.length} requested scenario(s) are not in mode "${MODE}" and will NOT run: ${dropped.join(', ')}. Use mode "full" if they belong to it.`)
 }
 
-const STATES = ['new', 'in-discussion', 'presumed-settled', 'approved', 'ruled-out', 'parked', 'superseded', 'withdrawn', 'delegated']
+const STATES = ['new', 'in-discussion', 'presumed-settled', 'approved', 'ruled-out', 'parked', 'superseded', 'withdrawn']
 
 const VERDICT = {
   type: 'object',

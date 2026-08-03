@@ -75,6 +75,27 @@ An edit that specifies what must be proposed, rather than how a
 proposal is argued and tracked, works against the reason the skill was
 written. That is the test to apply.
 
+## No delegation grant
+
+The user cannot hand a decision to the assistant. "I trust your
+judgement here" closes the thread `approved` like any other word, and
+every finding that arrives afterwards returns through the
+material-findings protocol — including the hold on work that cannot be
+undone.
+
+The skill carries no vocabulary for delegation, and the absence is
+deliberate. A state that suspends the material-findings protocol
+inside a grant suspends it inside a boundary neither party can be sure
+of: a grant naming no constraints has no boundary at all, and an
+assistant can read an ordinary message as a grant. What follows is
+irreversible work performed without the owner's word, which is the one
+outcome that protocol exists to prevent. Naming the practice at all
+teaches it, so the vocabulary goes with the state.
+
+Recording who weighed a decision is the acknowledged cost. A closure
+the owner made on a quick read is recorded `approved` and reads the
+same as one they argued through.
+
 ## Gaplessness is not the goal
 
 No wording makes a methodology self-enforcing. A rule set edited toward
@@ -322,6 +343,119 @@ The standing test for any edit: does this rule still bind in a
 repository with no documents, no decision record, and no conventions?
 
 ## Dated entries
+
+### 2026-08-03 — `delegated` is deleted, with its grant and its vocabulary
+
+**Verdict: change.** The `delegated` state, the grant mechanics, and
+every mention of delegation leave the skill. This reverses the keep
+verdict recorded earlier the same day; that entry stands unedited and
+this one supersedes it.
+
+**Mechanism**: a state that suspends the material-findings protocol
+inside a grant suspends it inside a boundary neither party can be sure
+of, and the suspension reaches work that cannot be undone.
+
+**Evidence at decision time.** The defect is provable by reading, and
+was found by two review axes independently. The irreversibility hold
+lives only inside the material-findings bullet — "do the reversible
+part and hold that part until the word comes" — and the grant routed
+every in-grant finding away from that bullet, naming two escapes, a
+defeated constraint and an infeasibility. Neither covers a correction
+whose own action is irreversible. So: a grant over a storage layout,
+a mid-implementation finding that the layout is wrong, a fix that
+migrates written rows — constraints intact, nothing infeasible, and
+the migration runs with no word from the owner.
+
+Four further contradictions, each provable by reading: only an
+`approved` thread renders a criterion `met`, so a delegated thread
+could never satisfy the criteria its own grant created; the grant
+quoted and banned the closing form ("absent a word from you, X ships")
+that *Who moves what* prescribes; loop step 8 named no destination for
+`delegated`, though the state's whole stated rationale was that the
+record keeps it; and the state was defined as holding "under named
+constraints" while the boundary rule contemplated grants naming none —
+which is how the originating session actually went, three decisions
+delegated with "follow your judgement".
+
+The owner's use evidence decided the direction. Regular use of 0.3.0,
+which has no such state, never produced the need for one. The single
+session that did produce it is re-read by the owner as an approval of
+a shape they could not name, given under overload from parallel
+prior-art reports arriving separately — and the consolidation rule
+that landed in the same revision ("evidence gathered by several
+parallel investigations is reported as ONE round") addresses that
+overload directly. Two rules were written for one mechanism and
+nothing connected them.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *`grant-note`: drop the state but keep the distinction, recording a
+  grant as `approved` with a note that judgement was handed over.*
+  This preserved record fidelity at one sentence and had no
+  behavioral surface, since notes carry no state and convergence
+  ignores them. It lost to the owner's ruling that the skill should
+  not name delegation as a supported move at all: a note still
+  teaches the practice, and an assistant that reads such a note may
+  infer a licence. That last step is a prediction rather than a
+  provable defect, and is recorded as such. What the winner absorbs:
+  record fidelity is conceded as the cost of removal, named here so
+  the loss is not discovered later as a surprise.
+- *Delegation to AI agents is unsound in the published work.* Fügener
+  et al. 2022 found human-to-AI delegation produced no benefit.
+  Recorded as a losing argument once already, on the standard that
+  published work does not open an edit. Re-raised here and rejected
+  again on the same standard.
+- *A weaker model could invent a grant it was never given.* Rejected
+  on the standard that "a smaller model would not follow this" argues
+  neither for nor against any wording (2026-08-02, frontier-only is a
+  non-goal).
+
+The last two were raised by the owner and are recorded as
+corroboration by the owner's own ruling: they stay rejected, and
+neither carries the decision. The owner argued that several
+individually-rejected arguments should re-weight in aggregate; this
+was argued down and withdrawn. Inadmissibility is a filter rather
+than a low weight, and filters do not sum — if they did, the
+literature standard would be defeasible by volume, which is what it
+exists to prevent. What did aggregate legitimately is different in
+kind: five of the revision's eight blocking findings landed on this
+one mechanism, and each is provable by reading.
+
+**Tripwires**: a session where the owner wants to hand a decision
+over, and its absence produces a worse outcome than the grant would
+have; repeated "your judgement" closures where the material-findings
+returns become the interruption the grant was meant to prevent, which
+would mean the consolidation rule is not doing the work claimed for it
+here; a reader of a decision record concludes the owner weighed a
+decision they did not, which is the conceded cost surfacing as real
+harm.
+
+**Also decided:**
+
+- **`grant-note` is `ruled-out`**, with the reason above, so the
+  Reopening test can read it. Record fidelity is the one thing removal
+  costs and is the thread to reopen if a tripwire fires.
+- **The literature watch list loses two entries**, both of which
+  existed only to watch this state. The README's preamble is corrected
+  to match; its remaining count discrepancy is a separate finding and
+  is not repaired here.
+- **The fixtures move in this change**, not a later one:
+  `delegation-in-grant` and `delegation-out-of-grant` are deleted,
+  `delegated` is struck from six other rubrics' enum lists and from
+  the harness `STATES` array and both mode lists. The rule that a
+  fixture change lands with the skill change it tests was found
+  violated five times in this revision; this is not the sixth.
+- **Left open, not decided here** — `self-confirming-observation`: the
+  evidence standard admits an addition on a behavior a session
+  produced "unprompted, under no rule requiring it", but a rule that
+  OFFERS a move does not require it, so a behavior produced because
+  the rule was already there satisfies the letter of the test. The
+  observation arm is contaminated once the text ships. The repair the
+  owner named is to make the observation against text where the rule
+  is absent, which the harness already supports through `args.skill`
+  and which the standard currently spends only on the veto question.
+  Provable by reading the standard, so admissible; it wants its own
+  entry and its own argument.
 
 ### 2026-08-03 — what real use has to show before an instruction is added
 

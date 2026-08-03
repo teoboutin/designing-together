@@ -77,14 +77,13 @@ the answer is not yet known by either party. Give it a decision you
 have already made and it will argue against it, because testing a
 proposal is what it is for.
 
-**You give the word that closes a thread, or delegate it explicitly.**
+**You give the word that closes a thread.**
 The assistant can move threads between open states but cannot close
 one for you; that asymmetry is the design. Doing neither leaves
-threads open, and the discussion cannot converge. A
-grant that names its constraints is worth more than a bare one: the
-constraints become the boundary the assistant checks its own decisions
-against, and it states that boundary back to you when it takes the
-grant.
+threads open, and the discussion cannot converge. There is no way to
+hand a decision to the assistant: saying "your judgement" is an
+approval like any other, and every finding that follows it still
+returns to you.
 
 **A closed thread is not frozen.** Your word reopens one at any time,
 and you need no new argument to use it — the assistant does. If a
@@ -130,7 +129,7 @@ state, the assistant never knows it happened, and bounded changes made
 to the project meanwhile read to it as changes landing mid-discussion.
 
 **You are trying to converge.** The skill assumes you engage toward
-agreement on a set of proposals — arguing, ruling, delegating, or
+agreement on a set of proposals — arguing, ruling, or
 saying stop. It does not defend against a participant who simply never
 answers: several of its rules can only be released by your word, and
 withholding one indefinitely leaves the discussion parked rather than
@@ -322,33 +321,21 @@ anything.
 
 Because the mapping does not govern the skill, a mechanism the
 literature contradicts is recorded here rather than changed by that
-contradiction. Two of the five below were changed anyway, on an
-independent ground: their stated reasons also failed the skill's own
-rule against qualitative claims doing closing work, which is a defect
-provable by reading the skill alone. The literature did not open those
-edits; on one of them it happened to agree with a rule that did. These
-came from an August 2026 mapping of four mechanisms added since the
+contradiction. Two entries that were here concerned the `delegated`
+state and were removed with it (`docs/decisions.md`, 2026-08-03 —
+`delegated` is deleted); the literature's argument for that removal
+had already lost on this standard, and the state fell to a rule
+contradiction instead. Of the three below, the first was changed
+anyway, on an independent ground: its stated reason also failed the
+skill's own rule against qualitative claims doing closing work, which
+is a defect provable by reading the skill alone. The literature did
+not open that edit; it happened to agree with a rule that did. These
+came from an August 2026 mapping of mechanisms added since the
 previous pass. Citations are given as the mapping returned them,
 without links, because they were verified as citations but their
 findings were read through the mapping rather than from the sources
 directly.
 
-- **`delegated` rests on a premise the literature does not support.**
-  Fügener et al. 2022 (*Information Systems Research* 33(2)) found
-  AI-delegating-to-humans beat AI alone, while human-delegating-to-AI
-  produced no benefit: subjects could not assess their own
-  capabilities and delegated the wrong instances, with algorithm
-  aversion explicitly ruled out. The skill assumes the user is the
-  right party to choose what to delegate. The state is kept, on the
-  reading that the study delegates task instances for performance
-  while `delegated` records who weighed a decision.
-- **Delegation shifts responsibility, and more so to machines.**
-  Bartling & Fischbacher 2012 (*RES* 79(1)) found delegating shifts
-  responsibility and that this is itself a motive for delegating;
-  Feier et al. 2022 (*Sci Eng Ethics* 28:19, n=264) found the effect
-  stronger for machine delegates than human ones. Some `delegated`
-  closures will therefore be blame-avoidance rather than trust, and
-  the label cannot distinguish them.
 - **"Giving arguments state produces an unreadable graph" is
   unsupported.** No verified source claims argument graphs become hard
   for humans to read at scale. What does hold is relation-type

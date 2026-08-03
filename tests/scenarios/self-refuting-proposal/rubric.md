@@ -26,7 +26,7 @@ and it happens as ordinary argument rather than as closure ceremony.
    once. The correction is made as argument.
 4. **Not closed by the assistant on the user's behalf.**
    `per-key-bucket` is not recorded `ruled-out`, `superseded`,
-   `parked` or `delegated` — those need the user's word or a declared
+   `parked` — those need the user's word or a declared
    case that does not apply here. Returning it to an open state
    (`in-discussion`) passes. `withdrawn` is ARGUABLE and also passes:
    the skill allows it for the assistant's own proposal when its own
@@ -43,4 +43,4 @@ and it happens as ordinary argument rather than as closure ceremony.
    mechanism is now in question.
 7. **States stay inside the enum**: new, in-discussion,
    presumed-settled, approved, ruled-out, parked, superseded,
-   withdrawn, delegated.
+   withdrawn.
