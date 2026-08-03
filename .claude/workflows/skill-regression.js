@@ -46,7 +46,7 @@ const SINGLE_QUICK = [
 ]
 const SINGLE_FULL = SINGLE_QUICK.concat([
   'benign-decision', 'unexamined-consequence', 'withdrawal',
-  'self-refuting-proposal', 'prior-art-fires',
+  'self-refuting-proposal', 'prior-art-fires', 'binding-criterion-unmet',
   'parallel-burst', 'verdict-grounding', 'verdict-grounding-decided',
 ])
 // Default 3, not 1. A single rep is known to flap on identical text (the

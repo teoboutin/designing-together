@@ -75,6 +75,33 @@ An edit that specifies what must be proposed, rather than how a
 proposal is argued and tracked, works against the reason the skill was
 written. That is the test to apply.
 
+## The structure is a scaffold, and the outcome is what is guarded
+
+The skill's purpose is to nudge reflection, investigation,
+argumentation and innovation. The thread and state machinery is not
+the purpose: it exists so the user can keep track when an assistant
+produces a lot of content at once. A discussion that reaches a
+well-argued outcome with an imperfect table has worked.
+
+So a small deviation from the structure is acceptable, and a finding
+that names one is not automatically a defect. The test for whether a
+finding is worth text:
+
+**Does it corrupt the OUTCOME — what gets recorded, what gets built,
+or what the user believes was decided? Or does it only make an
+intermediate display imperfect?**
+
+The first is guarded. The second is not, up to a reasonable point:
+agent behavior is not deterministic and no wording covers every case,
+so an edit that buys display fidelity at the cost of more rules is a
+bad trade. A misfire or a miscomprehension AT THE END — a design
+recorded as agreed that was not, a criterion silently waived, a
+closure the user never gave — is the failure worth spending rules on.
+
+This is the head to reach for when a review produces more findings
+than are worth acting on, which is the normal case
+(`docs/decisions.md`, 2026-08-03 — criteria stop being threads).
+
 ## No delegation grant
 
 The user cannot hand a decision to the assistant. "I trust your
@@ -349,6 +376,98 @@ The standing test for any edit: does this rule still bind in a
 repository with no documents, no decision record, and no conventions?
 
 ## Dated entries
+
+### 2026-08-03 — criteria stop being threads, and binding stops being waivable
+
+**Verdict: change.** A criterion is not a thread and never enters the
+ledger. `unmet-and-accepted` is available to a weighed criterion only.
+A displayed checkpoint satisfies `superseded`'s by-name requirement.
+Loop step 8 gains destinations for `withdrawn` and `superseded`.
+
+**Mechanism**: threads are judged against criteria, so a criterion
+that is itself a thread would need criteria to judge it — and the
+half-separation left every rule quantified over threads, buckets and
+slugs with an object it could not process.
+
+The regress is the owner's argument and is the better one. The
+mechanism first proposed here was about display — buckets are defined
+over states, criteria have none — which names a symptom. The regress
+names why the two cannot be one kind of object, and it explains the
+confusion around criteria rather than only the rendering failure.
+
+**Evidence at decision time.** Provable by reading, and found by two
+review axes independently: a `bucket` is "the group of threads sharing
+one state", a criterion "takes none of the states above", and the
+checkpoint requires every slug to appear "in its current bucket" with
+an unplaceable slug declared a tracking failure. So a conformant
+criteria table made every criterion a tracking failure.
+
+It also has a transcript. In the 2026-08-03 `full` run,
+`assumed-convergence` rep 2 rendered its checkpoint as invented prose
+buckets — "Standing, no rival, building absent your word", "Open —
+forks a yes cannot resolve" — failing both the enum item and the
+format item for one cause. The same scenario emitted `open` in the
+previous run. Out-of-enum states were logged as an unacted observation
+on 2026-08-02 with recurrence as the implicit tripwire; that has now
+fired twice.
+
+Separately and provable by reading: a binding criterion "rules out any
+proposal that fails it" while `unmet-and-accepted` was offered for any
+criterion, so acceptance and exclusion were both in force with no
+stated precedence.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *`criteria-bucket-by-satisfaction`: keep criteria inside one display
+  model by bucketing them on met / unmet-and-accepted / unmet.* It
+  preserved a single checkpoint algorithm. It lost on machinery: the
+  bucket definition would have to become "grouped by whichever axis
+  the object carries", and a criterion shown in a bucket beside
+  proposals reads as a proposal again — the failure the split was made
+  to remove. The owner added that fulfilment is naturally expressed on
+  the thread side, and that the reverse direction buys little. The
+  winner absorbs this: the note column keeps `serves #criterion`, and
+  the criteria table keeps a satisfaction line only because a
+  criterion NO thread references is the dangerous case — a constraint
+  everyone forgot, invisible under thread-side-only tracking and
+  visibly `unmet` under this one.
+- *Let `unmet-and-accepted` apply to a binding criterion and count it
+  satisfied.* Lost because binding and weighed would then differ only
+  in how much ceremony the acceptance takes, and the distinction stops
+  doing work at convergence. Demotion is also the more honest record:
+  it says the user changed their mind about the constraint.
+
+**Tripwires**: a discussion where the user wants to ship over an unmet
+binding criterion and experiences demotion as a bureaucratic extra
+round, which would mean the weighed-only rule is too strict; a
+criterion appears in a delta or checkpoint carrying a proposal state
+after this edit, which would mean stating the separation was not
+enough; `superseded` threads stay open through a displayed checkpoint,
+which would mean the by-name relaxation did not land.
+
+**Also decided:**
+
+- **The scaffold head is written** (head: The structure is a scaffold).
+  The owner's observation is that this project spends too much time
+  arguing details not strictly necessary for the skill to work, in
+  past sessions as well as this one. The outcome-versus-display test
+  is recorded so that class of finding is settled once rather than
+  re-argued. Acting on it, roughly sixty review findings were dropped
+  in this session: most of the over-application axis, the whole
+  inert-text axis, the language axis except one unconverted word in a
+  test definition, and the per-site record findings.
+- **Fixtures land in this change.** `binding-criterion-unmet` is new
+  and is the first coverage of any criteria semantics — binding versus
+  weighed, the satisfaction line, the derived-criterion presumption —
+  which convergence is defined on and which had none. `withdrawal` is
+  repaired: it typed its subject as a criterion in state
+  `in-discussion` and demanded `withdrawn`, so it failed a transcript
+  that correctly refused, observed in the 2026-08-03 run.
+- **Left standing, and named so it is not rediscovered**: the
+  `withdrawal` fixture still instructs the assistant to address the
+  thread under test, so it cannot detect a silent drop. That is a
+  weak instrument rather than a wrong one, and repairing it changes
+  the fixture's difficulty, which is its own decision.
 
 ### 2026-08-03 — commits happen as work completes
 

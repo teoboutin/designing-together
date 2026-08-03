@@ -174,11 +174,13 @@ with a distinguishing mark: a code span (`retention-window`) or a `#`
 prefix in plain text. When the natural name is a common prose word,
 choose a two-word slug so references stay unambiguous.
 
-**Granularity.** Every proposal either party made is a thread. Every
-named criterion is tracked too, in its own table and with its own
-vocabulary (below): a criterion is what proposals are judged against,
-not a proposal. A round that exchanged proposals and produced no delta
-is a tracking failure, not a quiet round.
+**Granularity.** Every proposal either party made is a thread. A
+criterion is NOT a thread and never enters the ledger: threads are
+judged against criteria, and a criterion that was itself a thread
+would need criteria to judge it. It is tracked separately, in its own
+table and with its own vocabulary (below). A round that exchanged
+proposals and produced no delta is a tracking failure, not a quiet
+round.
 
 **States.** Open: `new`, `in-discussion`, `presumed-settled`. Closed:
 `approved`, `ruled-out`, `parked` (deferred, with a tripwire and a
@@ -190,7 +192,9 @@ closed on purpose: convergence is computed from it.
 note, end the turn with a delta: thread / state / one-line position /
 note, per changed thread. Criteria go in a separate table above the
 proposals — criterion / kind / satisfied by — because listed among
-them a criterion gets read as a proposal and closed like one.
+them a criterion gets read as a proposal and closed like one. A
+criterion enters the delta when its kind or its satisfaction line
+changed; it has no state to change.
 
 The **note** column carries what a state cannot say: a relation to
 another thread (`absorbs #x`, `conflicts #y`, `serves #criterion`), a
@@ -203,10 +207,12 @@ on every row.
 
 A **checkpoint** is a display of the full table,
 and it is ASSEMBLED, not recalled: sweep every prior delta and
-collect every slug ever minted; each appears exactly once, in its
-current bucket, closed buckets first, criteria in their own table as
-in the delta. A slug you cannot place is a tracking failure to repair
-in that turn, not a row to drop. The checkpoint happens at two
+collect every THREAD slug ever minted; each appears exactly once, in
+its current bucket, closed buckets first. Criteria are assembled the
+same way into their own table, where they have no bucket because they
+carry no state: every criterion ever named, with its kind and its
+current satisfaction line. A thread slug you cannot place is a
+tracking failure to repair in that turn, not a row to drop. The checkpoint happens at two
 moments: when proposing convergence, and before
 recording (on the full path — the one-round path in Decision
 authority skips the table). The full
@@ -265,7 +271,11 @@ each announced in the delta:
 `superseded` is not a third case, though it is easily read as one:
 threads absorbed by a proposal close on the user's word approving that
 proposal by name, and until it comes the absorbed threads keep their
-state.
+state. A displayed checkpoint showing the absorbing thread and the
+threads it absorbs satisfies that by-name requirement, for the reason
+the batch confirmation works there at all: the table is what makes an
+otherwise vague word specific. Away from a displayed table, the word
+has to name the proposal.
 
 **Criteria.** A criterion is what proposals are judged against, so it
 takes none of the states above: those are fates for a proposal — won,
@@ -281,8 +291,14 @@ Each criterion carries a satisfaction line, and this is what the user
 reads at convergence: **met**, naming the approved threads that meet
 it; **unmet-and-accepted**, which needs the user's word naming that
 criterion rather than a blanket confirmation; or **unmet**.
-Convergence holds only when every criterion carries one and no binding
-criterion is unmet (loop step 6).
+`unmet-and-accepted` is available to a WEIGHED criterion only. A
+binding criterion that is unmet blocks convergence, and no word
+waives it in place: the moves are to change the proposal, or for the
+user to demote the criterion to weighed — a change to the criterion,
+recorded as one. Were acceptance available to both kinds, binding and
+weighed would differ only in how much ceremony the acceptance takes.
+Convergence holds only when every criterion carries a satisfaction
+line and no binding criterion is unmet (loop step 6).
 
 **`presumed-settled`** is a labeled claim about the user: they are
 continuing the discussion in a way that assumes this thread's
@@ -452,8 +468,12 @@ to a thread of its own, explicitly.
    they lost. Approved threads become the decisions; ruled-out
    threads become the losing arguments with their recorded reasons
    (the Reopening rule reads those reasons later); parked threads
-   become the tripwired deferrals — the table serializes to the
-   record. Destination: wherever the project keeps decisions; if it
+   become the tripwired deferrals; withdrawn threads become the
+   retractions with their defeating reasons, which the Reopening rule
+   also reads; superseded threads are recorded under the thread that
+   absorbed them, so the absorption is visible rather than a gap. The
+   table serializes to the record, and the criteria table with it.
+   Destination: wherever the project keeps decisions; if it
    keeps them nowhere, propose a home proportionate to the project (a
    decision file, an issue, a commit message). Timing follows After
    convergence.
