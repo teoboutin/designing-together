@@ -1508,28 +1508,25 @@ auto-update enabled — documentation and harness changes can be pushed
 freely between releases. Omitting `version` would make every commit a
 version; it stays pinned.
 
-One question is open against this. The `/plugin` detail view
-classifies this plugin as local because its marketplace entry uses the
-relative source `"./"`, and states that local plugins cannot be
-updated remotely. That classification is undocumented and misleading
-for this repository's shape — the marketplace itself is git-hosted and
-`claude plugin update` works through its clone. Whether background
-auto-update propagates a version bump to a `"./"`-source plugin is
-unverified; it is checked at the next release.
+What an install receives is drawn by one line: the marketplace entry's
+`"source": "./plugin"`. Everything under `plugin/` is copied into the
+install cache and everything outside it is not, because there is no
+exclude mechanism anywhere — no `.claudeignore`, no `files` or
+`exclude` field, and the manifest's path keys govern what is LOADED,
+not what is copied — so relocating a file is the only way to change
+what ships. The full README stays at the repository root, since that
+is the page users read; `plugin/README.md` is a pointer to it.
 
-Two facts about the fallback are established (research pass,
-2026-08-02, against the plugin-marketplace and plugins reference
-documentation). A `github` source object takes `repo`, `ref` and `sha`
-only, so it cannot name a subdirectory — but `git-subdir` can:
+Two further facts bound the alternatives (research pass, 2026-08-02,
+against the plugin-marketplace and plugins reference documentation). A
+`github` source object takes `repo`, `ref` and `sha` only, so it
+cannot name a subdirectory — but `git-subdir` can:
 `{"source": "git-subdir", "url": "…", "path": "…"}` clones sparsely,
-and its `url` accepts a GitHub shorthand. So escaping the `"./"`
+and its `url` accepts a GitHub shorthand. So escaping the string-source
 classification and shipping only a subdirectory are compatible, not
-alternatives. And there is no exclude mechanism anywhere — no
-`.claudeignore`, no `files` or `exclude` field, and the manifest's
-path keys govern what is LOADED, not what is copied into the install
-cache — so moving files is the only way to trim what ships. A relative
-source does not resolve when a marketplace is added by direct URL to
-`marketplace.json`; git, GitHub and local adds are unaffected.
+alternatives. A relative source does not resolve when a marketplace is
+added by direct URL to `marketplace.json`; git, GitHub and local adds
+are unaffected.
 
 **Decided 2026-08-03** — the assistant commits a change as soon as it
 stands on its own, without being asked, overriding its general default
@@ -1542,6 +1539,43 @@ costs nothing and a missing one loses a change's argued history to a
 conversation that does not survive. The Release mechanics head states
 the cadence, so the rule has a head to point at rather than living only
 as an operational instruction in `CLAUDE.md`.
+
+**Decided 2026-08-03** — the plugin's content moves under `plugin/` and
+the marketplace entry sources `./plugin`, so an install receives four
+files instead of the repository. The discriminating fact is measured:
+an isolated install from a scratch marketplace with that source
+produced a cache holding exactly `.claude-plugin/plugin.json`,
+`skills/`, `README.md` and `LICENSE` — 84K against the 500K tree,
+with no `tests/`, no `docs/`, no `CLAUDE.md` and no
+`.claude/workflows/skill-regression.js`. Removing the harness from the
+install cache also removes the name-ambiguity gotcha at its source: a
+`Workflow({name: 'skill-regression'})` had two candidate scripts
+precisely because the plugin shipped one.
+
+- *Rejected: a `git-subdir` source object* — it ships the same tree,
+  but a string source is what the `/plugin` detail view classifies as
+  local, and whether background auto-update propagates a bump to a
+  string-source plugin is the observation this repository has been
+  waiting to make. Switching source type would void that observation
+  instead of answering it. It remains the fallback if the answer comes
+  back negative.
+- *Rejected: move only `.claude/workflows/skill-regression.js` out of
+  the shipped path* — kills the observed harm at near-zero cost, but
+  leaves 348K of fixtures, the decision record and the maintainer's
+  `CLAUDE.md` in every install. Absorbed rather than lost: keeping the
+  harness outside `plugin/` is what the winner does too.
+- *Rejected: the full README moves into `plugin/`, with a pointer at
+  the repository root* — inverts the salience. The GitHub page is the
+  surface users read and the installed directory is not, so the
+  pointer belongs in the directory nobody browses.
+- *Rejected: the root README as a symlink into `plugin/`, so one file
+  serves both surfaces* — that GitHub renders a symlinked README rests
+  on a single secondhand claim; a scan of fifteen large repositories
+  for root symlinks found none pointing at a README. Its only payoff is
+  shipping the full text to installers, which the ruling above values
+  at zero, against a failure landing on the landing page and invisible
+  until after a push. A Windows clone with `core.symlinks=false` would
+  also turn the root README into a file containing a path.
 
 ## Origin, and the standing risk
 

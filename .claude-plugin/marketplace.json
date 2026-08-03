@@ -9,7 +9,7 @@
     {
       "name": "designing-together",
       "description": "Design by open, argued exchange: both parties propose and push back, convergence is detected rather than requested, and outcomes are recorded with their losing arguments.",
-      "source": "./",
+      "source": "./plugin",
       "category": "productivity"
     }
   ]

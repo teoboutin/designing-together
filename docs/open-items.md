@@ -260,6 +260,20 @@ watch, with the entry that recorded them.
 
 ## Release mechanics
 
+- The `/plugin` detail view classifies this plugin as local, because
+  the classifier is `typeof source === "string"` and the marketplace
+  entry sources `./plugin`; it states that local plugins cannot be
+  updated remotely, while `claude plugin update` works through the
+  marketplace clone. Fires if the 0.4.0 bump does not reach this
+  install with `autoUpdate: true` set and no explicit `claude plugin
+  update`, which would mean the classification has a real consequence
+  and `git-subdir` is the answer. Re-entry: the 0.4.0 release —
+  *the plugin ships a subdirectory* (2026-08-03)
+- The `./plugin` source is verified to resolve against a filesystem
+  marketplace root, not a cloned one. Fires if the install cache after
+  the restructure is pushed holds anything other than the contents of
+  `plugin/`. Re-entry: immediately after that push, before the version
+  bump — *the plugin ships a subdirectory* (2026-08-03)
 - Commits become so granular that a change's argued history is split
   across several and no single commit carries the reasoning, which would
   mean "separate by decision, not by file" is being read as "separate by
