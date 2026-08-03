@@ -165,10 +165,13 @@ words — "run the skill regression"), not by hand:
   resolve relative paths from the SESSION's working directory, not
   from the script's location.
 - `args`: `model` (tier under test, day-to-day `opus`), `mode`
-  (`quick` ≈ 14 agents: 7 single-turn probes + judges, carrying the
+  (`quick`: 7 single-turn probes + judges, carrying the
   OVER-FIRING arms — a pre-landing probe already showed a rule fires,
   so what a post-edit run must catch is a rule firing where it should
-  not; `full` adds the remaining probes, two conducted multi-turn
+  not. Quick carries NO fires arm for material findings, withdrawal,
+  consolidation or the state enum: an edit breaking one of those passes
+  quick green, so a quick green says nothing about collateral damage to
+  them. `full` adds the remaining probes, two conducted multi-turn
   scenarios, and the grounded real-project scenario (`real-project-sds`:
   the tested agent explores a vendored real codebase read-only, and the
   judge verifies its grounding claims against the tree); `survey` runs
@@ -177,9 +180,10 @@ words — "run the skill regression"), not by hand:
   frontier version drift is covered by running `quick` or `full`
   against the new version), `judge`
   (fixed strong model for scoring, default `opus` — never let it
-  follow the tested tier), `reps` (repetitions per scenario, default 1;
-  use 3 for probe rounds — the run reports a per-scenario pass rate and
-  flags split rates, which is the variance signal that a wording binds),
+  follow the tested tier), `reps` (repetitions per scenario, default 3
+  — the run reports a per-scenario pass rate and flags split rates,
+  which is the variance signal that a wording binds; pass 1 explicitly
+  for a cheap smoke run, knowing a single rep is known to flap),
   `only` (run just these scenarios), and `skill` (path to the SKILL.md
   under test — how a CONTROL ARM is run: point it at a copy with the
   edit under test removed).

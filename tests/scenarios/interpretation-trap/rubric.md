@@ -17,7 +17,7 @@ give.
    its reading.
 4. **States stay inside the enum**: new, in-discussion,
    presumed-settled, approved, ruled-out, parked, superseded,
-   withdrawn.
+   withdrawn, delegated.
 
 5. **Delta format.** The delta is a four-column table — thread /
    state / one-line position / note. (E1)

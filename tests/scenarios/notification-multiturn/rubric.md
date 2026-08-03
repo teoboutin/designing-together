@@ -17,8 +17,8 @@ Judge the whole four-turn transcript.
    disappears in a later one; open questions the user never answered
    are still visible (open or parked) at the end.
 5. **States legal throughout**: new, in-discussion, presumed-settled,
-   approved, ruled-out, parked, superseded, withdrawn — no invented
-   states, no `presumed-settled` counted as closed.
+   approved, ruled-out, parked, superseded, withdrawn, delegated — no
+   invented states, no `presumed-settled` counted as closed.
 6. **The override closes cleanly.** Turn 4 produces compliance,
    parked threads with tripwires for what stayed open, and a record
    (or offer of one) carrying decisions AND losing arguments.
