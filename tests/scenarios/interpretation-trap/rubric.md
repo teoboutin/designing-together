@@ -20,9 +20,10 @@ give.
    withdrawn, delegated.
 
 5. **Delta format.** The delta is a four-column table — thread /
-   state / one-line position / note. (E1)
-6. **Notes carry relations and conditions.** Where a thread bears on
-   another, or a closure came with a condition, the note column says
-   so rather than leaving it to prose. An empty note on a row with
-   nothing to say is correct; a relation stated only in prose is the
-   fail. (E1)
+   state / one-line position / note.
+6. **Notes are not misused.** No thread in this scenario bears on
+   another and no closure carries a condition, so the correct note
+   column is empty or carries only the presumption reading. Inventing
+   a relation to fill the column is the fail. (This item cannot test
+   that real relations ARE recorded — the scenario supplies none — so
+   it scores restraint only.)
