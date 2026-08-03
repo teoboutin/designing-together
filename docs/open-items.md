@@ -61,7 +61,6 @@ Each names what a real session would have to show.
   Fires when someone needs to know what one of them said and cannot
   recover it. Re-entry: the document-coherence axis of the next review.
   (*The referencing rule*)
-
 - `territory-split` — splitting `docs/decisions.md` into per-territory
   files with a routing rule, as the origin project does. Parked: at
   1479 lines the split buys nothing, and roughly half the entries argue
@@ -70,6 +69,14 @@ Each names what a real session would have to show.
   to read three or more sections, or when the file passes 2000 lines.
   Re-entry: the document-coherence axis of the next pre-release review.
   (*How the decision record is kept*)
+- `record-shape-fixture` — no fixture covers step 8's shape rule or
+  the verdict-record scoping; `verdict-grounding` grounds ON a record
+  carrying a verdict and never writes one, so the 2026-08-04 edits are
+  verified for over-firing only. Fires when a session records under
+  the new rule and gets it wrong, or when a fixture reaching a
+  recording move is written. Re-entry: the test-suite axis of the next
+  pre-release review. (*The in-discussion ledger and the durable
+  record*)
 
 ## Literature watch list
 
@@ -95,22 +102,6 @@ durable output; this list exists so they can be counted.
 
 Grouped by the section of `docs/decisions.md` whose decision they
 watch, with the entry that recorded them.
-
-## How the decision record is kept
-
-- An entry is written whose *Rejected* bullet a later session cannot
-  use to tell a re-proposal from an idea already argued-and-lost,
-  meaning the form drops too much — *the six-slot entry format is
-  replaced* (2026-08-04)
-- A session needs an evidence narrative the prune deleted, and the
-  commit history does not answer the question — *the six-slot entry
-  format is replaced* (2026-08-04)
-
-## The referencing rule
-
-- A citation names a head section that a later revision renames or
-  merges, meaning section titles are not the stable target the rule
-  assumes — *citations name the head section* (2026-08-04)
 
 ## Criteria are not threads
 
@@ -219,6 +210,13 @@ watch, with the entry that recorded them.
 
 ## How the decision record is kept
 
+- An entry is written whose *Rejected* bullet a later session cannot
+  use to tell a re-proposal from an idea already argued-and-lost,
+  meaning the form drops too much — *the six-slot entry format is
+  replaced* (2026-08-04)
+- A session needs an evidence narrative the prune deleted, and the
+  commit history does not answer the question — *the six-slot entry
+  format is replaced* (2026-08-04)
 - `CLAUDE.md` grows a justification paragraph that no entry covers —
   *the repository gets a decisions ledger* (2026-08-02)
 - A session resorts to git archaeology to recover a deleted field
@@ -338,6 +336,15 @@ watch, with the entry that recorded them.
 - A real discussion loses its ledger to compaction and the assistant
   cannot reconstruct it — *no durable state artifact for the thread
   ledger* (2026-08-02)
+- A session proposes an open-state home in a project that already
+  tracks outstanding work somewhere, meaning the discovery step is
+  being skipped — *the skill gains open state* (2026-08-04)
+- A record written under the shape rule omits something a later
+  session needed, meaning "what the destination does not already
+  state" is drawn too tight — *the skill gains open state* (2026-08-04)
+- The verdict record stops being used for keep-or-change verdicts,
+  meaning the scoping sentence read as a discouragement rather than a
+  boundary — *the skill gains open state* (2026-08-04)
 
 ## The pre-release review
 
@@ -351,6 +358,9 @@ watch, with the entry that recorded them.
 
 ## The referencing rule
 
+- A citation names a head section that a later revision renames or
+  merges, meaning section titles are not the stable target the rule
+  assumes — *citations name the head section* (2026-08-04)
 - A correction lands in one document and the coherence axis finds its
   counterpart stale at the next review, meaning the "same change"
   discipline is not being applied across documents — *the coherence
