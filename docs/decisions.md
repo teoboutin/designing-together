@@ -35,6 +35,34 @@ entries are append-only, so the reference cannot dangle. Never point
 at a field report or a convergence spec: those files are deleted once
 harvested.
 
+## Structure the flow, not the content
+
+This is why the skill exists, and it constrains every edit made to it.
+
+The skill structures HOW a discussion is conducted: proposals are
+argued, threads carry states, closure waits for the user's word. It
+does not structure WHAT may be proposed. The proposal space is the
+participants' to fill.
+
+The failure it was built against is the solution quota. A discussion
+mode that asks for two or three options gets two or three options, and
+where only one shape realistically applies, the second and third are
+fabricated to fill the count. A fabricated alternative is worse than
+none: it makes a real proposal appear to have won a contest that never
+happened, and it spends the round that could have tested the real
+proposal. This is the concrete difference between this skill and a
+narrowing elicitation mode such as `superpowers:brainstorming`, and
+the comparison is what led to the skill being written.
+
+The rules that implement it: "never pad with alternatives to reach a
+count"; the red flag on padding one real approach with alternatives
+built to lose; and the nearest-rival test, which lets "no rival worth
+naming" stand as a claim to be tested rather than a gap to be filled.
+
+An edit that specifies what must be proposed, rather than how a
+proposal is argued and tracked, works against the reason the skill was
+written. That is the test to apply.
+
 ## Model tier: frontier-only is a non-goal, not a limitation
 
 The skill targets frontier-tier models and there is no plan to
@@ -193,6 +221,116 @@ The standing test for any edit: does this rule still bind in a
 repository with no documents, no ledger, and no conventions?
 
 ## Decisions ledger
+
+### 2026-08-03 — structure the flow, not the content (recorded after the fact)
+
+**Verdict: keep, stated explicitly.** The skill structures how a
+discussion is conducted and never what may be proposed. Recorded now
+because it is the founding intent and had never been written down.
+
+**Mechanism**: an unrecorded founding intent is invisible to the edits
+that erode it — each looks locally reasonable, and there is no
+standard to judge it against.
+
+**Evidence at decision time.** The intent is the primary cause of the
+skill's creation: the alternative on offer was a narrowing elicitation
+mode, and its characteristic failure is the solution quota — asked for
+two or three options, a discussion produces two or three, fabricating
+the ones a real problem does not have. The skill already implements
+the intent in three places (the no-padding-to-a-count clause, the
+padding red flag, the nearest-rival test), so this entry back-fills
+rationale rather than changing behavior. The review's E6 identified
+the general problem: most of the skill's rules have no recorded why,
+so the referencing rule cannot be followed for them.
+
+The intent is also under live pressure, which is what makes recording
+it worth a prime location rather than a footnote. Review finding C17
+reports three rules that each demand a manufactured counter-position —
+the nearest-rival test, the single-live-thread fork, and the
+requirement to test the user's proposal — which is the solution quota
+arriving from inside the skill instead of from a questionnaire. One of
+the three has already been retired: the single-live-thread fork now
+applies only while a rival stands. The other two are judged against
+this entry rather than against taste.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"Structure the content too, so discussions are reproducible."*
+  Rejected: reproducibility bought by a quota is reproducibility of
+  fabrication. The absorption is that the FLOW is heavily structured —
+  states, deltas, checkpoints, closure rules — so a discussion is
+  auditable without its content being prescribed.
+
+**Tripwires**: an edit lands that specifies what must be proposed
+rather than how it is argued and tracked; a real session produces a
+padded alternative traceable to a rule in this skill.
+
+### 2026-08-03 — the in-discussion ledger is not the project's decision record
+
+**Verdict: change.** The two are named and separated in the skill's
+vocabulary; the in-discussion ledger is stated to die with the
+discussion; cross-session resumption is removed from the skill and
+handled in the README's expectations instead.
+
+**Mechanism**: one word, "ledger", was carrying two things with
+opposite lifetimes — a structure that dies with the conversation and a
+record that outlives the project's contributors — so rules written for
+one were read as promises about the other.
+
+**Evidence at decision time.** Three review axes converged here
+independently, which the review named its strongest signal:
+self-sufficiency found four rules promising a ledger that outlives the
+session, the cold flaw review found the resume checkpoint
+undischargeable, and the language axis found "ledger" the file's
+highest-traffic undefined metaphor. The checkpoint's third moment,
+"when resuming a discussion across sessions", could not be complied
+with at all: a checkpoint is assembled by sweeping prior deltas, which
+a fresh session does not have. That defect had been parked as
+`resumption-honesty` since 2026-08-02, awaiting a real resumption to
+judge it by.
+
+The owner's ruling made the question moot rather than answering it:
+resuming a design discussion in a new session is not a supported use.
+The clause is deleted, `resumption-honesty` is retired, and the
+supported case — a harness session resume with the full transcript
+restored and the project in the same state — is described in the
+README, not in the skill, because it is transparent to the assistant.
+
+**Also decided:**
+
+- **A tripwire is retired.** The no-state-artifact keep verdict
+  (2026-08-02) carried two: a discussion losing its ledger to
+  compaction, and "a cross-session resumption produces a checkpoint a
+  participant contests as wrong". The second is void — the mechanism
+  whose failure it watched no longer exists and the use case is
+  unsupported. The first stands and now carries that verdict alone;
+  compaction inside one discussion is the live risk against an
+  in-conversation ledger. Recorded here rather than by editing the
+  earlier entry, which is append-only.
+- **The unacknowledged material finding** no longer "stays on the
+  thread's ledger line" as "a record for the next session" — the
+  ledger has no next session. It is carried into the decision record
+  when the discussion records.
+- **The spec and the decision record** are given their relationship,
+  which the skill named two artifacts for and never stated: the spec
+  is the full account, the record is its durable harvest, and nothing
+  may survive only in the spec.
+- **A commit message that argues a behavior counts as a document that
+  argues it.** Necessity here is observed use, not a review finding:
+  agents running the skill were already reading commit messages this
+  way, and the failure the example prevents — treating a behavior
+  documented only in a commit message as an implementation
+  coincidence — is expensive and common, since for most projects a
+  commit message is the only home such an argument has.
+- **Two expectations added to the README set**: a discussion runs in
+  one session with memory not outliving it, and the skill is a
+  methodology rather than a script for every exchange.
+
+**Tripwires**: a discussion loses its ledger to compaction and the
+assistant cannot reconstruct it (inherited from the state-artifact
+verdict); a user asks to continue a previous design discussion in a
+new session and the decision record proves too thin to ground it,
+which would reopen whether the no-resumption expectation is affordable.
 
 ### 2026-08-03 — a documented expectation set bounds the skill's scope
 

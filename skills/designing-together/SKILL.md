@@ -20,7 +20,14 @@ an **argument** is the prose that causes a thread's state to change;
 a **stall** is a move that repeats existing positions without a new
 argument or new evidence; a **tripwire** is named future evidence,
 recorded next to a verdict or deferral, that would flip it; a
-**round** is one user message and the reply to it. A metaphor that
+**round** is one user message and the reply to it; the **ledger** is
+the whole set of named threads with their states, carried in the
+discussion and never in a file; a **delta** is the table of the
+threads whose state or note changed in one round; a **bucket** is the
+group of threads sharing one state in a table. Distinct from every one
+of these is the project's **decision record** — the durable argued
+history of design decisions a project keeps, under whatever name —
+which the discussion grounds against and records into. A metaphor that
 names a defined concept is legitimate vocabulary after its
 definition; undefined metaphors are not (see Language).
 
@@ -57,7 +64,10 @@ duties around it:
   the user's word actually reopens it. If no word has come by the
   next checkpoint — or the end of the current change, whichever comes
   first — the finding stays on the thread's ledger line, marked
-  unacknowledged: a record for the next session, not a fired tripwire. This is not approval-seeking: you are surfacing information
+  unacknowledged, and is carried into the decision record when the
+  discussion records: the ledger does not outlive the discussion and
+  the record does. It is not a fired tripwire. This is not
+  approval-seeking: you are surfacing information
   that arrived after the closure. If the check surfaces nothing
   material, proceed — no confirmation round.
 - **The weighing is theirs.** How much a risk matters, which
@@ -172,11 +182,10 @@ and it is ASSEMBLED, not recalled: sweep every prior delta and
 collect every slug ever minted; each appears exactly once, in its
 current bucket, closed buckets first, criteria in their own table as
 in the delta. A slug you cannot place is a tracking failure to repair
-on the spot, not a row to drop. The checkpoint happens at three
-moments: when proposing convergence, before
+on the spot, not a row to drop. The checkpoint happens at two
+moments: when proposing convergence, and before
 recording (on the full path — the one-round path in Decision
-authority skips the table), and when resuming a discussion across
-sessions. The full
+authority skips the table). The full
 table is presented for contest ("contest any of these"), one batch
 confirmation over the whole ledger — never a per-item ratification
 questionnaire.
@@ -434,9 +443,10 @@ the same exchange, plus:
   arguments, and design the winner to absorb what was right in them.
   That absorption is design work in its own right.
 - **Incumbent behavior is load-bearing on evidence, not by
-  default.** A behavior is established by a document that argues it
-  OR by observed use: consumers, telemetry, bug reports about its
-  absence. Behavior with neither is an implementation coincidence —
+  default.** A behavior is established by a document that argues it —
+  a commit message that argues it counts, and in most projects it is
+  the only home such an argument has — OR by observed use: consumers,
+  telemetry, bug reports about its absence. Behavior with neither is an implementation coincidence —
   question it, and raise it with the user before deciding anything on
   its behalf. Do not treat "undocumented" as "disposable" in a
   project that documents nothing.
@@ -493,7 +503,15 @@ the written document, then plan the implementation
 (superpowers:writing-plans, where installed). The decision record
 lands in the project's decision home in the same change as the
 implementation; a decision with no code change (a keep verdict, an
-abandoned direction) is recorded as its own change. Findings made
+abandoned direction) is recorded as its own change.
+
+The two artifacts are not duplicates, and their relationship is fixed.
+The spec is the full account of the converged design: every thread
+with its final state, the losing arguments with their reasons, and the
+tripwires the premortem produced. The decision record is the durable
+harvest of that account. The spec is a working document — whether a
+project keeps it after harvesting is that project's convention — so
+nothing may survive only in the spec. Findings made
 during planning or implementation surface through the
 material-findings protocol (Decision authority); convergence does not
 bar them.
