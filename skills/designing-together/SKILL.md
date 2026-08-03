@@ -18,8 +18,11 @@ Terms this skill defines and then uses as vocabulary: a **thread** is
 one open question or proposal — the unit that carries state (below);
 an **argument** is the prose that causes a thread's state to change;
 a **stall** is a move that repeats existing positions without a new
-argument or new evidence; a **tripwire** is named future evidence,
-recorded next to a verdict or deferral, that would flip it; a
+argument or new evidence; a **tripwire** is named future evidence that
+would flip a verdict or a deferral; **open state** is what a project
+currently has outstanding — live tripwires, parked threads with their
+re-entry points — differing from the decision record in that an item
+LEAVES it when it fires; a
 **round** is one user message and the reply to it; the **ledger** is
 the whole set of named threads with their states, carried in the
 discussion and never in a file; a **delta** is the table of the
@@ -462,8 +465,9 @@ to a thread of its own, explicitly.
 7. **Premortem before recording**: assume the converged design
    shipped and failed — name the most plausible causes, each naming
    the approved thread it stresses; a premortem whose causes stress
-   no decided thread is not finished. What survives becomes tripwires
-   on the record; what invalidates the design reopens the relevant
+   no decided thread is not finished. What survives becomes
+   tripwires, which are open state and go where step 8 sends open
+   state; what invalidates the design reopens the relevant
    threads. Every tripwire, here and everywhere else, meets the
    falsifiability bar: evidence specific enough that both parties
    would agree it fired — an event, a count crossing a bound.
@@ -474,11 +478,27 @@ to a thread of its own, explicitly.
    become the tripwired deferrals; withdrawn threads become the
    retractions with their defeating reasons, which the Reopening rule
    also reads; superseded threads are recorded under the thread that
-   absorbed them, so the absorption is visible rather than a gap. The
-   table serializes to the record, and the criteria table with it.
-   Destination: wherever the project keeps decisions; if it
-   keeps them nowhere, propose a home proportionate to the project (a
-   decision file, an issue, a commit message). Timing follows After
+   absorbed them, so the absorption is visible rather than a gap.
+
+   The thread table and the criteria table are the SOURCE for what to
+   write, not the shape to write it in. Write what the destination
+   does not already state: where the project's own documents carry
+   the current design, the record carries the argument and does not
+   repeat them; where nothing else carries it, the record carries
+   both. A sentence a reader could delete without losing anything the
+   destination did not already give them is restatement, and the
+   losing arguments are what restatement crowds out.
+
+   Destination: wherever the project keeps decisions; if it keeps
+   them nowhere, propose a home proportionate to the project (a
+   decision file, an issue, a commit message). Open state has its own
+   destination, found the same way: where does this project track
+   what is outstanding, and propose a home only if it tracks it
+   nowhere. Its one requirement is that an entry can LEAVE it when
+   its tripwire fires or is voided — deleted, closed, checked off,
+   whatever the project's own mechanism is. A record that only ever
+   grows cannot hold open state: a tripwire recorded there is one
+   nobody can retire and nobody can count. Timing follows After
    convergence.
 
 ## Keep-or-change (evaluating an incumbent design)
@@ -526,7 +546,11 @@ the same exchange, plus:
   user before deciding anything on its behalf. Do not treat
   "undocumented" as "disposable" in a project that documents nothing.
 
-Verdict record — fill every slot:
+Verdict record — step 8's record specialized for a keep-or-change
+verdict. Fill every slot. A decision that evaluates no incumbent
+design records under step 8 alone: it has no recurring failure to
+diagnose, so it has no Mechanism slot to fill, and this form is not
+the shape for it.
 
 - Verdict: keep | change (one line)
 - Mechanism: the one-sentence statement of what produces the

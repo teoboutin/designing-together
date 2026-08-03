@@ -815,6 +815,20 @@ The ledger is also not serialized to a file mid-discussion: an
 artifact an agent must update every round is one an agent forgets to
 update, and a confidently stale ledger is worse than none.
 
+**Open state is a third structure**, distinct from both. Live
+tripwires and parked threads with their re-entry points are true now
+and will not be later, so they go wherever the project tracks what is
+outstanding. The skill requires one property of that place: an entry
+can leave it when its tripwire fires or is voided. A decision record
+cannot hold open state, because it only grows.
+
+What goes into the record is bounded by what its destination already
+states. The thread table is the SOURCE for what to write, not the
+shape to write it in: where the project's own documents carry the
+current design, the record carries the argument alone. For both homes
+the skill names no file, no directory and no format — it requires
+discovery first, and a proposal only where the project tracks nothing.
+
 **Decided 2026-08-02** — the thread ledger stays in the discussion: no
 state file, no per-thread schema, no validation script. The failure an
 artifact would prevent — losing the ledger to compaction or to a session
@@ -900,6 +914,49 @@ script for every exchange.
   ledger line as "a record for the next session"* — the in-discussion
   ledger has no next session. The finding is carried into the decision
   record when the discussion records.
+
+**Decided 2026-08-04** — The skill gains `open state` as defined
+vocabulary and a destination rule for it, built as the
+discovery-and-propose pattern step 8 already uses for decisions, with
+one property attached: an entry can leave that home when its tripwire
+fires. Step 8 also gains the record's shape as a property — write what
+the destination does not already state — replacing "the table
+serializes to the record", which read as a dump instruction and is why
+a twelve-thread discussion produced twelve record items. The
+keep-or-change verdict record is marked as step 8's specialization
+rather than the document's only worked format. The measurement behind
+it: of this repository's 1918 ledger lines, Verdict and Mechanism were
+330 and a locally invented Evidence slot 673, a diagnosis form applied
+to 26 decisions that diagnosed nothing. The owner's evidence for the
+open-state gap is two v0.3 sessions that surfaced it unprompted and
+led the other project to set up a centralized tracker; the named lack
+is that open items had no single destination, so they were recorded
+where they could not be removed and could not be listed. Verified for
+over-firing only: `benign-decision` 3/3 with no rep imposing a home on
+a cheap decision, `verdict-grounding`, `verdict-grounding-decided` and
+`assumed-convergence` 3/3 unaffected.
+
+- *Rejected: naming the shape or the location of either home* —
+  different projects shape their record homes differently, and a skill
+  that names a path ships the `docs/superpowers/specs` problem, which
+  the owner reports `CLAUDE.md` can only partially overrule because
+  those skills are assertive about location. The rule states
+  properties and requires discovery instead. The test applied to every
+  new sentence: a project keeping decisions in issues and open items
+  in a milestone can follow all of it.
+- *Rejected: requiring the record to read in the present tense at its
+  destination* — proposed and withdrawn in the same round. An ADR
+  corpus is immutable by design and its current reality is the union
+  of non-superseded ADRs, so the rule would impose head-plus-ledger on
+  every project that uses the skill. An imposition does not have to be
+  a path to be an imposition.
+- *Rejected: a rule about the After-convergence hand-off inheriting
+  `docs/superpowers/plans`* — out of scope by the owner's ruling: it
+  is another skill's convention and this one does not overrule it.
+- *Rejected: a control arm for the open-state addition* — it is a
+  capability gap, a move the assistant did not have, and a control arm
+  measures whether a default is systematically wrong, which is the
+  conformance question.
 
 ## Gaplessness is not the goal
 
