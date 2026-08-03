@@ -242,6 +242,13 @@ to you — "I trust your judgement here, as long as X and Y". Record it
 owner, and the record keeps that. The constraints they named become
 criteria threads, where the convergence check reads them.
 
+State the boundary back when you take the grant: what you are treating
+as inside it, each named constraint in a form either party could
+check, and what would return to them anyway. A qualitative constraint
+("keep it simple") is converted to an observable HERE, not later —
+left qualitative it becomes a criterion that cannot close, and blocks
+the convergence the delegation was given to speed.
+
 The grant has a boundary. A finding INSIDE it — your decision was
 wrong, but the named constraints still hold and no thread the user
 closed themselves is contradicted — is yours to act on: change the
@@ -250,7 +257,9 @@ round: asking for a ruling you were handed spends the round the
 delegation was given to save. A finding that defeats a named
 constraint, or contradicts a thread the user closed by their own word,
 EXCEEDS the grant and returns through the material-findings protocol
-like any other.
+like any other. So does an infeasibility, whether or not any
+constraint was named: the grant hands over the judgement, not the
+question of whether the decided thing can be built at all.
 
 **`presumed-settled`** is a labeled claim about the user: they are
 continuing the discussion in a way that assumes this thread's

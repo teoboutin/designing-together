@@ -222,6 +222,60 @@ repository with no documents, no ledger, and no conventions?
 
 ## Decisions ledger
 
+### 2026-08-03 — `delegated` is kept; the grant states its boundary
+
+**Verdict: keep, with a change to the grant's mechanics.** The
+`delegated` state stays. When a grant is taken, its boundary is stated
+back: what is being treated as inside it, each named constraint in a
+checkable form, and what would return anyway. An infeasibility returns
+whether or not a constraint was named.
+
+**Mechanism**: a grant that names no boundary is indistinguishable
+from one whose boundary the assistant invented, and neither party can
+tell which one they have.
+
+**Evidence at decision time.** The state's own wording binds: its
+control arm ran 0/3 with the forbidden ceremony quoted verbatim in
+every rep ("Unless you say otherwise, I proceed with the repair
+below"). The under-specification is observed rather than predicted —
+in the session that produced this entry the owner delegated three
+decisions with "follow your judgement", naming no constraints. The
+boundary had to be inferred from a sentence elsewhere in the same
+message, and it was stated back with no rule requiring it: exactly the
+"behavior attributed to judgement rather than to text" pattern the
+2026-08-02 entry on unreliable controls exists for. Review finding C4
+reported three under-specifications; they have one fix, because
+stating the boundary at grant time is where a qualitative constraint
+gets converted and where the returning cases get named.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"Remove `delegated`. Fügener et al. 2022 found human-to-AI
+  delegation produced no benefit, because subjects could not assess
+  their own capabilities and delegated the wrong instances, with
+  algorithm aversion explicitly ruled out."* This lost on the
+  literature standard recorded today — published work does not open an
+  edit — and NOT on its merits, which is recorded so the argument is
+  intact if that standard ever changes. A second reason to weigh it
+  carefully rather than treat it as decisive: the study delegates task
+  instances for performance, while `delegated` records who weighed a
+  decision. The mapping is not tight. That reading is this session's,
+  not the paper's.
+- *"An unconstrained grant should return nothing at all."* Partly
+  kept: judgement findings do stay inside the grant, which is what the
+  user handed over. Infeasibility does not, because whether the
+  decided thing can be built is not a judgement call.
+
+**Tripwires**: `delegated` appears in a real session recorded as
+`approved` anyway (inherited from the 0.4 revision entry); the
+boundary statement becomes ceremony a user skips reading, observable
+as grants where the stated boundary is never contested and never
+consulted; a delegated decision is later reversed by the user, which
+would mean the grant was mis-scoped rather than mis-executed.
+
+**Also decided:** the README's expectation on delegation notes that a
+grant naming its constraints is worth more than a bare one.
+
 ### 2026-08-03 — structure the flow, not the content (recorded after the fact)
 
 **Verdict: keep, stated explicitly.** The skill structures how a

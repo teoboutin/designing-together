@@ -80,7 +80,11 @@ proposal is what it is for.
 **You give the word that closes a thread, or delegate it explicitly.**
 The assistant can move threads between open states but cannot close
 one for you; that asymmetry is the design. Neither ruling nor
-delegating leaves threads open, and the discussion cannot converge.
+delegating leaves threads open, and the discussion cannot converge. A
+grant that names its constraints is worth more than a bare one: the
+constraints become the boundary the assistant checks its own decisions
+against, and it states that boundary back to you when it takes the
+grant.
 
 **You say why when you reject something.** Ruled-out threads carry
 their reasons into the record, and the reopening rule reads those
