@@ -222,6 +222,71 @@ repository with no documents, no ledger, and no conventions?
 
 ## Decisions ledger
 
+### 2026-08-03 — four over-application findings, no text added
+
+**Verdict: keep.** The review's quota-pressure findings — C17, C16,
+C10 and C2 — produce no edit. Three are rejected and one is parked.
+Recorded because a rejection with no reason on the record is a
+finding that comes back, and because four rejections in a row is
+itself a result about the review.
+
+**Mechanism**: an over-application axis reports what a rule COULD do,
+and three of these four were defeated by what the rule already says.
+
+**Evidence at decision time, finding by finding.**
+
+- *C17, three rules each demand a manufactured counter-position.* One
+  of the three was real and was retired earlier the same day: the
+  single-live-thread fork now applies only while a rival stands. The
+  other two are misreadings. The nearest-rival rule states that "'no
+  rival worth naming' is itself a claim, tested like any other",
+  which asks for a rival OR the claim that there is none. The rule on
+  testing the user's proposal is conditional — "when a shape exists
+  that meets a named criterion theirs fails" — and is followed three
+  lines later by "a manufactured objection is the strawman pattern in
+  reverse".
+- *C16, tripwire inflation.* The premise is false. The text names
+  three provenances for a closing fact — "measured, read in a named
+  source, or assumed" — and only the third becomes a tripwire. A
+  textbook fact is read in a named source.
+- *C10, an automated report with 40 findings becomes 40 threads.* The
+  reading is genuinely ambiguous and one branch is unworkable. It is
+  rejected on observed use rather than on the text: this session
+  handed the assistant a 78-finding review, and it clustered them
+  without prompting instead of minting 78 threads. That is the worst
+  realistic case, handled correctly, with no rule telling it to.
+- *C2, the bounded-problem off-ramp never fires.* Probably true, and
+  parked rather than rejected. "A second defensible shape is nameable
+  for nearly any request" is a claim about the world, not a reading of
+  the text, so it is a prediction and the triage criterion parks
+  predictions. **Tripwire**: a discussion runs the full machinery and
+  the user afterwards states it was a simple requirement. **Re-entry
+  point**: the over-application axis of the next pre-release review.
+  The harm is bounded meanwhile by the owner's own standing
+  instruction, which tells the assistant to state which reading it
+  takes and allows an overrule.
+
+**Also decided:**
+
+- **The literature watch list has a home.** Today's ruling sends
+  contradicted verdicts to a watch list, and none existed. The
+  README's literature section gains a *Watched, not acted on*
+  subsection carrying the mapping's five contradictions, each with the
+  reason the practice stands anyway. That also discharges review
+  finding E7, which reported the section's honesty paragraph naming
+  one gap against at least seven unmapped mechanisms; it now states
+  that most of the skill has never been mapped.
+- **Class E is re-derived, not triaged.** The review's document
+  coherence findings describe documents that have been rewritten
+  continuously since it was written: E4 and E13 are discharged, E11
+  was settled by the release ruling, E6 is partly back-filled by this
+  day's entries, and E5, E7, E10 and E12 describe text that no longer
+  reads as the reviewer read it. Triaging that list item by item would
+  mean checking each finding against a document it no longer
+  describes. Instead the coherence axis is re-run by a fresh subagent
+  against the current documents once the skill work is finished, and
+  its findings are triaged then.
+
 ### 2026-08-03 — the checkpoint word, and the default that built what it had just refuted
 
 **Verdict: change.** Two edits close the review's Class B, the class

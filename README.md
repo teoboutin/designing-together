@@ -301,12 +301,76 @@ anything.
   shapes and building on the user's framings rather than converging on
   the model's first default.
 
-Known gaps, stated honestly: the one-sentence mechanism compression in
-keep-or-change has no direct literature support (it is congruent with
-root-cause practice, but unvalidated). All citations, linked or not,
-come from a research pass followed by an independent per-claim
-fact-check; characterizations compress the sources, and the
-fact-check's corrections are folded into the wording above.
+### Watched, not acted on
+
+Because the mapping does not govern the skill, a mechanism the
+literature contradicts is recorded here rather than changed. These
+came from an August 2026 mapping of four mechanisms added since the
+previous pass. Citations are given as the mapping returned them,
+without links, because they were verified as citations but their
+findings were read through the mapping rather than from the sources
+directly.
+
+- **`delegated` rests on a premise the literature does not support.**
+  Fügener et al. 2022 (*Information Systems Research* 33(2)) found
+  AI-delegating-to-humans beat AI alone, while human-delegating-to-AI
+  produced no benefit: subjects could not assess their own
+  capabilities and delegated the wrong instances, with algorithm
+  aversion explicitly ruled out. The skill assumes the user is the
+  right party to choose what to delegate. The state is kept, on the
+  reading that the study delegates task instances for performance
+  while `delegated` records who weighed a decision.
+- **Delegation shifts responsibility, and more so to machines.**
+  Bartling & Fischbacher 2012 (*RES* 79(1)) found delegating shifts
+  responsibility and that this is itself a motive for delegating;
+  Feier et al. 2022 (*Sci Eng Ethics* 28:19, n=264) found the effect
+  stronger for machine delegates than human ones. Some `delegated`
+  closures will therefore be blame-avoidance rather than trust, and
+  the label cannot distinguish them.
+- **"Giving arguments state produces an unreadable graph" is
+  unsupported.** No verified source claims argument graphs become hard
+  for humans to read at scale. What does hold is relation-type
+  instability: Shipman & Marshall 1999 report typed links "rarely
+  used, and when they were, seldom used consistently", and gIBIS's own
+  field data shows roughly 1.06 links per node with nine relation
+  types available and free. Every canonical scheme in fact does the
+  opposite of this skill — gIBIS ships nine typed link types, DRL
+  around sixteen, and Dung 1995 defines its semantics purely over the
+  attack relation — so the counter-position is the mainstream. The
+  practice stands; its stated reason does not, and that reason is
+  being replaced rather than reworded, under the skill's own rule
+  about qualitative claims doing closing work.
+- **"Consolidating costs latency and nothing else" is contradicted.**
+  Fitz et al. 2019 (n=237) found batching notifications three times a
+  day improved mood and productivity, hourly was null, and
+  never-reporting was negative — so granularity is the active
+  ingredient rather than batching. Iqbal & Bailey 2008 found highly
+  relevant content warrants an *earlier* breakpoint, which is the
+  opposite of waiting for the slowest parallel arm.
+- **The prior-art gate selects for the corpus's most harmful
+  property.** Chan et al. 2011 found far-field examples beat near-field
+  on novelty (d=0.56) but neither beat a no-example control; the
+  damage came from commonness, where common examples searched less of
+  the design space (d=−1.03) and produced fewer concepts (d=−0.76).
+  The gate returns shipped, well-known mechanisms by construction. Nor
+  does reading critically protect: Smith 1993 found instructions to
+  diverge did not reduce conformity, and Linsey 2010 found design
+  faculty fixate as much as novices. Against all of that, the gate's
+  best-supported element is that it runs only on the user's word —
+  Siangliulue et al. 2015 (N=97) found on-demand examples produced the
+  most novel ideas (p=.0034), while fixed-interval delivery produced
+  fewer ideas than no examples at all.
+
+Known gaps, stated honestly: this mapping covers the mechanisms above
+plus those in the list before it, and a majority of the skill's
+mechanisms have never been mapped at all — the loop's middle steps,
+most of Decision authority, the Language rules and the state machine
+among them. The one-sentence mechanism compression in keep-or-change
+has no direct literature support (it is congruent with root-cause
+practice, but unvalidated). Linked citations come from a research pass
+followed by an independent per-claim fact-check; characterizations
+compress the sources, and the fact-check's corrections are folded into
+the wording above.
 
 ## Origin
 
