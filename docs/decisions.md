@@ -1508,6 +1508,30 @@ auto-update enabled — documentation and harness changes can be pushed
 freely between releases. Omitting `version` would make every commit a
 version; it stays pinned.
 
+That freedom is a freedom to push `next`, not master, because the
+install cache is keyed by version: `<marketplace>/<plugin>/<version>`,
+one directory per release. A version therefore names a directory, not a
+commit. An existing install stays frozen at the commit it fetched, but a
+fresh install copies `./plugin` out of the marketplace clone at master's
+tip into a directory named by the unbumped version — so shipped content
+pushed to master between releases would reach new installers under the
+previous version's name, and two installs reporting the same version
+would hold different skill text. Master is therefore reserved for
+releases: all work happens on the permanent `next` branch, and a release
+is the version bump on `next` followed by a FAST-FORWARD of master onto
+it. Master's tip is always a release commit, so a version identifies
+skill text by construction rather than by discipline, `git log -1
+master` answers "what is installed" without reading the graph, and the
+GitHub landing page — which renders master's README — describes the
+version installers actually receive. Everything else moves at whatever
+cadence the work has: commits and pushes to `next` are free, which is
+what makes the commit-as-work-completes rule above cost nothing. One
+exception is named: a restructure of `plugin/` needs its `"./plugin"`
+source verified against a CLONED marketplace root, which a scratch
+filesystem marketplace cannot check, so master is fast-forwarded to the
+restructure commit unbumped, checked, and fast-forwarded again to the
+bump in the same sitting.
+
 What an install receives is drawn by one line: the marketplace entry's
 `"source": "./plugin"`. Everything under `plugin/` is copied into the
 install cache and everything outside it is not, because there is no
@@ -1577,7 +1601,56 @@ precisely because the plugin shipped one.
   until after a push. A Windows clone with `core.symlinks=false` would
   also turn the root README into a file containing a path.
 
-## Origin, and the standing risk
+**Decided 2026-08-03** — a commit touching `plugin/` rides a branch and
+reaches master in the release merge that carries the bump; everything
+else may be pushed to master as it lands. The discriminating fact is the
+cache path `<marketplace>/<plugin>/<version>`, measured here as four
+sibling directories `0.1.0` through `0.4.0`, one per release: a version
+names a directory rather than a commit, so shipped content sitting on
+master ahead of a bump changes what the name `0.4.0` contains for
+anyone installing meanwhile. The cost lands on a third party who cannot
+detect it — a version string is the only handle a field report or a bug
+report has on which skill text ran. A branch removes the case instead of
+timing it, and the freedom it withdraws was never in use: pushing has
+never been how work is preserved here, and the merge is the same act as
+the release.
+
+- *Rejected: push shipped changes to master and accept the desync, as
+  the head already permits for everything else* — the two pushes are not
+  alike. A documentation change reaches no install, so nobody can be
+  confused by it; a skill change reaches new installers under a name
+  that already denotes different text.
+- *Rejected: bump on every commit touching `plugin/`* — makes the
+  version track content exactly, but publishes every intermediate and
+  possibly untested state of a revision to every install and turns the
+  version into a commit counter, which is the objection that keeps
+  `version` pinned rather than omitted.
+- *Rejected: allow the unbumped push and close the window with an
+  immediate bump* — manages the exposure rather than removing it, and
+  leaves the guarantee resting on a promise about one sitting instead of
+  on a property of the tree. It survives only as the named restructure
+  exception, and only because verifying `"./plugin"` against a cloned
+  marketplace root has no other route.
+
+**Decided 2026-08-03** — the branch is permanent and named `next`, all
+work happens there, and a release is the bump on `next` plus a
+fast-forward of master onto it. This replaces the split decided above,
+which routed commits by whether they touched `plugin/`: that line cuts
+through commits the entry-with-the-work rule requires to be whole, since
+a skill edit lands together with its decision entry and its fixtures.
+Reserving master entirely costs nothing the split was buying and
+restores free pushing in full, to `next` rather than to master.
+Fast-forward rather than merge is what makes master's tip a release
+commit rather than a commit containing one.
+
+- *Rejected: route commits by whether they touch `plugin/`* — decided
+  earlier the same day and reversed on the interaction it missed. It
+  splits a revision's skill edit from its decision entry, and it makes
+  every commit a sorting question whose failure mode is silent.
+- *Rejected: a fresh branch per release rather than one permanent
+  branch* — buys isolation between concurrent release lines, which a
+  single-maintainer repository with no parallel releases does not have,
+  against a naming and creation step every cycle.
 
 The skill was extracted from a project-specific version that lived
 inside a repository with strong surrounding rules — decision records,

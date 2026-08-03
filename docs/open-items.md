@@ -282,6 +282,23 @@ watch, with the entry that recorded them.
   cannot run, which would mean "stands on its own" needs a stricter test
   than the author's judgement — *commits happen as work completes*
   (2026-08-03)
+- A fresh install made while master is ahead of the last bump produces a
+  cache matching the released commit rather than the tip, which would
+  mean the desync cannot occur and reserving master guards nothing. The
+  version-keyed cache path is measured; the fresh-install path is
+  inferred from it and from where the installer copies. Fires during the
+  next restructure exception, the only remaining unbumped window on
+  master — *development happens on `next`; master is fast-forwarded at
+  the release* (2026-08-03)
+- A fix has to reach installs while `next` carries unfinished work, so
+  releasing the fix means releasing the revision with it. That is the
+  cost of one permanent branch, and it fires as a reason to reconsider
+  the per-release branch rejected above — *development happens on
+  `next`; master is fast-forwarded at the release* (2026-08-03)
+- A commit lands on master outside a release and the next release can no
+  longer fast-forward, meaning the invariant needs enforcement rather
+  than convention — *development happens on `next`; master is
+  fast-forwarded at the release* (2026-08-03)
 
 ## Rule triggers are written as tests
 
