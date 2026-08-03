@@ -1,16 +1,30 @@
 # designing-together (plugin repo)
 
-A Claude Code plugin carrying one skill: `skills/designing-together/SKILL.md`,
-which shapes design discussions into open, argued exchanges. This file
-documents how the skill is maintained; the README documents what it does
-and its grounding in the literature.
+A Claude Code plugin carrying one skill:
+`plugin/skills/designing-together/SKILL.md`, which shapes design
+discussions into open, argued exchanges. This file documents how the
+skill is maintained; the README documents what it does and its grounding
+in the literature.
 
 ## Layout
 
-- `.claude-plugin/plugin.json` — plugin manifest (name, version, metadata).
+**What ships and what does not.** Everything under `plugin/` is copied
+into every install; everything outside it stays in the repository. The
+marketplace entry's `"source": "./plugin"` is the only mechanism that
+draws that line — there is no exclude field anywhere (`docs/decisions.md`,
+*Release mechanics*, 2026-08-03). A file that installers must not
+receive is kept outside `plugin/`, and nothing else keeps it out.
+
 - `.claude-plugin/marketplace.json` — the repo is its own marketplace, so
   `/plugin marketplace add <owner>/designing-together` works directly.
-- `skills/designing-together/SKILL.md` — the skill. The frontmatter
+  Its single plugin entry sources `./plugin`.
+- `plugin/.claude-plugin/plugin.json` — plugin manifest (name, version,
+  metadata). This is the `version` a release bumps.
+- `plugin/README.md` — a pointer to the project page, not a copy of it.
+  The full README stays at the repository root, because that is the
+  page users read; the installed directory is not a surface anyone
+  browses (`docs/decisions.md`, *Release mechanics*, 2026-08-03).
+- `plugin/skills/designing-together/SKILL.md` — the skill. The frontmatter
   `description` states triggering conditions and, at most, a capability
   gate — never the workflow (a description that summarizes the process
   becomes a shortcut agents follow instead of reading the skill). The
@@ -304,7 +318,7 @@ belongs at the end, by itself.
 - Fixtures live in `tests/scenarios/<name>/` (`scenario.md`,
   `rubric.md`, multi-turn adds `turns.md`); `tests/conductor.md` is
   the conductor protocol for multi-turn scenarios. Probe agents read
-  the LIVE `skills/designing-together/SKILL.md` unless `args.skill`
+  the LIVE `plugin/skills/designing-together/SKILL.md` unless `args.skill`
   overrides it, so the harness tests the current skill text by
   default.
 - A red run's judge quotes name the failing rubric items; re-runs
@@ -411,18 +425,29 @@ this rule overrides it for this repository (`docs/decisions.md`,
 *Release mechanics*, 2026-08-03).
 
 Committing is not releasing. A release is: bump `version` in
-`.claude-plugin/plugin.json`, commit, push, then refresh local installs
-with `claude plugin update designing-together@designing-together`.
+`plugin/.claude-plugin/plugin.json`, commit, push, then refresh local
+installs with `claude plugin update designing-together@designing-together`.
 Local commits without a push stay unpublished, which is the intended
 state for work between releases.
+
+**A change to what ships is pushed and verified BEFORE the bump.**
+Because a push without a bump reaches no install, a restructure of
+`plugin/` can be published harmlessly and then checked: push, run
+`claude plugin marketplace update designing-together` and `claude plugin
+update designing-together@designing-together`, and read the install
+cache directory — it must contain the contents of `plugin/` and nothing
+else. Only then bump. The relative source's resolution is verified
+against a filesystem marketplace root, not a cloned one
+(`docs/decisions.md`, *Release mechanics*, 2026-08-03), and this
+ordering is what closes that gap without an installer finding it first.
 
 ### How the harness updates installs
 
 Pushing without a version bump never reaches installs, so
 documentation and harness changes can be pushed freely between
 releases; the argument for why that holds is in `docs/decisions.md`
-(head: Release mechanics), together with the open question about this
-plugin's `"./"` marketplace source.
+(head: Release mechanics). The open question about the `"./plugin"`
+source's classification is in `docs/open-items.md`.
 
 Operational details: Claude Code checks marketplaces and plugins for
 updates in the background at session start (random delay up to about

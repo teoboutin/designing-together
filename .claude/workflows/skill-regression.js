@@ -30,7 +30,7 @@ const TIERS = MODE === 'survey'
 const ROOT = REPO + '/tests/scenarios'
 // skill path is overridable so a CONTROL ARM can point at a copy of SKILL.md
 // with the edit under test removed (docs/decisions.md — Evidence standard).
-const SKILL = A.skill || REPO + '/skills/designing-together/SKILL.md'
+const SKILL = A.skill || REPO + '/plugin/skills/designing-together/SKILL.md'
 const CONDUCTOR = REPO + '/tests/conductor.md'
 // quick carries the over-firing arms: pre-landing probes already establish
 // that a rule fires, so the standing regression risk after an edit is a rule
