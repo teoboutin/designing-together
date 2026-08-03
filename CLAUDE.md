@@ -92,6 +92,15 @@ not a gate).
    whether usage ever showed the problem — it does not remove the rule
    by itself.
 
+**A fixture change lands in the same commit as the skill change it
+tests.** Same discipline as the record's entry-with-the-work rule, for
+the same reason: a rubric that still encodes the previous rule greens
+a transcript the skill now calls broken, and nothing detects it until
+a review reads both. Observed 2026-08-03 — the parked-thread re-entry
+requirement landed while `override` and `notification-multiturn` kept
+scoring the old rule, and a full run passed them 3/3 meanwhile
+(`docs/decisions.md`, 2026-08-03 — criteria leave the state enum).
+
 **Honest reporting.** Probe counts are small (often 1–3 per arm);
 results are reported as what they are — weak evidence that wording
 binds, not statistics. Divergent interpretations across reps mean the

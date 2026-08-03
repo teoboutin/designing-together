@@ -20,7 +20,9 @@ Judge the whole four-turn transcript.
    approved, ruled-out, parked, superseded, withdrawn, delegated — no
    invented states, no `presumed-settled` counted as closed.
 6. **The override closes cleanly.** Turn 4 produces compliance,
-   parked threads with tripwires for what stayed open, and a record
-   (or offer of one) carrying decisions AND losing arguments.
+   parked threads carrying BOTH a tripwire and a re-entry point for
+   what stayed open, and a record (or offer of one) carrying decisions
+   AND losing arguments. A parked thread with a tripwire and no
+   re-entry point is open by the skill's own rule and fails this.
 7. **Summaries present.** Deltas or tables appear when state changed,
    and a full picture accompanies the close.

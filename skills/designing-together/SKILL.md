@@ -62,14 +62,20 @@ duties around it:
   at the top of the turn it appears in — before the delta, before the
   work: state it once with the discriminating fact, name the default
   ("unless you say otherwise, I build the decided shape"), and
-  proceed unless the word comes. Two cases defeat that default. When
-  the finding IS an infeasibility, there is nothing to proceed with
-  and the turn stops at it. When the work the default would perform is
-  expensive to reverse — a migration, stored data, a published
-  interface, user-visible behavior, another decided thread — do the
-  reversible part and hold the rest until the word comes; proceeding
-  unilaterally there contradicts the cost-of-reversal test this
-  section applies everywhere else. The thread stays CLOSED while the
+  proceed unless the word comes. Two cases defeat that default, both
+  narrow. When the finding is that the DECIDED SHAPE CANNOT BE BUILT
+  at all, there is nothing to proceed with: report it and stop,
+  because a default would name work that does not exist. A finding
+  that you cannot decide something yourself, or that a choice exceeds
+  a grant, is not this case — it returns with a default like any
+  other. And when part of the work the default would perform cannot
+  be undone — data migrated or deleted, an interface others already
+  consume published, a release shipped — do the reversible part and
+  hold that part until the word comes. This tests the work in THIS
+  TURN, not the decision's class: writing code that implements an
+  irreversible plan is reversible, running the migration is not. Held
+  work is named as held, with what it waits for; it is never silently
+  completed and never silently dropped. The thread stays CLOSED while the
   finding is pending, with the finding noted on its ledger line; only
   the user's word actually reopens it. If no word has come by the
   next checkpoint — or the end of the current change, whichever comes
@@ -93,14 +99,14 @@ duties around it:
 cheap to reverse deserves one round and a one-sentence record — still
 a named thread and a ledger line; skip the full table, the premortem,
 and the spec. To take that path, state what reversal touches, in
-nouns: source files, stored data, published interfaces, user-visible
-behavior, decided threads. The cheap path is available only when that
-inventory names source files and nothing else. Stored data, a
-published interface, and behavior users have already adapted to each
-take the full path, and so does a decided thread that would have to be
-REOPENED if this one changed — a thread that merely reads this one
-does not escalate, or nothing inside an ongoing discussion would ever
-be cheap. The full machinery below is for decisions that are
+nouns. Take the full path if reversal touches ANY of these four:
+stored data that would have to be migrated; an interface other code or
+other people already consume; behavior users have adapted to, in the
+sense Keep-or-change uses — a document that argues it, or observed
+use — which is not the same as any user-visible string; or a decided
+thread that would have to be REOPENED if this one changed, as opposed
+to one that merely reads it. Touch none of the four and the cheap path
+is available. The full machinery below is for decisions that are
 expensive to reverse or that constrain other decisions.
 
 ## When NOT to use
@@ -168,9 +174,11 @@ with a distinguishing mark: a code span (`retention-window`) or a `#`
 prefix in plain text. When the natural name is a common prose word,
 choose a two-word slug so references stay unambiguous.
 
-**Granularity.** Every named criterion and every proposal either
-party made is a thread. A round that exchanged proposals and produced
-no delta is a tracking failure, not a quiet round.
+**Granularity.** Every proposal either party made is a thread. Every
+named criterion is tracked too, in its own table and with its own
+vocabulary (below): a criterion is what proposals are judged against,
+not a proposal. A round that exchanged proposals and produced no delta
+is a tracking failure, not a quiet round.
 
 **States.** Open: `new`, `in-discussion`, `presumed-settled`. Closed:
 `approved`, `ruled-out`, `parked` (deferred, with a tripwire and a
@@ -182,9 +190,8 @@ closed on purpose: convergence is computed from it.
 **Summaries and checkpoints.** When a round changed any state or any
 note, end the turn with a delta: thread / state / one-line position /
 note, per changed thread. Criteria go in a separate table above the
-proposals: a criterion is what proposals are judged against, and
-listed among them a criterion gets read as a proposal and closed like
-one.
+proposals — criterion / kind / satisfied by — because listed among
+them a criterion gets read as a proposal and closed like one.
 
 The **note** column carries what a state cannot say: a relation to
 another thread (`absorbs #x`, `conflicts #y`, `serves #criterion`), a
@@ -279,12 +286,33 @@ wrong, but the named constraints still hold and no thread the user
 closed themselves is contradicted — is yours to act on: change the
 decision, note it on the ledger line, continue. No material-findings
 round: asking for a ruling you were handed spends the round the
-delegation was given to save. A finding that defeats a named
-constraint, or contradicts a thread the user closed by their own word,
-EXCEEDS the grant and returns through the material-findings protocol
-like any other. So does an infeasibility, whether or not any
-constraint was named: the grant hands over the judgement, not the
+delegation was given to save. In particular, do not make continuing
+conditional on their silence: "absent a word from you, X ships" is the
+returning-once form, and inside the grant there is nothing to return.
+
+A finding that defeats a named constraint, or contradicts a thread
+the user closed by their own word, EXCEEDS the grant and returns
+through the material-findings protocol like any other. So does an
+infeasibility, whether or not any constraint was named: the grant
+hands over the judgement, not the
 question of whether the decided thing can be built at all.
+
+**Criteria.** A criterion is what proposals are judged against, so it
+takes none of the states above: those are fates for a proposal — won,
+lost, deferred, absorbed, retracted, handed over — and a criterion has
+none of them. It is instead one of two kinds. A **binding** criterion
+rules out any proposal that fails it. A **weighed** criterion makes
+failing it a cost the user rules on. Criteria may be stated in the
+discussion or DERIVED from the project's own recorded rules; a derived
+criterion is binding as a stated presumption until the user says
+otherwise.
+
+Each criterion carries a satisfaction line, and this is what the user
+reads at convergence: **met**, naming the approved threads that meet
+it; **unmet-and-accepted**, which needs the user's word naming that
+criterion rather than a blanket confirmation; or **unmet**.
+Convergence holds only when every criterion carries one and no binding
+criterion is unmet (loop step 6).
 
 **`presumed-settled`** is a labeled claim about the user: they are
 continuing the discussion in a way that assumes this thread's
@@ -355,8 +383,11 @@ to a thread of its own, explicitly.
    answered outside this project is the reason not to.
 2. **Name the criteria**: state early what the decision must
    achieve — the constraints and goals proposals will be judged
-   against. Criteria are threads too: they can be argued, refined,
-   and superseded, and the convergence check reads against them.
+   against. Criteria are argued and refined like anything else, and
+   they may be DERIVED from the project's own recorded rules as well
+   as stated in the discussion. They are tracked apart from proposals
+   (see Criteria, above), and the convergence check reads their
+   satisfaction.
 3. **Round**: bring argued proposals, including your own new ideas.
    The proposal space is wider than the literal request — the request
    is where the discussion starts, not a limit on what may be
@@ -413,13 +444,18 @@ to a thread of its own, explicitly.
    What consolidating costs is latency; what it must not cost is a
    finding held back. When one investigation returns something that
    invalidates what the others are still testing — an infeasibility, a
-   defeated premise — it goes to the user when it arrives, under the
-   material-findings protocol, and the rest follow it. This does not
+   defeated premise — report it when it arrives, before the other arms
+   finish, naming what it invalidates and whether the rest are still
+   worth completing. The threads here are open, so this is ordinary
+   argument and NOT the closed-thread protocol, whose default and
+   closure rules do not apply to a thread nobody has closed. This does not
    license shorter turns — the consolidated report carries the full
    depth of every piece.
-6. **Converge**: convergence HOLDS when every thread is closed and the
-   discussion is quiescent — the round in which the last thread
-   closed introduced no new thread, no reopening, no new argument. It
+6. **Converge**: convergence HOLDS when every PROPOSAL thread is
+   closed, every criterion carries a satisfaction line, no binding
+   criterion is unmet, and the discussion is quiescent — the round in
+   which the last thread closed introduced no new thread, no
+   reopening, no new argument. It
    is proposed before it holds, so a `presumed-settled` thread may be
    live when convergence is PROPOSED — putting that bucket in front of
    the user is what the proposal is for — and never once it holds.
