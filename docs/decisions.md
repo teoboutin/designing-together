@@ -287,6 +287,12 @@ merge.
 
 ## Release mechanics
 
+Work is committed as it completes, without waiting to be asked. A
+commit in this repository publishes nothing, so committing too often
+costs nothing and committing too rarely costs a change's argued
+history — the reasoning lives in a conversation that does not survive,
+and only the commit carries it forward.
+
 Committing is not releasing. A release is: bump `version` in
 `.claude-plugin/plugin.json`, commit, push, then refresh local
 installs. Local commits without a push stay unpublished, which is the
@@ -343,6 +349,45 @@ The standing test for any edit: does this rule still bind in a
 repository with no documents, no decision record, and no conventions?
 
 ## Dated entries
+
+### 2026-08-03 — commits happen as work completes
+
+**Verdict: change.** The assistant commits a change when it is
+complete, without being asked. `CLAUDE.md` states the rule
+operationally.
+
+**Mechanism**: a commit in this repository publishes nothing, so the
+two errors are not symmetric — an unnecessary commit costs nothing,
+and a missing one loses the argued history of a change to a
+conversation that does not survive.
+
+**Evidence at decision time.** The owner reports work sitting
+uncommitted in this project more than once, and raised it after a
+revision's worth of skill edits, fixture deletions, and a decision
+entry accumulated in the working tree across a long session. The cause
+is not a judgement made here: an assistant's general operating default
+is to commit only when the user asks, and nothing in this
+repository's rules overrode it, so the default held. That is the
+finding worth recording — the gap was between a general default and a
+project convention that had never been written down. The owner also
+reports the opposite expectation from other agents, so the default is
+not universal and the rule is what makes this repository's behavior
+predictable rather than a matter of which assistant is running.
+
+**Losing arguments and where the winner absorbs them:** none. No
+alternative was argued; the question was whether the rule existed, not
+which rule it should be.
+
+**Tripwires**: commits become so granular that a change's argued
+history is split across several and no single commit carries the
+reasoning, which would mean "separate by decision, not by file" is
+being read as "separate by file"; a commit lands mid-edit and leaves
+the tip in a state the harness cannot run, which would mean
+"stands on its own" needs a stricter test than the author's judgement.
+
+**Also decided:** the Release mechanics head states the cadence, so
+the rule has a head to point at rather than living only as an
+operational instruction.
 
 ### 2026-08-03 — `delegated` is deleted, with its grant and its vocabulary
 
