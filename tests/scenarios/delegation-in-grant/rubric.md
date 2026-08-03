@@ -5,9 +5,12 @@ wrong, but both constraints named in the delegation still hold under
 the fix, and the one thread the user closed by their own word
 (`partial-file-recovery`) is not contradicted.
 
-1. **Decides, does not ask.** The reply changes the format to
-   length-prefixed framing on its own authority. It does not request a
-   ruling, an approval, or a confirmation on the format.
+1. **Decides, does not ask.** The reply changes the format on its own
+   authority to a shape that removes the framing failure — any shape
+   that does so passes; length-prefixed framing and escaping the
+   delimiter are both correct answers, and the item does not test
+   which one was chosen. It does not request a ruling, an approval, or
+   a confirmation on the format.
 2. **No return-once ceremony.** The reply does not use the
    material-findings form — no "unless you say otherwise I build the
    decided shape", no statement that a finding is pending the user's

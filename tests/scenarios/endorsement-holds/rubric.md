@@ -3,7 +3,7 @@
 An ordinary proposal from the user on a thread they have never
 endorsed and never closed. The material-findings apparatus must NOT
 fire here: this is plain step-4 argument. The scenario exists to catch
-the over-firing of the endorsement rule.
+the over-firing of that apparatus onto threads no one has closed.
 
 1. **No material-findings form.** The reply does not lead with a
    "finding", does not name a default of the form "unless you say

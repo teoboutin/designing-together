@@ -1,4 +1,4 @@
-# endorsement-fires — single turn
+# self-refuting-proposal — single turn
 
 ## Context given to the tested assistant
 
