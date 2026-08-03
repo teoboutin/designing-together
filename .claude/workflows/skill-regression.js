@@ -161,27 +161,68 @@ const STATE_TOKEN = /^[a-z][a-z-]{2,24}$/
 // written as a code span — which is how the skill writes them — was invisible,
 // and "0 flags" meant "nothing parsed", not "nothing wrong". `rows` is returned
 // so the two are distinguishable at the summary.
+// The check reads the TABLE HEADER and keeps it as context. Assuming column 1
+// is always a state made every conformant criteria row (`criterion / kind /
+// satisfied by`) report `binding` and `weighed` as invented states, and made
+// any table without a state column report its position cells as prose. In the
+// 2026-08-03 full run that was ~15 false entries in a single transcript, which
+// buried the two real violations the judges caught.
+const SEP_CELL = /^:?-{3,}:?$/
+const cellsOf = (line) => line.trim().split('|').slice(1, -1).map((c) => c.trim())
+const isSepRow = (cells) => cells.length >= 2 && cells.every((c) => SEP_CELL.test(c))
+
 function mechanicalStateCheck(text) {
   const found = new Set()
   const unparsed = new Set()
+  const stateless = new Set()
   let rows = 0
-  for (const line of text.split('\n')) {
-    const trimmed = line.trim()
-    if (!trimmed.startsWith('|')) continue
-    const cells = trimmed.split('|').slice(1, -1).map((c) => c.trim())
-    if (cells.length < 2) continue
+  let criteriaRows = 0
+  const lines = text.split('\n')
+  let stateCol = -1
+  let kind = null // 'delta' | 'criteria' | 'stateless'
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim()
+    if (!line.startsWith('|')) {
+      kind = null
+      stateCol = -1
+      continue
+    }
+    const cells = cellsOf(line)
+    if (cells.length < 2 || isSepRow(cells)) continue
+    // A header is a non-slug row whose next line is the separator.
+    const next = (lines[i + 1] || '').trim()
+    if (!SLUG_CELL.test(cells[0]) && next.startsWith('|') && isSepRow(cellsOf(next))) {
+      const h = cells.map((c) => c.replace(/[`*]/g, '').trim().toLowerCase())
+      stateCol = h.findIndex((c) => c.startsWith('state'))
+      kind = stateCol >= 0 ? 'delta' : h.some((c) => c.startsWith('kind')) ? 'criteria' : 'stateless'
+      continue
+    }
     if (!SLUG_CELL.test(cells[0])) continue
+    if (kind === 'criteria') {
+      criteriaRows++
+      continue
+    }
+    // A slug-rowed table with no state column is the checkpoint rendered under
+    // bucket HEADINGS with the state promoted out of the table — a format
+    // failure worth reporting as itself. Report the slug, never the prose in
+    // the neighbouring cell, which is what produced the old noise.
+    if (kind !== 'delta') {
+      stateless.add(cells[0])
+      continue
+    }
     rows++
-    const cell = cells[1].replace(/`/g, '').trim()
-    if (!cell) continue
-    // "new → approved" records a transition; the state it lands in is last
-    const parts = cell.split(/→|->/).map((p) => p.trim()).filter(Boolean)
+    const raw = (cells[stateCol] || '').replace(/`/g, '').trim()
+    if (!raw) continue
+    // "approved (was in-discussion)" is an annotation, not an invented state.
+    const bare = raw.replace(/\s*\([^)]*\)\s*$/, '').trim()
+    // "new → approved" records a transition; the state it lands in is last.
+    const parts = bare.split(/→|->/).map((p) => p.trim()).filter(Boolean)
     const token = (parts[parts.length - 1] || '').toLowerCase()
     if (STATE_TOKEN.test(token)) found.add(token)
-    else unparsed.add(cell)
+    else unparsed.add(raw)
   }
   const unknown = [...found].filter((t) => !STATES.includes(t)).concat([...unparsed])
-  return { rows, tokens: [...found], unknown }
+  return { rows, criteriaRows, tokens: [...found], unknown, stateless: [...stateless] }
 }
 
 // one item per (scenario, repetition): reps measure variance, which is the
@@ -275,7 +316,11 @@ const failed = runs.filter((r) => r.verdict.overall !== 'pass')
 const mechanicalFlags = runs.filter((r) => r.mechanical.unknown.length > 0)
 const mismatches = runs.filter((r) => r.judgeMismatch)
 const unparsedRuns = runs.filter((r) => r.mechanical.rows === 0)
-log(`${runs.length - failed.length}/${runs.length} runs pass; ${mechanicalFlags.length} mechanical state flags over ${runs.reduce((n, r) => n + r.mechanical.rows, 0)} parsed delta rows`)
+const statelessRuns = runs.filter((r) => r.mechanical.stateless.length > 0)
+log(`${runs.length - failed.length}/${runs.length} runs pass; ${mechanicalFlags.length} mechanical state flags over ${runs.reduce((n, r) => n + r.mechanical.rows, 0)} parsed delta rows and ${runs.reduce((n, r) => n + r.mechanical.criteriaRows, 0)} criteria rows`)
+// A slug in a table with no state column: the state was promoted into a bucket
+// heading and the table lost it. Observed 2026-08-03 in assumed-convergence.
+if (statelessRuns.length) log(`${statelessRuns.length} run(s) put thread slugs in a table with NO state column — checkpoint rendered under headings rather than as the table: ${statelessRuns.map((r) => `${r.scenario}#${r.rep}`).join(', ')}`)
 // "0 flags" from 0 parsed rows is not a clean result; it is no result.
 if (unparsedRuns.length) log(`${unparsedRuns.length} run(s) produced no parseable delta row — the state check said nothing about them: ${unparsedRuns.map((r) => `${r.scenario}#${r.rep}`).join(', ')}`)
 if (mismatches.length) log(`${mismatches.length} judge(s) reported an overall that its own items contradict: ${mismatches.map((r) => `${r.scenario}#${r.rep}`).join(', ')}`)
@@ -319,5 +364,6 @@ return {
     overall: r.verdict.overall,
     failedItems: r.verdict.items.filter((i) => !i.pass),
     unknownStates: r.mechanical.unknown,
+    statelessSlugs: r.mechanical.stateless,
   })),
 }
