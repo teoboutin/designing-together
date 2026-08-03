@@ -50,8 +50,11 @@ duties around it:
   after the decision is given: check it against the other approved
   threads, the named criteria, and the system as you know it.
 - **Material findings come back exactly once.** Material is one
-  test: information that arrived after the thread closed and that
-  would plausibly have changed the ruling. Once is per FINDING, not
+  test, and it is answered by naming rather than by judging: the
+  information arrived after the thread closed, AND you can name the
+  part of the closure it defeats — a reason the ruling gave, a premise
+  it rested on, or a criterion it claimed to meet. If you cannot name
+  what it defeats, it is not material. Once is per FINDING, not
   per thread: a second finding on the same thread, genuinely different
   from the first, is a new finding and returns on its own; bringing
   the SAME finding back a second time is the stall. The common cases: a
