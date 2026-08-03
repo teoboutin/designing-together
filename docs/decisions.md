@@ -222,6 +222,98 @@ repository with no documents, no ledger, and no conventions?
 
 ## Decisions ledger
 
+### 2026-08-03 — six rule triggers that could not fire, or fired on the wrong thing
+
+**Verdict: change.** Six edits, one README clause, one parked
+prediction. Each edit is a defect provable by reading rather than a
+predicted behavior.
+
+**Mechanism**: several rules were written as a description of the case
+they were about and never as a test, so their stated trigger does not
+select that case.
+
+**Evidence at decision time, finding by finding.**
+
+- *C1, the cheap path.* Broken in both directions at once. The
+  inventory asked for five nouns and the escalation fired on three, so
+  stored data and user-visible behavior were inventoried and never
+  escalated — while "migration", which did escalate, was not in the
+  inventory. From the other side, "decided threads that read this one"
+  matches nearly everything inside a discussion, so the exemption was
+  unreachable. Now: the cheap path requires an inventory naming source
+  files and nothing else, and a decided thread escalates only if it
+  would have to be REOPENED.
+- *C8, the prior-art gate.* "If you cannot name a project that faced
+  this same question and say what it built, do not propose the survey"
+  requires knowing the answer in order to ask the question, and
+  forbids the case that motivates surveying. The bound exists for a
+  reason — the unbounded wording over-fired 0/3 on two successive
+  fixtures — but the private-facts exclusion is what did the work
+  there: the dbt and Cube over-firing failed because the question
+  turned on the project's own two conflicting definitions, not because
+  nobody had shipped metric tooling. That exclusion stays; the
+  name-a-project test becomes naming the problem class and one place
+  the answer is expected to exist.
+- *C11, consolidation.* "Consolidating costs latency and nothing else"
+  is false when the first of three parallel investigations returns an
+  infeasibility that invalidates what the others are testing, which
+  the material-findings protocol says to present at the top of the
+  turn. Doubly wrong since the same day's Class B work made an
+  infeasibility stop the turn. Consolidation now yields to the
+  protocol, and the absolute claim is replaced by the operative rule
+  rather than reworded.
+- *C12, "comes back exactly once" had no scope.* Read per thread it
+  suppresses a second genuinely different finding; read per finding it
+  licenses four interventions on one closed thread. Both complied.
+  Once is per finding; repeating the same finding is the stall.
+- *C18, qualitative claims against the user's own rationale.* "As the
+  justification for a decision, an unconverted qualitative claim is
+  not an argument" could be read as covering the USER's ruling, which
+  collides with Decision authority — their word closes a thread and
+  needs no justification. The rule now says it governs arguments and
+  never rulings. This also dissolves the reported taste-domain
+  problem: a taste question closes on the user's word, not by
+  argument, so the absence of an observable does not trap the thread.
+- *C19, the tracking-failure rule could not fire.* "A round that
+  exchanged proposals but changed no thread state" — minting a thread
+  IS a state change, so a round containing a proposal always changed
+  state. The test is now the delta, which is the artifact whose
+  absence the rule was written to catch.
+
+**Verification status, stated because the standard requires it.** None
+of these six is verified. Under the evidence standard adopted today
+that is permitted — the harness is a canary and not a gate — but one
+of them deserves a run before it is trusted: the prior-art gate is the
+only rule in this set whose over-firing is documented, at 0/3 on two
+fixtures, so loosening it is the case where a canary is worth its
+cost. The run to make is `only: ['prior-art-fires','prior-art-holds']`
+at `reps: 3` against a frozen copy of the skill.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"C14, the user is never taught the vocabulary, needs a rule
+  instructing the assistant to teach it."* Rejected as a skill edit
+  and answered by documentation, which is what the expectation set was
+  predicted to do for this finding. The README already teaches
+  `presumed-settled` and states what the batch confirmation closes;
+  what was missing was that reopening is a right the user holds, and
+  that is now one clause in the same section. No rule added.
+
+**Parked — `party-neutral-stall`.** The stall definition is
+party-neutral, so a user repeating themselves satisfies it and could
+be told so, when the repetition may mean they have not been heard.
+Party-neutrality is deliberate — it is the symmetry claim — and the
+harm is predicted rather than observed. **Tripwire**: a session where
+the assistant characterises the user's repetition as a stall and the
+user was signalling that a point had been missed. **Re-entry point**:
+the over-application axis of the next pre-release review.
+
+**Tripwires**: the cheap path is never taken across a revision's worth
+of decisions, meaning the source-files-only test is too strict; a
+prior-art survey is proposed for a question whose answer turns on
+facts private to the project, which is the over-firing the loosened
+gate risks.
+
 ### 2026-08-03 — four over-application findings, no text added
 
 **Verdict: keep.** The review's quota-pressure findings — C17, C16,

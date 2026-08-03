@@ -51,7 +51,10 @@ duties around it:
   threads, the named criteria, and the system as you know it.
 - **Material findings come back exactly once.** Material is one
   test: information that arrived after the thread closed and that
-  would plausibly have changed the ruling. The common cases: a
+  would plausibly have changed the ruling. Once is per FINDING, not
+  per thread: a second finding on the same thread, genuinely different
+  from the first, is a new finding and returns on its own; bringing
+  the SAME finding back a second time is the stall. The common cases: a
   concrete failure the user has not acknowledged, an infeasibility, a
   contradiction with an approved thread, a stronger alternative the
   discussion has never seen (whether an alternative is genuinely new
@@ -90,10 +93,14 @@ Depth is proportionate to the cost of being wrong. A decision that is
 cheap to reverse deserves one round and a one-sentence record — still
 a named thread and a ledger line; skip the full table, the premortem,
 and the spec. To take that path, state what reversal touches, in
-nouns: files, stored data, published interfaces, user-visible
-behavior, decided threads that read this one. If that inventory names
-a migration, a published interface, or another decided thread, take
-the full path. The full machinery below is for decisions that are
+nouns: source files, stored data, published interfaces, user-visible
+behavior, decided threads. The cheap path is available only when that
+inventory names source files and nothing else. Stored data, a
+published interface, and behavior users have already adapted to each
+take the full path, and so does a decided thread that would have to be
+REOPENED if this one changed — a thread that merely reads this one
+does not escalate, or nothing inside an ongoing discussion would ever
+be cheap. The full machinery below is for decisions that are
 expensive to reverse or that constrain other decisions.
 
 ## When NOT to use
@@ -135,8 +142,11 @@ feel responsive") it is legitimate input, and it stays open until
 converted into a discriminating observable: a count, a bound, an
 invariant, a named failure it prevents, or a test either party could
 run. The observable need not be numeric; it must be checkable. As the
-justification for a decision, an unconverted qualitative claim is not
-an argument. The test: delete the qualitative sentence — if the
+justification offered to persuade, an unconverted qualitative claim is
+not an argument. This governs arguments and never rulings: the user's
+word closes a thread whatever their reasons, and "it reads better to
+me" is a decision they are entitled to make, not a claim for you to
+convert. The test: delete the qualitative sentence — if the
 argument no longer stands, the sentence was load-bearing and must be
 replaced by its checkable form, not reworded into different
 qualitative terms.
@@ -159,8 +169,8 @@ prefix in plain text. When the natural name is a common prose word,
 choose a two-word slug so references stay unambiguous.
 
 **Granularity.** Every named criterion and every proposal either
-party made is a thread. A round that exchanged proposals but changed
-no thread state is a tracking failure, not a quiet round.
+party made is a thread. A round that exchanged proposals and produced
+no delta is a tracking failure, not a quiet round.
 
 **States.** Open: `new`, `in-discussion`, `presumed-settled`. Closed:
 `approved`, `ruled-out`, `parked` (deferred, with a tripwire and a
@@ -334,8 +344,10 @@ thread is promoted to a thread of its own, explicitly.
    the question, and surveying the general area spends a round on
    material that cannot discriminate. Nearly every problem has a
    general framing; having one is not the trigger. The test is
-   concrete: if you cannot name a project that faced this same
-   question and say what it built, do not propose the survey.
+   concrete: name the problem class and at least one place you expect
+   the answer to exist. Not knowing WHICH mechanism others shipped is
+   the reason to survey; being unable to say the class has been
+   answered outside this project is the reason not to.
 2. **Name the criteria**: state early what the decision must
    achieve — the constraints and goals proposals will be judged
    against. Criteria are threads too: they can be argued, refined,
@@ -391,9 +403,13 @@ thread is promoted to a thread of its own, explicitly.
    pick. Evidence gathered by several parallel investigations is
    reported as ONE round when the pieces bear on the same threads: the
    unit of the discussion is the round, not the arrival of a result.
-   Consolidating costs latency and nothing else. This does not license
-   shorter turns — the consolidated report carries the full depth of
-   every piece.
+   What consolidating costs is latency; what it must not cost is a
+   finding held back. When one investigation returns something that
+   invalidates what the others are still testing — an infeasibility, a
+   defeated premise — it goes to the user when it arrives, under the
+   material-findings protocol, and the rest follow it. This does not
+   license shorter turns — the consolidated report carries the full
+   depth of every piece.
 6. **Converge**: convergence HOLDS when every thread is closed and the
    discussion is quiescent — the round in which the last thread
    closed introduced no new thread, no reopening, no new argument. It

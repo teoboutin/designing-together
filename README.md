@@ -86,6 +86,11 @@ constraints become the boundary the assistant checks its own decisions
 against, and it states that boundary back to you when it takes the
 grant.
 
+**A closed thread is not frozen.** Your word reopens one at any time,
+and you need no new argument to use it — the assistant does. If a
+decision starts to look wrong later in the discussion, say so. Nothing
+about having been recorded makes it final.
+
 **You say why when you reject something.** Ruled-out threads carry
 their reasons into the record, and the reopening rule reads those
 reasons to decide whether a later proposal is genuinely new. A
