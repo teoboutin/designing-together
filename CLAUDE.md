@@ -278,6 +278,17 @@ words — "run the skill regression"), not by hand:
   `only` (run just these scenarios), and `skill` (path to the SKILL.md
   under test — how a CONTROL ARM is run: point it at a copy with the
   edit under test removed).
+**Cost, and not stacking it.** Measured 2026-08-03: a `full` run at
+`reps: 3` is 114 agents, roughly 3.9M subagent tokens, and about 23
+minutes of wall clock. The harness caps its own in-flight agents at
+`min(16, cores - 2)`, but that cap is PER FAN-OUT — a review's
+subagents launched alongside a run do not share it, and the machine
+sees the sum. Run the harness alone: never concurrently with the
+pre-release review axes, and never two runs at once. During editing
+this is cheap anyway, because the discipline already calls for
+`only`-filtered runs of a few scenarios; the unfiltered `full` run
+belongs at the end, by itself.
+
 - Fixtures live in `tests/scenarios/<name>/` (`scenario.md`,
   `rubric.md`, multi-turn adds `turns.md`); `tests/conductor.md` is
   the conductor protocol for multi-turn scenarios. Probe agents read
