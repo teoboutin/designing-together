@@ -222,6 +222,76 @@ repository with no documents, no ledger, and no conventions?
 
 ## Decisions ledger
 
+### 2026-08-03 — the checkpoint word, and the default that built what it had just refuted
+
+**Verdict: change.** Two edits close the review's Class B, the class
+of defects where no move satisfies every rule at once. A positive word
+given against a displayed checkpoint table is the batch confirmation.
+And the material-findings default no longer says "proceed" in the two
+cases where proceeding is incoherent or destructive.
+
+**Mechanism**: both rules were written for the ordinary case and then
+applied without exception to the cases that break them — a vague word
+with no table in front of it, and a finding that removes the thing the
+default would build.
+
+**Evidence at decision time.**
+
+The first is a direct collision, provable by reading: "a word that
+requires interpretation — a blanket positive — closes nothing" against
+"the batch word promotes that bucket". At a displayed checkpoint both
+fire, so "yeah, looks right" either closes fifteen threads or none,
+and both readings comply. The resolution was not invented here. The
+README's expectation set, approved earlier the same day, already
+states it: the batch confirmation closes everything in the table at
+once, by design, and confirming without reading records decisions you
+did not make. Writing it into the skill only makes the skill agree
+with what the project already promised its users. This is the first
+case of the expectation set deciding an open question rather than
+excluding one.
+
+The second is the one place the document's own reasoning about
+reversal was absent. Decision authority reasons about migrations,
+published interfaces and stored data three paragraphs below the
+material-findings protocol, and the protocol tells the assistant to
+proceed unilaterally on any of them while a finding is pending.
+Worse, the protocol's own trigger list includes an infeasibility — so
+the assistant states that something cannot be built and builds it in
+the same turn. The finding became more urgent in the same session that
+fixed it: the grant boundary decided hours earlier routes every
+infeasibility inside a delegation into this protocol.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"`withdrawn` is agent-owned closure with an agent-authored
+  justification and no external check, so an agent under social
+  pressure can retire its own strongest proposal."* Not rejected —
+  parked, below. It is a behavioral prediction with no observed
+  instance, which under the triage criterion parks rather than
+  becoming text. The closure is also not unchecked: the rule requires
+  the defeating reason on the record, and the record is contestable.
+- *"Nothing bounds the breadth of a recorded reason, so a broad
+  `ruled-out` entry can be cited to decline findings forever."*
+  Rejected on a misreading of the bound. The Reopening rule's test is
+  not topical overlap but whether a recorded reason covers the
+  DISCRIMINATING FACT: "if no recorded reason covers the
+  discriminating fact, the finding is new." A broad reason that does
+  not address the specific fact fails that test already.
+
+**Parked — `self-withdrawal`.** An agent retiring its own strongest
+proposal through `withdrawn` under social pressure, which would be
+sycophancy executed through a state the skill provides. **Tripwire**:
+a session where the user pushed back socially rather than with an
+argument, an agent withdrew its strongest proposal, and the recorded
+defeating reason does not survive reading. **Re-entry point**: the
+over-application axis of the next pre-release review.
+
+**Tripwires**: a checkpoint batch confirmation closes a thread the
+user later says they had not read, which would mean the table is too
+long to be confirmed as one word; a material finding is held for
+irreversibility and the user reports the hold as obstruction, which
+would mean the reversal inventory is drawn too wide.
+
 ### 2026-08-03 — `delegated` is kept; the grant states its boundary
 
 **Verdict: keep, with a change to the grant's mechanics.** The

@@ -59,7 +59,14 @@ duties around it:
   at the top of the turn it appears in — before the delta, before the
   work: state it once with the discriminating fact, name the default
   ("unless you say otherwise, I build the decided shape"), and
-  proceed unless the word comes. The thread stays CLOSED while the
+  proceed unless the word comes. Two cases defeat that default. When
+  the finding IS an infeasibility, there is nothing to proceed with
+  and the turn stops at it. When the work the default would perform is
+  expensive to reverse — a migration, stored data, a published
+  interface, user-visible behavior, another decided thread — do the
+  reversible part and hold the rest until the word comes; proceeding
+  unilaterally there contradicts the cost-of-reversal test this
+  section applies everywhere else. The thread stays CLOSED while the
   finding is pending, with the finding noted on its ledger line; only
   the user's word actually reopens it. If no word has come by the
   next checkpoint — or the end of the current change, whichever comes
@@ -200,7 +207,11 @@ blanket positive, a sentence that may or may not cover a thread —
 closes nothing: mark the threads your reading would close as
 `presumed-settled`, state the reading, and let their next word — or
 the batch confirmation at the next checkpoint — promote or correct
-it. Do not solicit closures: a yes/no question inviting assent to one
+it. A displayed checkpoint table changes this: a positive word given
+against the table IS the batch confirmation and closes what the table
+holds, because the table is what makes an otherwise vague word
+specific. Away from a displayed table, a blanket positive closes
+nothing. Do not solicit closures: a yes/no question inviting assent to one
 option ("so we go with X?") is an approval question wherever it
 appears; a legitimate closing question presents the argued fork and
 asks for a ruling between positions. The checkpoint's batch
