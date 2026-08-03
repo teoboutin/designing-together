@@ -55,9 +55,10 @@ narrowing elicitation mode such as `superpowers:brainstorming`, and
 the comparison is what led to the skill being written.
 
 The rules that implement it: "never pad with alternatives to reach a
-count"; the red flag on padding one real approach with alternatives
-built to lose; and the nearest-rival test, which lets "no rival worth
-naming" stand as a claim to be tested rather than a gap to be filled.
+count"; the stop signal on padding one real approach with alternatives
+added only to be rejected; and the nearest-rival test, which lets "no
+rival worth naming" stand as a claim to be tested rather than a gap to
+be filled.
 
 An edit that specifies what must be proposed, rather than how a
 proposal is argued and tracked, works against the reason the skill was
@@ -221,6 +222,89 @@ The standing test for any edit: does this rule still bind in a
 repository with no documents, no ledger, and no conventions?
 
 ## Decisions ledger
+
+### 2026-08-03 — the skill is made to obey its own Language section
+
+**Verdict: change.** Seven language defects fixed, plus a factual
+error in the closure rules. The Language section's jurisdiction clause
+covers this document, so every one of these was the skill visibly
+breaking a rule it enforces on everyone else.
+
+**Mechanism**: the Language section was written and then applied to
+the project's other prose but never to the document containing it.
+
+**Evidence at decision time.** A rule a document visibly breaks is a
+weakened rule, and the review's language axis found the violations
+concentrated in the Overview, the Language section itself and the
+stop-signal list — the parts an assistant reads first and imitates —
+while the parts it merely executes were the cleanest prose in the
+file. The review's own dispositions split these between "fix" and
+"probe"; that split is void under the standard adopted today, because
+a document contradicting its own rule is provable by reading and
+internal consistency is always in scope.
+
+What changed:
+
+- **"load-bearing"** was an undefined metaphor used inside the
+  Language section, four lines after that section bans undefined
+  metaphors, and again as a rule title in Keep-or-change. Both sites
+  now say what they mean.
+- **The sentence demanding short sentences** ran about fifty words
+  with a colon, two semicolons, an em dash and a nested parenthetical.
+  It is three sentences.
+- **"Giving arguments state produces an unreadable graph"** was an
+  adjective closing a thread, flagged independently by three axes and
+  cited in the 0.4 harvest as the reason defeating `edges-as-threads`.
+  Replaced by the structural reason rather than reworded: an argument
+  bears on several threads at once, so a state per argument needs a
+  many-to-many relation a delta row cannot show, and the note column
+  already carries the relations that must be visible.
+- **Nine idioms** in operative instructions: "turn on", "on the spot"
+  twice, "the boundary runs both ways", "in the flow of", "with both
+  in view", "built to lose", the unexplained "/" in an excuse row, and
+  the section title "Red flags", now "Stop and reopen the exchange".
+  Those nine are what the review actually listed; it reported "roughly
+  sixteen" without naming the rest, and the balance is not invented
+  here. "A blanket positive" is kept and given examples rather than
+  removed: it functions as a term in the closure rule.
+- **Five qualitative claims doing closing work**, each replaced by the
+  named failure it prevents, which is the conversion the Language rule
+  itself permits. The sharpest was "cost always favors the incumbent",
+  an unfalsifiable absolute sitting four bullets above "Verdicts must
+  be falsifiable".
+- **The stale-presumption trigger** was an every-round evaluation with
+  no count and no test for "unrelated", in a document that shows the
+  precise form elsewhere. It is now two rounds without the user's
+  arguments depending on it. Flagged twice independently: by the
+  review's language axis, and by the expectation-set audit from a
+  different direction.
+- **"Exactly three declared cases" of closure by the assistant** was a
+  factual error. `superseded` requires "a proposal the user approves
+  by name", so it is closure by the user. There are two. The framing
+  sentence read as a warrant for a third kind of unilateral closure
+  that does not exist. (Review finding C6, which was missed when the
+  clusters were drawn and is caught here.)
+
+**Overstated and scoped down:** the review reported five one-sentence
+compressions misplaced as body prose. Two are already in the form the
+rule prescribes — a bolded summary line followed immediately by its
+restatement — and one had been replaced earlier the same day. The
+genuine violation was "a manufactured objection is the strawman
+pattern in reverse", which additionally asked the reader to know a
+named pattern and invert it.
+
+**Preserved deliberately**, because the same axis named them as what a
+revision would most easily damage: the tripwire definition, the parked
+thread's completeness test, "each appears exactly once", "Material
+findings come back exactly once", "The deciding test is who consumes
+the text, not where it is stored", the keep-or-change verdict slots,
+and the no-selection-dialogs rule, whose justification is three
+concrete mechanisms rather than adjectives.
+
+**Tripwires**: a later reader has to ask what a term in this document
+means, which is the failure the vocabulary paragraph exists to
+prevent; a rewrite reintroduces a qualitative claim as the sole
+justification for a rule.
 
 ### 2026-08-03 — six rule triggers that could not fire, or fired on the wrong thing
 

@@ -12,7 +12,7 @@ arguments, and converge through rounds. **The discussion is fully
 symmetric; only the decision is not.** Both parties' proposals are
 held to one standard — loop step 4 states it in full — and the
 asymmetry lives in decision authority alone: closure and reopening
-turn on the user's word (see Decision authority).
+belong to the user's word (see Decision authority).
 
 Terms this skill defines and then uses as vocabulary: a **thread** is
 one open question or proposal — the unit that carries state (below);
@@ -89,7 +89,7 @@ duties around it:
   acknowledged consequence on the record so the next session knows the
   decision was informed.
 
-Depth is proportionate to the cost of being wrong. A decision that is
+**Depth is proportionate to the cost of being wrong.** A decision that is
 cheap to reverse deserves one round and a one-sentence record — still
 a named thread and a ledger line; skip the full table, the premortem,
 and the spec. To take that path, state what reversal touches, in
@@ -113,19 +113,19 @@ state the strongest OPEN reading of the problem — the design question
 the bounded framing would suppress. If you can name a second
 defensible shape for the solution, the space is open; route to
 narrowing only after presenting both readings, so the user rules on
-the classification with both in view. The boundary runs both ways: a
-bounded problem deserves narrowing, an open one deserves argument,
-and misclassifying in either direction wastes the discussion.
+the classification knowing both. This applies in both directions: a
+bounded problem deserves narrowing, an open one deserves argument, and
+misclassifying in either direction wastes the discussion.
 Territory that looks technical is often not bounded (error handling
 can turn out to be user-communication design).
 
 ## Language
 
-Write plain, direct technical English: short sentences; precise
-scientific and technical terms are fine; idioms, colloquialisms, and
-aphorisms are not — they are ambiguous across readers (many of them
-non-native speakers), and they carry qualitative judgments past
-argument unexamined.
+Write plain, direct technical English, in short sentences. Precise
+scientific and technical terms are welcome. Idioms, colloquialisms and
+aphorisms are not: they read differently to different readers, many of
+whom do not have English as a first language, and they carry
+qualitative judgments past argument unexamined.
 
 Jurisdiction: this rule governs working prose — anything consumed by
 project contributors: the discussion itself, decision records, specs,
@@ -147,9 +147,9 @@ not an argument. This governs arguments and never rulings: the user's
 word closes a thread whatever their reasons, and "it reads better to
 me" is a decision they are entitled to make, not a claim for you to
 convert. The test: delete the qualitative sentence — if the
-argument no longer stands, the sentence was load-bearing and must be
-replaced by its checkable form, not reworded into different
-qualitative terms.
+argument no longer stands without it, that sentence WAS the argument,
+and it must be replaced by its checkable form, not reworded into
+different qualitative terms.
 
 A one-sentence compression (see keep-or-change) names a mechanism in
 plain words. It lives as a titled summary line next to a plain-prose
@@ -182,8 +182,9 @@ closed on purpose: convergence is computed from it.
 **Summaries and checkpoints.** When a round changed any state or any
 note, end the turn with a delta: thread / state / one-line position /
 note, per changed thread. Criteria go in a separate table above the
-proposals: a criterion is what proposals are judged against, and the
-two roles are indistinguishable in a single list.
+proposals: a criterion is what proposals are judged against, and
+listed among them a criterion gets read as a proposal and closed like
+one.
 
 The **note** column carries what a state cannot say: a relation to
 another thread (`absorbs #x`, `conflicts #y`, `serves #criterion`), a
@@ -199,7 +200,7 @@ and it is ASSEMBLED, not recalled: sweep every prior delta and
 collect every slug ever minted; each appears exactly once, in its
 current bucket, closed buckets first, criteria in their own table as
 in the delta. A slug you cannot place is a tracking failure to repair
-on the spot, not a row to drop. The checkpoint happens at two
+in that turn, not a row to drop. The checkpoint happens at two
 moments: when proposing convergence, and before
 recording (on the full path — the one-round path in Decision
 authority skips the table). The full
@@ -209,11 +210,12 @@ questionnaire.
 
 **Who moves what.** You may move threads freely between open states.
 The user's explicit word moves a thread into a closed state — a word
-given in the flow of the discussion ("drop the polling idea") counts;
+given during the discussion ("drop the polling idea") counts;
 no particular phrasing is required. Their word closes what it names:
 a word that points at the ledger ("build it as the table says")
 closes the table's contents. A word that requires interpretation — a
-blanket positive, a sentence that may or may not cover a thread —
+blanket positive ("sounds good", "all fine"), a sentence that may or
+may not cover a thread —
 closes nothing: mark the threads your reading would close as
 `presumed-settled`, state the reading, and let their next word — or
 the batch confirmation at the next checkpoint — promote or correct
@@ -236,7 +238,7 @@ at all. State the thread's position, name what you build absent a
 word, and stop. A default stated and left is not approval-seeking; a
 question inviting assent to the only option on the table is.
 
-Closure by you, not the user, exists in exactly three declared cases,
+Closure by you, not the user, exists in exactly two declared cases,
 each announced in the delta:
 
 - `withdrawn` — a proposal of your own, when your own argument or
@@ -254,8 +256,10 @@ each announced in the delta:
   event or checkpoint at which it is re-proposed. A parked thread
   missing either one is open. A tripwire with no re-entry point names
   evidence nobody is scheduled to look for.
-- `superseded` — threads absorbed by a proposal the user approves by
-  name; until that word, absorbed threads keep their state.
+`superseded` is not a third case, though it is easily read as one:
+threads absorbed by a proposal close on the user's word approving that
+proposal by name, and until it comes the absorbed threads keep their
+state.
 
 **`delegated`.** The user may close a thread by handing its judgement
 to you — "I trust your judgement here, as long as X and Y". Record it
@@ -286,11 +290,10 @@ question of whether the decided thing can be built at all.
 continuing the discussion in a way that assumes this thread's
 resolution. It is deliberately an OPEN state — a presumption never
 counts toward convergence. Each time the user's arguments again
-depend on the presumption, its evidence refreshes. A stale
-presumption — the discussion has moved through unrelated material
-since it formed — is re-surfaced in the next delta, or as a
-standalone note when no recent round produced one, rather than
-silently carried.
+depend on the presumption, its evidence refreshes. A presumption the
+user's arguments have not depended on for two rounds is re-surfaced —
+in the next delta, or as a standalone note when no recent round
+produced one — rather than silently carried.
 
 **Reopening — closed is not frozen.** This rule is the single owner
 of the novelty test. The user reopens a closed thread by their word
@@ -309,10 +312,12 @@ reframing is welcome — a new proposal may supersede several settled
 threads at once when it can be argued better than what it absorbs.
 
 **Arguments are not tracked.** Only threads carry state. Arguments
-are the prose that justifies a transition; an argument can bear on
-several threads and displace other arguments, so giving arguments
-state produces an unreadable graph. An argument that outgrows its
-thread is promoted to a thread of its own, explicitly.
+are the prose that justifies a transition. One argument bears on
+several threads at once and displaces other arguments, so giving
+arguments state would need a many-to-many relation that a delta row
+cannot show — and the note column already carries the relations that
+have to be visible. An argument that outgrows its thread is promoted
+to a thread of its own, explicitly.
 
 ## The loop
 
@@ -379,8 +384,9 @@ thread is promoted to a thread of its own, explicitly.
    it against the criteria, and when a shape exists that meets a
    named criterion theirs fails, propose it against theirs even when
    theirs would work; filling and testing their proposal is your job,
-   not a courtesy. Argued agreement is legitimate, and a manufactured
-   objection is the strawman pattern in reverse. A factual claim
+   not a courtesy. Argued agreement is legitimate. Objecting to a
+   proposal you have no argument against damages the discussion the
+   same way agreeing with one you have not tested does. A factual claim
    doing closing work carries its provenance — measured, read in a
    named source, or assumed — and a thread may close over assumed
    claims only if each assumption is recorded as a tripwire on that
@@ -391,7 +397,8 @@ thread is promoted to a thread of its own, explicitly.
    stall; a synthesis argued as its own proposal (what it takes from
    each side and why) is a legitimate move.
 5. **Build discriminating evidence when stalled**: when positions
-   rest on intuitions, more argument only repeats them. Build the
+   rest on intuitions, a further round restates them and adds nothing
+   either party could check. Build the
    discriminating artifact the project affords — a failing test, a
    throwaway prototype, a benchmark, a mockup. Before building, both
    parties state which outcome would flip their position; an artifact
@@ -451,19 +458,22 @@ A recurring bug trend, a refactor proposal, a questioned pillar: run
 the same exchange, plus:
 
 - **Fresh discussion, trend framing.** Do not advocate a design
-  direction in the middle of the bug hunt that raised it: an active
-  incident frames every answer as repair and a redesign as scope
-  creep. At the trigger moment, record the instance and the suspicion
+  direction during the bug hunt that raised it: while an incident is
+  open, a redesign proposal is judged as scope creep, and the trend
+  evidence is lost when the incident closes. At the trigger moment,
+  record the instance and the suspicion
   as an observation, not a verdict; finish the fix; then argue the
   direction in a discussion whose entry point is the recorded trend,
   not the incident — a new session when the incident still dominates
   the context. Propose that discussion by name before the current
   work records; it is the parked observation's re-entry point. The
-  user may still decide on the spot — their authority is not
+  user may still decide immediately — their authority is not
   suspended — but your recommendation waits for the fresh frame.
 - **Sequence direction before cost, inside one decision.** Argue the
   direction on its merits first, so migration cost does not anchor
-  the exchange — brought in early, cost always favors the incumbent.
+  the exchange: brought in early, migration cost is the only quantity
+  on the table, and the direction gets decided by it before its merits
+  are argued.
   But cost enters before the verdict is recorded: a direction chosen
   in ignorance of an unaffordable migration is not a decision — the
   cost will be discovered later and force the decision to be remade.
@@ -478,14 +488,14 @@ the same exchange, plus:
 - **The losing side relocates, never deletes.** Record the losing
   arguments, and design the winner to absorb what was right in them.
   That absorption is design work in its own right.
-- **Incumbent behavior is load-bearing on evidence, not by
-  default.** A behavior is established by a document that argues it —
-  a commit message that argues it counts, and in most projects it is
-  the only home such an argument has — OR by observed use: consumers,
-  telemetry, bug reports about its absence. Behavior with neither is an implementation coincidence —
-  question it, and raise it with the user before deciding anything on
-  its behalf. Do not treat "undocumented" as "disposable" in a
-  project that documents nothing.
+- **Incumbent behavior counts as a constraint only on evidence.** A
+  behavior is established by a document that argues it — a commit
+  message that argues it counts, and in most projects it is the only
+  home such an argument has — OR by observed use: consumers,
+  telemetry, bug reports about its absence. Behavior with neither is
+  an implementation coincidence — question it, and raise it with the
+  user before deciding anything on its behalf. Do not treat
+  "undocumented" as "disposable" in a project that documents nothing.
 
 Verdict record — fill every slot:
 
@@ -496,15 +506,16 @@ Verdict record — fill every slot:
 - Losing arguments: what they were, and where the winner absorbs them
 - Recorded at: the project's decision home
 
-## Red flags
+## Stop and reopen the exchange
 
-Each of these means stop and reopen the exchange:
+Each of these means the exchange has gone wrong and needs reopening:
 
 - Closed multiple-choice menus or harness selection dialogs used as a
   discussion move
 - A list of questions where an argued proposal should lead
 - Defaulting to the minimal solution when the problem is open-ended
-- Padding one real approach with alternatives built to lose
+- Padding one real approach with alternatives added only to be
+  rejected
 - Approval questions in place of closing open threads — including
   yes/no assent-collection on single options
 - Narrowing to the user's literal request instead of building on it
@@ -516,7 +527,7 @@ Each of these means stop and reopen the exchange:
 |---|---|
 | "The user is short on time" | Time pressure means fewer, better-argued proposals — not menus, not question lists. It never overrides the user's authority to simply decide. |
 | "Minimal is the safe default" | Minimalism answers a bounded problem. On an open one it closes the discussion before it starts. |
-| "The user seems to agree / probably meant to close it" | An interpreted word is a presumption. Mark `presumed-settled` and state the reading; only their explicit word closes. |
+| "The user seems to agree, or probably meant to close it" | An interpreted word is a presumption. Mark `presumed-settled` and state the reading; only their explicit word closes. |
 | "The user decided, so checking would be disrespectful" | The word ends the argument, not the verification. Material findings return once, via the material-findings protocol. |
 | "The user probably considered this already" | Never assume a proposal was fully examined — the rule Decision authority applies to decisions holds for proposals too. Examining them is what the discussion is for. |
 | "Raising flaws in their idea is unhelpful" | Untested agreement is the sycophancy failure this mode exists to counter. The argued objection is the help. |
