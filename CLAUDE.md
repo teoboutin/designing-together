@@ -313,18 +313,22 @@ belongs at the end, by itself.
 
 ### Gotchas observed in practice (keep this list current)
 
-- **`Workflow({name: 'skill-regression'})` runs the INSTALLED PLUGIN's
-  copy, not this repo's.** The plugin ships `.claude/workflows/`, so a
-  name-based invocation resolves the version in
-  `plugins/cache/designing-together/<version>/` — pinned, and blind to
-  every edit made here since that release. Observed 2026-08-02: a run
-  launched by name executed the 0.3.0 script, silently ignoring
-  `args.only` and `args.reps` and running the old scenario list; the
-  persisted script was byte-identical to the plugin cache copy.
-  Fixtures are unaffected — the agents read `tests/scenarios/` live
-  from disk — which is what makes the mismatch hard to see. **After
-  editing the script, always invoke with `scriptPath` pointing at
-  `.claude/workflows/skill-regression.js` in this repo.**
+- **`Workflow({name: 'skill-regression'})` may run the INSTALLED
+  PLUGIN's copy instead of this repo's, and which one it picked is not
+  visible from the launch.** The plugin ships `.claude/workflows/`, so
+  the name is ambiguous between this repo and
+  `plugins/cache/designing-together/<version>/`, which is pinned and
+  blind to every edit made here since that release. Observed
+  2026-08-02: a name-launched run executed the 0.3.0 script, silently
+  ignoring `args.only` and `args.reps` and running the old scenario
+  list. Observed 2026-08-04, with the two copies provably different: a
+  name-launched run executed THIS repo's copy. The resolution rule is
+  therefore unknown and must not be relied on. Fixtures are unaffected
+  either way — the agents read `tests/scenarios/` live from disk —
+  which is what makes the mismatch hard to see. **Always invoke with
+  `scriptPath` pointing at `.claude/workflows/skill-regression.js` in
+  this repo**; if a run was launched by name, `diff` the persisted
+  script against the repo copy before believing its result.
 - **A subagent's own children cannot route results back to it.** A
   research agent that spawned sub-agents could not reach its parent by
   name (`SendMessage` to `general-purpose` fails), so a completed
