@@ -377,6 +377,59 @@ repository with no documents, no decision record, and no conventions?
 
 ## Dated entries
 
+### 2026-08-03 — the materiality test is answered by naming, and three README claims are repaired
+
+**Verdict: change.** Both defects are provable by reading, and this is
+one entry rather than two because the README half is stale text with
+no argument to record — the practice the coherence pass already set.
+
+**Mechanism**: a test whose discriminator is an adjective is answered
+by how confident the reader feels, so two readers apply it
+differently and neither can be shown wrong.
+
+**Evidence at decision time.** The materiality test read "information
+that arrived after the thread closed and that would PLAUSIBLY have
+changed the ruling". The skill's own Language rule says a qualitative
+claim may open a thread and never close one, and gives the deletion
+test: remove the word and see whether the argument still stands.
+Removing "plausibly" leaves "would have changed the ruling", a
+different and much stronger rule — so the word was carrying the test.
+This is the skill failing its own rule in the sentence that defines
+when a closed decision may be reopened, which is as load-bearing as
+this document gets.
+
+The test is now answered by naming: the information arrived after
+closure AND you can name the part of the closure it defeats — a
+reason the ruling gave, a premise it rested on, or a criterion it
+claimed to meet. Naming is an act either party can check, which is
+what the Language rule asks for. It also converts a second
+unconverted word for free: "a stronger alternative" in the list of
+common cases now has to name what it defeats, so its strength stops
+resting on the adjective.
+
+The three README claims each described behavior the skill no longer
+has: convergence as "every thread closed" when criteria cannot close
+and the test is every PROPOSAL thread plus a satisfaction line on
+every criterion; the material-findings default stated without the two
+cases that defeat it, both of which are user-visible (the assistant
+stops, or holds work); and `parked` given one of its two declared
+cases, omitting the bug-hunt observation, which is the one a
+keep-or-change user meets first.
+
+**Losing arguments and where the winner absorbs them:** none. No
+alternative wording was argued.
+
+**Tripwires**: a finding is dropped as immaterial because the
+assistant could not name what it defeats, and the user judges it
+should have come back — which would mean naming is too strict a test;
+a README reader is surprised by a behavior the skill has, which would
+mean the promises are still drifting from the text.
+
+**Also decided:** the material-findings protocol still has no head
+section, so the referencing rule cannot be followed for it. That is
+one instance of the parked `record-errors` back-fill rather than a
+new finding, and is not repaired here.
+
 ### 2026-08-03 — criteria stop being threads, and binding stops being waivable
 
 **Verdict: change.** A criterion is not a thread and never enters the

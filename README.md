@@ -11,12 +11,14 @@ about an existing architecture — the assistant:
 
 - opens with argued proposals (its own ideas included), not a menu of
   options or a battery of clarifying questions;
-- tracks the discussion as named threads with explicit states; the
+- tracks the discussion as named threads with explicit states, and the
+  criteria they are judged against in a table of their own; the
   user's explicit word closes threads (an interpreted word only marks
   a presumption, except against a checkpoint table, where a positive
   word closes what the table holds), with two declared exceptions the
   assistant announces — withdrawing its own defeated proposals, and
-  parking its own overruled dissent; a summary table makes the
+  parking either its own overruled dissent or an observation a bug
+  hunt raised for a later discussion; a summary table makes the
   standing state contestable at a glance;
 - pushes back and expects push-back — the exchange is symmetric until
   a decision: the user's proposal is a claim to test, held to the
@@ -26,14 +28,19 @@ about an existing architecture — the assistant:
 - yields immediately to the user's explicit decision at any point,
   converged or not — then still verifies what the choice entails, and
   brings back a material finding exactly once, with the decided shape
-  as the standing default;
+  as the standing default — except that a finding that the decided
+  shape cannot be built at all stops the work rather than proceeding,
+  and work that cannot be undone (a migration run, a release shipped)
+  is held for your word while the reversible part goes ahead;
 - scales the ceremony to reversal cost: a cheap-to-reverse decision
   gets one round and a one-line record; the full machinery is
   reserved for expensive-to-reverse forks;
 - builds discriminating evidence (a failing test, a prototype, a
   benchmark) when the discussion stalls on intuitions — with both
   parties stating beforehand which outcome would flip them;
-- proposes convergence (every thread closed, the round quiescent) by
+- proposes convergence (every proposal thread closed, every criterion
+  carrying a satisfaction line with no binding one unmet, the round
+  quiescent) by
   showing the full thread table for one batch confirmation, instead
   of asking approval questions — and runs a premortem before
   recording;
