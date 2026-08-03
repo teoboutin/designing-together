@@ -139,6 +139,57 @@ finding that PREDICTS a behavior — this rule will over-fire, this
 wording will be misread — is not yet a demonstrated problem. It is
 parked with a tripwire naming what a real session would show.
 
+**What real use has to show, before an instruction is ADDED.** Real
+use is the only route that originates new instructions, and it would
+otherwise be the one evidence type the standard leaves undefined. It
+admits an addition on two conditions. Repairs — a contradiction, a
+broken trigger, a factual error — keep the provable-by-reading route
+and are not governed by this test.
+
+*An observation, in one of two forms.* Either a session using the
+skill produced the behavior unprompted, under no rule requiring it; or
+the user asked for it mid-session. The forms are not equal evidence.
+An unprompted behavior shows the assistant already HAD the move and
+the skill was silent where the move was needed: it admits the gap and
+never the specific behavior, because another session under the same
+silence invents a different answer. A behavior the user had to ask for
+shows the default did not produce it, which is evidence about that
+behavior directly.
+
+*The user's endorsement, with a named lack.* The user judges the
+session's result improved AND names what it would have lacked without
+the behavior: a failure prevented, a confusion removed, an output that
+would not otherwise exist. The judgement is the owner's weighing and
+is not falsifiable. The named lack is what survives into the dated
+entry after the field report carrying it is deleted.
+
+A behavior nobody exhibited meets neither form. A "should have done X"
+noticed while reading a session, where no session did X and nobody
+asked for it, is a prediction about behavior — the same object a
+review finding produces, admitted on the same terms, which is to say
+parked. This test is also what a parked prediction's tripwire names: a
+park fires when a session produces one of the two observation forms
+with the endorsement and the named lack.
+
+**An admitted observation does not determine the edit.** Before an
+addition is written, one sentence states the mechanism that produced
+the need for the observed behavior. Where that mechanism names a
+structural defect, the edit is the structural fix and the observed
+behavior is a consequence of it, not the text to write. This is the
+keep-or-change compression move turned on the skill's own maintenance,
+and it is obligatory rather than available: the criteria observation
+supported both a display rule and a change to the state enum, the
+display rule landed alone, and the structural defect left behind was
+found by two independent review axes a revision later.
+
+Admission settles necessity and nothing else. The
+capability-versus-conformance weighing (Gaplessness is not the goal)
+and the control arm below both still run. Where the mechanism
+statement names no structural defect and the proposal is a bare
+transcription of one session's behavior, one instance is weak: the
+observation is parked with recurrence as its tripwire rather than
+written.
+
 **Verification — does the new wording produce the behavior, and does
 it damage something adjacent?** The regression harness answers this,
 as a canary and not as a gate: `only`-filtered during editing, once in
@@ -271,6 +322,107 @@ The standing test for any edit: does this rule still bind in a
 repository with no documents, no decision record, and no conventions?
 
 ## Dated entries
+
+### 2026-08-03 — what real use has to show before an instruction is added
+
+**Verdict: change.** The necessity route gains an admission test that
+governs ADDITIONS only. An addition requires an observation from a
+real session — the behavior produced unprompted, or asked for by the
+user mid-session — plus the user's endorsement carrying a named lack.
+The two observation forms are not equal evidence. An admitted
+observation obliges a one-sentence mechanism statement before any text
+is written, and settles necessity alone.
+
+**Mechanism**: "real use of the skill" was the standard's only
+originating route for new instructions and its only undefined evidence
+type. Every other route states what counts and what does not — a
+synthetic fixture never originates, a review finding originates only
+when its defect is provable by reading — so the one route that mints
+new rules had neither an admission test nor an exclusion, and anything
+the maintainer noticed while using the skill read as qualifying.
+
+**Evidence at decision time.** One worked case, stated as one and not
+as a series: the criteria threads.
+
+- A session in which the user complained that criteria were not
+  distinguishable from other threads in the ledger, and asked to see
+  them in a separate table. This is the asked-for form.
+- A second session, unrecorded until this entry, in which the
+  assistant marked criteria threads `c-*` and other threads `t-*` on
+  its own, under no rule requiring it. This is the unprompted form,
+  and it is the only instance of that form the record holds. The
+  marker it chose was unconstrained — nothing in the skill pointed at
+  a prefix rather than a table or a column — which is what the
+  admission rule generalizes from.
+- The first edit that followed transcribed the asked-for behavior:
+  show criteria in a separate table. It survived, but it was
+  incomplete. The structural defect underneath — criteria had been
+  declared threads without being given a fate in the state enum — was
+  found a revision later by the cold flaw axis and the
+  revision-interaction axis independently, and repaired in
+  2026-08-03 — criteria leave the state enum.
+
+The unprompted session is weak evidence for `c-*`/`t-*` specifically
+and strong evidence that the skill was silent where a session needed
+an answer. That asymmetry is the finding the two-forms rule records.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"Both observation forms are equal evidence for the behavior
+  observed."* This was the shape proposed at the start of the
+  discussion. It lost because an unprompted behavior demonstrates the
+  move was already available, which under Gaplessness is not the goal
+  is a conformance case at best, and because the shape the session
+  chose was unconstrained by anything. Absorbed: the unprompted form
+  remains a full admission route, but what it admits is the gap, not
+  the wording.
+- *"The user's endorsement is sufficient on its own."* Lost to the
+  ephemeral-evidence rule: the field report carrying the endorsement
+  is deleted once harvested, and an entry recording a feeling cannot
+  be read afterwards. Absorbed: the endorsement stays the owner's
+  unfalsifiable weighing, and only the named lack is required beside
+  it — the Language section's cheapest checkable form, a named failure
+  the behavior prevents.
+- *"Reflecting more broadly is permitted where the observation
+  warrants it."* Also the shape proposed at the start. Lost because
+  permission is not a rule and produces no output. Absorbed as an
+  obligation that does: the one-sentence mechanism statement, which
+  the criteria case shows would have been answerable at the time.
+- *"Require recurrence — two sessions before any addition."* Rejected
+  as a hard gate: it delays every correct addition to catch the rare
+  wrong one, and the mechanism statement already collapses most
+  multi-observation cases into a single structural edit. Absorbed:
+  recurrence survives as the tripwire on a parked bare transcription.
+
+**Also decided:**
+
+- **The test governs additions, not repairs.** A contradiction, a
+  broken trigger or a factual error keeps the provable-by-reading
+  route, which does not require a session at all.
+- **A parked prediction's tripwire is defined by this test.** The
+  standard already parks review findings that predict a behavior, with
+  a tripwire naming "what a real session would show"; that phrase now
+  has a definition, so a park either has fired or has not.
+- **A noticed-but-unexhibited "should have" is a prediction.** It
+  carries no more weight for arriving from the maintainer than from a
+  review agent, and its route is to ask for the behavior in the next
+  session, which costs a session and not the finding.
+
+**Tripwires**: a mechanism statement is written for an addition and
+names neither a structural defect nor a bare transcription, meaning
+the step produces ceremony rather than discrimination; an addition
+lands whose named lack restates the behavior itself ("without it, the
+assistant did not do it"), meaning the named-lack bar admits circular
+answers; a parked bare transcription recurs in a later session and
+nobody notices the park, meaning recurrence-as-tripwire has no
+reader; the user reports having withheld a real improvement because no
+session exhibited it and the next-session route was not worth taking,
+meaning the exclusion is drawn too tight; the next unprompted-form
+observation produces an edit that transcribes the behavior rather than
+naming the gap, meaning the asymmetry was recorded but not applied;
+an addition arrives justified as a repair — a rule with no compliant
+move — with no session behind it and no contradiction quotable from
+the text, meaning the additions-only scope is being routed around.
 
 ### 2026-08-03 — why the skill has a Language section (recorded after the fact)
 
