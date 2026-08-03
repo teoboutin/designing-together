@@ -43,34 +43,48 @@ non-goal).
 
 ## Editing discipline: no behavioral change without evidence
 
-Skill text is process documentation, and edits follow the same
-test-first rule as code (the superpowers `writing-skills` skill is the
-reference). Concretely, an edit that intends to change agent behavior
-requires, in order:
+Skill text is process documentation. Three questions about an edit get
+three different answers, and the harness answers only the middle one
+(`docs/decisions.md`, 2026-08-03 — the regression harness is a canary,
+not a gate).
 
-1. **A demonstrated failure or reviewed finding.** Either a baseline
-   probe showing the unwanted behavior without the new wording, or a
-   finding from a structured review (below). The control arm — the
-   skill *without* the proposed wording, on a scenario built to tempt
-   the failure — measures whether the wording binds; it does not veto
-   it. A control that NEVER exhibits the failure means the guidance
-   answers a problem nobody has, and it is not written. A control that
-   avoids the failure UNRELIABLY is the case the rule exists for: one
-   unprompted success is not reproduction. There the rule is written
-   and the control's pass rate is recorded beside it
-   (`docs/decisions.md`, 2026-08-02 — an unreliable control writes the
-   rule).
-2. **Probes of the new wording before it lands.** Fresh subagents
-   simulate one assistant turn with the skill text embedded, on
-   scenarios that tempt the failure. Check three things: the target
-   behavior appears, prior good behavior did not regress, and the rule
-   does not over-fire (e.g. the qualitative-claims rule must not reject
-   qualitative *goals* — probes exist for both directions).
-3. **Honest reporting.** Probe counts are small (often 1–3 per arm);
-   results are reported as what they are — evidence that wording binds,
-   not statistics. Low variance across reps is the signal that wording
-   binds; divergent interpretations mean the form needs tightening
-   before more words are added.
+0. **Scope — is the problem ours?** The README's *What it expects of
+   you* states the assumptions about user behavior and project shape
+   the skill is built on. A finding describing a behavior outside that
+   set is not a gap and no rule is written for it. The set scopes user
+   behavior ONLY: a finding that two of the skill's own rules leave no
+   move satisfying both is always in scope (`docs/decisions.md`,
+   2026-08-03 — a documented expectation set bounds the skill's
+   scope). Check this before necessity; a provable gap that is not
+   ours is still not written.
+1. **Necessity — is there a problem worth text?** Real use of the
+   skill, or a review finding whose defect is PROVABLE BY READING: a
+   contradiction, a rule with no compliant move, a factual error, a
+   trigger that cannot fire or cannot fail. A review finding that
+   predicts a behavior — this rule will over-fire, this wording will
+   be misread — is not a demonstrated problem: park it with a tripwire
+   naming what a real session would show. No synthetic fixture ever
+   originates an edit.
+2. **Verification — does the wording work, and did it break a
+   neighbour?** Run the harness `only`-filtered on the fixtures that
+   bear on the edit, and once in `full` before a release. Check three
+   things: the target behavior appears, prior good behavior did not
+   regress, and the rule does not over-fire (the qualitative-claims
+   rule must not reject qualitative *goals*, for instance). Treat the
+   result as a canary: a red is a reason to look, a green is not a
+   licence.
+3. **Veto — should this edit exist?** Read the control arm's
+   TRANSCRIPTS, not its pass rate. A control that avoids the failure
+   unreliably is the case the rule exists for; one unprompted success
+   is not reproduction, and the pass rate is recorded beside the rule.
+   A control that never exhibits the failure is a reason to re-ask
+   whether usage ever showed the problem — it does not remove the rule
+   by itself.
+
+**Honest reporting.** Probe counts are small (often 1–3 per arm);
+results are reported as what they are — weak evidence that wording
+binds, not statistics. Divergent interpretations across reps mean the
+form needs tightening before more words are added.
 
 Probe hygiene: probe subagents inherit the host project's context, so
 every probe prompt instructs them to disregard project-specific
@@ -85,8 +99,10 @@ axes, and no agent is told what another found. Every prompt carries
 the same three constraints — disregard any host-project instructions
 in context, modify nothing, and return FINDINGS rather than
 replacement wording. A proposed patch from a reviewer is worse than
-useless here: under the editing discipline above, a finding is only
-step-1 evidence and any wording still needs its own probes.
+useless here: under the editing discipline above, a finding establishes
+necessity only when its defect is provable by reading, and a finding
+that predicts a behavior gets parked with a tripwire rather than
+patched.
 
 Axes 1 to 4 are COLD: the agent is given the skill file alone and told
 not to read the README, the tests, or anything else. Their value is
@@ -134,9 +150,11 @@ and are given exactly what they need and no more.
    with a verdict of supported, contradicted, refinable, or no
    evidence found, citing checkable sources and flagging unverified
    ones. Run it for mechanisms added since the last mapping, not the
-   whole set. The README's literature section is the durable output,
-   and a contradicted verdict is the most valuable result it can
-   produce.
+   whole set. The README's literature section is the durable output.
+   This axis is NON-BINDING and gates nothing: the skill is designed
+   from practice and mapped afterwards, so a contradicted verdict goes
+   on a watch list rather than opening an edit (`docs/decisions.md`,
+   2026-08-03 — the regression harness is a canary, not a gate).
 
 Behavioral questions that reading cannot answer are NOT a review axis:
 they belong to the regression harness below, which supersedes the

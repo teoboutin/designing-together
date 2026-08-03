@@ -55,20 +55,72 @@ gate nothing.
 
 ## Evidence standard for skill edits
 
-Skill text is process documentation and edits follow a test-first
-rule: a demonstrated failure or reviewed finding first, probes of the
-new wording before it lands, honest reporting of small probe counts.
-The operational form of this is in `CLAUDE.md`.
+Skill text is process documentation. Three different questions about an
+edit get three different answers, and conflating them is what made the
+regression harness carry more weight than it can hold. The operational
+form is in `CLAUDE.md`.
 
-The control arm — the skill *without* the proposed wording, on a
-scenario built to tempt the failure — **measures whether the wording
-binds; it does not veto the wording.** A control that never exhibits
-the failure means the guidance answers a problem nobody has, and it is
-not written. A control that avoids the failure unreliably is the case
-the rule exists for: the purpose of a skill is behavior that
-reproduces without the user asking for it each session, and one
-unprompted success is not reproduction. There the rule is written and
-the control's pass rate is recorded beside it.
+**Necessity — is there a problem worth writing text for?** Real use of
+the skill decides this. No synthetic fixture originates an edit. A
+review finding originates one only when the defect is provable by
+reading the text: a contradiction, a rule with no compliant move, a
+factual error, a trigger that cannot fire or cannot fail. A review
+finding that PREDICTS a behavior — this rule will over-fire, this
+wording will be misread — is not yet a demonstrated problem. It is
+parked with a tripwire naming what a real session would show.
+
+**Verification — does the new wording produce the behavior, and does
+it damage something adjacent?** The regression harness answers this,
+as a canary and not as a gate: `only`-filtered during editing, once in
+`full` before a release.
+
+**Veto — should this edit exist at all?** Nothing mechanical answers
+this. The control arm — the skill *without* the proposed wording, on a
+scenario built to tempt the failure — produces transcripts to read,
+not a pass rate that decides. Its useful output has always been prose:
+the rejected endorsement trigger was defeated by what its transcripts
+showed, not by its ratio. A control that avoids the failure
+unreliably is the case a rule exists for, and one unprompted success
+is not reproduction; but a control that never exhibits the failure no
+longer vetoes on its own, because a fixture failing to reproduce a
+problem is weak evidence that the problem is not real.
+
+The harness's construct validity is low, and stating it plainly is
+part of the standard: a single-turn synthetic scenario is a weak proxy
+for a design discussion, three of the skill's rules cannot be tested
+by it at all, and its own defects went unnoticed through an entire
+revision that it scored.
+
+**Published literature is not a fourth source, and answers none of the
+three questions.** The skill is designed from practice and mapped
+against published work afterwards; the mapping relates the skill to
+existing work and does not govern it. A literature finding that
+CONTRADICTS a mechanism does not warrant a change to the skill. At
+most it goes on a watch list, where real use decides whether the
+contradiction shows up as a problem. Key findings are reported in the
+README's literature section, which is the mapping's durable output.
+A mechanism whose stated justification the literature refutes is
+therefore not automatically edited — but the justification may still
+fail the skill's own Language rule on its own terms, which is a
+defect provable by reading, and that route is unaffected.
+
+## The expectation set bounds the skill's scope
+
+The skill is scoped to a way of working, stated in the README's *What
+it expects of you*: the assumptions about user behavior and project
+shape that the machinery is built on, each naming what degrades when
+it does not hold. That section is the scope test for every proposed
+edit. A finding describing a user behavior outside the set is not a
+gap, and no rule is written for it.
+
+The set scopes user behavior only. A finding that two of the skill's
+own rules leave no move satisfying both is always in scope, however
+the discussion was being conducted — otherwise the set becomes a way
+to dismiss the defects that matter most.
+
+The set lives in the README alone, because its audience is the person
+installing the skill. `CLAUDE.md` points at it rather than restating
+it: two documents holding the same list is how they come to disagree.
 
 ## Field reports are ephemeral evidence
 
@@ -141,6 +193,171 @@ The standing test for any edit: does this rule still bind in a
 repository with no documents, no ledger, and no conventions?
 
 ## Decisions ledger
+
+### 2026-08-03 — a documented expectation set bounds the skill's scope
+
+**Verdict: change.** The README gains *What it expects of you*: the
+assumptions about user behavior and project shape the skill is built
+on, each naming what degrades when it does not hold. It is the scope
+test for proposed edits, and it scopes user behavior only.
+
+**Mechanism**: without a stated boundary, every finding that names a
+user behavior reads as a gap in the skill, so the skill grows once per
+observed behavior and never shrinks.
+
+**Evidence at decision time.** A rule for the abandoned discussion
+(review finding C13) was argued as a provable gap, approved, written,
+and reverted in the same session. It was wrong twice over: Decision
+authority already covers "stop, build X" — an explicit word ends the
+argument at any time — so the paragraph was dead text, and its only
+remaining content was a demand to record a discussion the user had
+walked away from, which is not the skill's job. Neither ground was
+visible to the triage criterion in use, which asked only whether a gap
+was provable by reading, never whether the gap was ours. The same
+pressure is queued behind it: findings C10, C14, C18 and C20 all turn
+on user behavior, and each would have generated a rule on the same
+reasoning.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"Put the expectations in the skill, as an expanded 'When NOT to
+  use'."* Rejected on what it does to the assistant: an in-skill
+  expectation set becomes behavior, and the behavior is checking the
+  user against a list. That is a behavioral change with no evidence
+  anyone wants it, and it grows the skill — the outcome the set exists
+  to prevent. Absorbed by the boundary clause: the skill keeps routing
+  bounded problems away, which is a judgement about the PROBLEM, while
+  the expectation set describes the working relationship and stays
+  documentation.
+- *"Hold the set in `CLAUDE.md`, where the scope test is applied."*
+  Rejected on audience: the expectations describe what the user does,
+  so the user is who must read them. `CLAUDE.md` points at the README
+  section instead, under this file's referencing rule.
+
+**Tripwires**: a finding dismissed as out-of-expectation reappears as
+a real problem in use, meaning the set is drawn too wide; the set is
+cited to close a finding about the skill's own internal consistency,
+which the boundary forbids and which would mean the guard failed; a
+user other than the author reports a working practice the set excludes
+without argument, meaning one person's habits were written as
+universal.
+
+**Also decided:** the expectation set may discharge findings without a
+skill edit. C14 — the user is never taught the vocabulary, and no rule
+instructs the assistant to teach it — is answered by a user-facing
+document that teaches `presumed-settled` and the batch confirmation,
+with no rule added. That route is checked before any of C10, C14, C18
+or C20 is written as skill text.
+
+### 2026-08-03 — the regression harness is a canary, not a gate
+
+**Verdict: change.** The evidence standard splits into three questions
+— necessity, verification, veto — with a different answer each.
+Necessity comes from real use of the skill and from review findings
+provable by reading; the harness verifies and does not gate; the
+control arm produces transcripts to read and no longer vetoes on a
+clean pass rate.
+
+**Mechanism**: one instrument was answering three questions, so its
+weakest answer — whether a synthetic single-turn fixture predicts what
+happens in a real design discussion — was silently carrying the
+authority of its strongest.
+
+**Evidence at decision time.** The pre-release review's Class A found
+five independent defects in the harness (a rubric that cannot fail, a
+judge scoring blind to the user's message, a green from zero runs, a
+state check whose regex excluded the backticks every state is written
+in, an `overall` taken on the judge's word), all of which were live
+through the whole 0.4 revision that the harness scored. The same
+review found 17 missing fixtures and 3 rules the harness cannot test
+at all, so the coverage gap is structural rather than a backlog.
+
+Against that, three facts kept the harness from being retired
+outright. The prior-art move over-fired 0/3 on two successive fixtures
+— a defect that came out of a real session which had not surfaced it,
+so on that occasion the fixture caught what practical use missed.
+`delegation-in-grant` ran 0/3 on its control with the forbidden
+ceremony quoted verbatim in every rep. And four candidate edits were
+removed by their controls (`b211ddf`); under a usage-only standard all
+four would be in the skill today.
+
+The owner's position, which decided the shape: the harness is useful
+as a canary but cannot be made reliable enough to carry meaning;
+practical application of the skill is what should drive whether a
+change is necessary; and the budget for real-case regression testing
+is limited and not worth expanding. The discriminating fact for the
+remaining risk — that usage-only evidence only ever exercises the
+paths its one user walks — is that other users are expected, but few.
+That bounds the exposure rather than removing it, which is why it is a
+tripwire below instead of an objection here.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"Keep the harness as the gate; Class A's defects argue for
+  repairing the instrument, not demoting it."* Class A was repaired in
+  the same change. What it does not repair is construct validity: a
+  fixture built to tempt one named failure says little about a real
+  discussion. Absorbed as question 2 — the harness still answers
+  whether wording produces its behavior and whether something adjacent
+  broke, which is a smoke test it is adequate for.
+- *"Retire the harness entirely; only real sessions count."* Rejected
+  on the prior-art over-firing case, where a fixture caught what a real
+  session had not. Absorbed as the demotion: it informs, it does not
+  decide.
+- *"A clean control still means the guidance answers a problem nobody
+  has."* This was the standard until today and it is narrowed, not
+  kept. It stands where usage never showed the problem either; it no
+  longer stands on its own, because a low-validity fixture failing to
+  reproduce a problem is weak evidence that the problem is not real.
+
+**Supersedes**: the veto half of the 2026-08-02 entry *an unreliable
+control writes the rule*. That entry's qualification survives intact —
+an unreliable control writes the rule, and the pass rate is recorded
+beside it. What changes is the other direction: a clean control no
+longer removes a rule by itself. This also discharges the review's E4,
+which reported the head and that entry contradicting each other over a
+rule kept despite a 3/3 control. Under this standard no exception is
+needed: that was the standard behaving correctly.
+
+**Tripwires**: a user other than the owner reports a skill behavior no
+session here ever produced, meaning usage-only necessity has started
+missing paths; a `full` run whose failures are mostly fixture bugs
+rather than skill regressions, meaning the canary rotted between runs;
+skill text grows by several rules over a revision with no observed
+behavior change attributable to any of them, meaning the demoted veto
+has stopped filtering anything.
+
+**Also decided: literature is non-binding.** Raised as a gap in this
+entry's first draft, which had no slot for the review's 20 literature
+findings, and settled the other way from the proposed extension: the
+literature mapping is post-hoc relation to published work, not a
+source of necessity. The initial grounding was an observation that a
+body of published work had converged on a shape close to one that
+emerged from practice — interesting, and never the driver. A
+contradicted verdict goes on a watch list; it does not open an edit.
+The blast radius of this ruling is small in practice, because the
+review's two strongest literature findings each also have a
+provable-by-reading leg: "giving arguments state produces an
+unreadable graph" is an adjective closing a thread under the skill's
+own Language rule, and "consolidating costs latency and nothing else"
+fails the same rule's deletion test. Both survive the ruling on those
+grounds alone. Where it does bite is `delegated`, whose keep-or-change
+loses its literature leg and now rests on the under-specification
+observed in use.
+
+**Also decided:** the review's Class A is discharged, 12 of 12 —
+including two findings whose prescriptions were wrong. `A8`'s
+prescribed `isolation: 'worktree'` is inert for the grounded probe,
+because the prompts carry absolute paths into the main working tree
+and the agent reads and writes through those regardless; the violation
+is made detectable instead, by a `git status` check over the vendored
+trees, which are committed and touched by nothing else. `A4`'s fixture
+was retargeted rather than deleted: the scenario setup was sound and
+only its rubric encoded the rejected endorsement-keyed rule, so it
+became `self-refuting-proposal`, covering the previously untested
+reversal clause of loop step 4. `reps` defaults to 3, because a single
+rep is known to flap and the harness's own split-rate reporting says
+nothing at one rep.
 
 ### 2026-08-02 — the repository gets a decisions ledger
 

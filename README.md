@@ -59,6 +59,74 @@ incident still dominates the context), direction argued before
 migration cost inside one decision, falsifiable verdicts with
 tripwires, losing arguments absorbed rather than deleted.
 
+## What it expects of you
+
+The skill is scoped on purpose. It does not try to behave well under
+every possible way of working, and it is not grown to absorb each new
+one. The assumptions below are what it is built on. They are not rules
+you are asked to follow — each names what degrades if it does not
+hold, so you can decide whether the trade is worth it.
+
+One boundary applies to this whole list: it scopes **your behavior,
+never the skill's internal consistency**. If two of the skill's own
+rules leave no move that satisfies both, that is a defect in the
+skill, however the discussion was being conducted.
+
+**You bring a design question, not a task order.** The mode assumes
+the answer is not yet known by either party. Give it a decision you
+have already made and it will argue against it, because testing a
+proposal is what it is for.
+
+**You give the word that closes a thread, or delegate it explicitly.**
+The assistant can move threads between open states but cannot close
+one for you; that asymmetry is the design. Neither ruling nor
+delegating leaves threads open, and the discussion cannot converge.
+
+**You say why when you reject something.** Ruled-out threads carry
+their reasons into the record, and the reopening rule reads those
+reasons to decide whether a later proposal is genuinely new. A
+rejection with no recorded reason cannot do that work, so the same
+argument comes back and has to be defeated again.
+
+**You read the summary tables and contest what is wrong in them.** The
+batch confirmation at a checkpoint closes everything in the table at
+once, by design — it exists so you are not asked to ratify twenty
+items one at a time. Confirming without reading records decisions you
+did not make.
+
+**You correct a stated misreading.** When your message could close a
+thread but does not clearly, the assistant marks it `presumed-settled`
+and states its reading rather than closing. That mechanism only works
+if wrong readings get corrected; uncorrected, they harden into the
+record as though you had ruled.
+
+**You end a discussion rather than dropping it.** "Stop, build X" and
+"park this, I want to think" are both handled and both end the
+argument immediately. Abandoning silently leaves the criteria and the
+losing arguments unrecorded, which is the state a later session is
+least able to recover from.
+
+**You are the person who can decide.** Every decision routes to you.
+If the real authority is someone not in the conversation, the
+discussion converges on a verdict nobody present can act on.
+
+**You do not expect memory beyond what was recorded.** The thread
+ledger lives in the conversation, not in a file. Across sessions, what
+survives is what reached the project's decision record.
+
+Two assumptions are about the project rather than about you:
+
+**Design intent is discoverable, or the project is new.** The skill
+grounds itself before proposing, by reading design documents, decision
+records, the README, or failing those the code and its history. A
+greenfield project is handled explicitly. Intent that exists only in
+someone's memory is not reachable, and proposals will contradict
+decisions already made without either party noticing.
+
+**Decisions have somewhere to land, or you accept a home being
+proposed.** The record is where losing arguments and tripwires
+survive. Without one, each session starts from the code alone.
+
 ## Model requirements
 
 The skill is written for frontier-tier models, and the requirement is
@@ -123,7 +191,11 @@ intermediate commits.
 
 The skill was designed from practice and mapped against published work
 afterwards; the correspondence below is claimed at the level of
-mechanisms, not as experimental validation of the skill itself.
+mechanisms, not as experimental validation of the skill itself. The
+mapping relates the skill to existing work and does not govern it:
+where published work contradicts a mechanism, that is recorded and
+watched, and real use decides whether it becomes a reason to change
+anything.
 
 - **Convergence proposed, never requested.** [RFC 7282, "On Consensus
   and Humming in the IETF"](https://www.rfc-editor.org/rfc/rfc7282.html)
