@@ -7,33 +7,44 @@ its justification, it points here instead of retelling the argument.
 The README describes what the skill does for the people who install
 it — a different audience, and outside this file's scope.
 
-This repository keeps one ledger. Territory is separated by head
+This repository keeps one decision record. Territory is separated by head
 section, not by file.
 
-## The ledger discipline
+## How the decision record is kept
 
 A write-once document describing a moving system decays; a head that
 every decision rewrites cannot. This file has two parts: a
 present-tense head that describes the current design as if it had
-always been so, and a dated append-only ledger. When a decision lands,
+always been so, and a dated append-only series of entries. When a
+decision lands,
 the head is rewritten and the entry appended in the same change.
 Losing arguments stay recorded with why they lost, and every
 keep-or-change verdict carries named tripwires — the specific evidence
 that would flip it.
 
-An entry fills these slots: **Verdict**, **Mechanism** (the one
-sentence naming what produces the problem), **Evidence at decision
-time**, **Losing arguments and where the winner absorbs them**,
-**Tripwires**, and **Also decided** where a session settled adjacent
-points.
+An entry fills these slots where they apply: **Verdict**, **Mechanism**
+(the one sentence naming what produces the problem), **Evidence at
+decision time**, **Losing arguments and where the winner absorbs
+them**, **Tripwires**, and **Also decided** where a session settled
+adjacent points. Verdict, Mechanism and Evidence are always present.
+An entry that defeated no alternative has no losing arguments to
+record, and saying so is better than inventing one.
 
 ## The referencing rule
 
 Point at a head for *what* and *how* — heads are current reality, so a
-head reference stays true. Point at a dated ledger entry for *why* —
+head reference stays true. Point at a dated entry for *why* —
 entries are append-only, so the reference cannot dangle. Never point
-at a field report or a convergence spec: those files are deleted once
-harvested.
+at an ephemeral document: field reports, convergence specs and review
+findings are all deleted once harvested, so a reference to one dangles
+by design.
+
+Most of the skill predates this record, and no entry argues it. The
+referencing rule therefore cannot be followed for the loop's steps,
+the state enum, the premortem, the record step, or *When NOT to use*.
+This is stated so it is not rediscovered as a finding every review;
+sections are back-filled when a decision touches them, not on a
+schedule.
 
 ## Structure the flow, not the content
 
@@ -151,17 +162,25 @@ The set lives in the README alone, because its audience is the person
 installing the skill. `CLAUDE.md` points at it rather than restating
 it: two documents holding the same list is how they come to disagree.
 
-## Field reports are ephemeral evidence
+## Field reports and review findings are ephemeral evidence
 
 A field report records observations from a real session using the
 skill. It lives in `docs/field-reports/`, is committed, and is deleted
 from the tip of the repository once every one of its findings has been
 resolved or rejected — kept in history, recoverable, and never
-referenced from a durable document. The ledger entry that resolves a
+referenced from a durable document. The entry that resolves a
 finding carries enough of the evidence to stand without the report.
 
+A consolidated pre-release review is the same kind of document, under
+`docs/reviews/`, with the same lifecycle. It is evidence for decisions
+and not a record of them, so it is deleted once every finding is
+resolved or rejected. An entry may cite a review's finding identifier
+for traceability, but never as the carrier of the argument: after the
+deletion the identifier is a label in history, so the entry has to
+state what the finding said.
+
 This is the same lifecycle the origin project gives specs and plans:
-created as working artifacts, harvested into ledgers, deleted at
+created as working artifacts, harvested into the record, deleted at
 merge.
 
 ## Release mechanics
@@ -172,7 +191,7 @@ installs. Local commits without a push stay unpublished, which is the
 intended state for work between releases.
 
 Two harness facts make that discipline mechanical rather than
-conventional, and both were established before this ledger existed
+conventional, and both were established before this record existed
 (commits `9168df8`, `b1d8e5e`). Third-party marketplaces have
 auto-update off by default, so installs move only on an explicit
 `claude plugin update` unless the user enables auto-update for the
@@ -210,7 +229,7 @@ source does not resolve when a marketplace is added by direct URL to
 ## Origin, and the standing risk
 
 The skill was extracted from a project-specific version that lived
-inside a repository with strong surrounding rules — decision ledgers,
+inside a repository with strong surrounding rules — decision records,
 explicit merge-approval conventions. Those rules acted as invisible
 scaffolding: behaviors the skill appeared to produce were partly
 produced by its environment. The generic skill must stay
@@ -219,9 +238,229 @@ Threads-and-states sections exist in the form they do — their
 guarantees stopped being ambient when the skill left that repository.
 
 The standing test for any edit: does this rule still bind in a
-repository with no documents, no ledger, and no conventions?
+repository with no documents, no decision record, and no conventions?
 
-## Decisions ledger
+## Dated entries
+
+### 2026-08-03 — why the skill has a Language section (recorded after the fact)
+
+**Verdict: keep, recorded after the fact.** The Language section
+stays: plain technical English, a jurisdiction decided by who consumes
+the text, and the rule that a qualitative claim may open a thread but
+never close one.
+
+**Mechanism**: the most-cited section in the repository had no
+recorded justification, so every argument leaning on it leaned on a
+rule nobody had argued.
+
+**Evidence at decision time.** The section is the authority for a
+whole review axis, for the literature standard's carve-out (a
+justification the literature refutes may still be edited, because it
+independently fails this rule), and for an entire cluster of edits
+landed today. Its only recorded support was a README literature
+bullet, and this repository has since decided that literature does not
+govern the skill — so the section's authority rested on nothing
+inside the record.
+
+Why each part:
+
+- **No idioms, no aphorisms.** Two reasons, and the second is the load
+  the rule actually carries. Readers include people whose first
+  language is not English, for whom an idiom is a lookup rather than a
+  meaning. And an idiom smuggles a qualitative judgement past argument
+  without stating it — the same failure the rigor rule addresses,
+  arriving through vocabulary instead of through claims.
+- **Jurisdiction by consumer, not by location.** Working prose and
+  product copy have different contracts: a product's text may pursue
+  literary value deliberately. Deciding by where text is stored gives
+  the wrong answer for a code comment in a file that also holds user
+  strings, so the test is who reads it.
+- **A qualitative claim may open a thread, never close one.** The
+  skill exists so decisions rest on arguments that can be contested.
+  An adjective offered as a justification cannot be contested, because
+  there is nothing in it to be right or wrong about; it ends the
+  exchange while looking like it advanced it. Opening a thread is the
+  legitimate use — "the app should feel responsive" is a real goal —
+  and the conversion to an observable is what makes it arguable.
+- **The deletion test** gives the rule a mechanical form, so it can be
+  applied without judging tone: remove the sentence, and see whether
+  the argument still stands.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"This is a style preference, and style preferences do not belong in
+  a skill."* Rejected: the failure named is specific and checkable — a
+  thread closed on a claim neither party can test — not a matter of
+  taste. The absorption is the deletion test, which fires only on
+  claims doing closing work and leaves prose style alone.
+- *"Applying the rule to this document is pedantry."* Rejected today
+  on evidence. The jurisdiction clause names this document, and when
+  the section was finally audited against itself the violations turned
+  out to be concentrated in the Overview, the Language section and the
+  stop-signal list — the parts an assistant reads first and imitates —
+  while the parts it merely executes were the cleanest prose in the
+  file. A rule the document visibly breaks is a weakened rule, and it
+  was being weakened exactly where it mattered most.
+
+**Tripwires**: a thread closes on a qualitative claim and nothing
+catches it until a review, meaning the rule is not being applied
+during discussions; the who-consumes-it test produces an answer a
+contributor disputes, meaning the jurisdiction line is in the wrong
+place.
+
+### 2026-08-03 — the pre-release review is a gate, and why it has the shape it has
+
+**Verdict: keep, recorded after the fact.** The multi-axis pre-release
+review described in `CLAUDE.md` is the release gate. Each axis gets its
+own fresh subagent, the cold axes are given the skill file alone, and
+every reviewer returns findings rather than replacement wording.
+
+**Mechanism**: sixty-five lines of process rules were carrying their
+own justifications inside `CLAUDE.md`, which is the operational
+document — so the arguments had no home, and the axis list could
+change with no record of why.
+
+**Evidence at decision time.** This is a tripwire firing, declared by
+the 2026-08-02 entry that created this record: "`CLAUDE.md` grows a
+justification paragraph that no entry covers." It fired on the section
+that gates releases, and it was reported by two independent coherence
+passes before being written down.
+
+Why each element:
+
+- **A fresh agent per axis.** Independence is the whole value. An
+  agent that has already run one axis has been anchored by what it
+  found, and an agent told what another found stops being a second
+  observation.
+- **Cold axes.** Axes 1 to 4 receive the skill file alone. A reviewer
+  who has read the README knows what the skill is supposed to do and
+  reads that intent into ambiguous text; a reviewer who has not can
+  only see what the text says. The cost is that cold reviewers
+  sometimes report things the surrounding documents already answer,
+  which is cheap to triage and worth paying.
+- **Findings, never wording.** A reviewer's proposed patch is worse
+  than useless: under the editing discipline a finding establishes
+  necessity only when its defect is provable by reading, and a
+  finding that predicts a behavior gets parked rather than patched.
+  Wording arriving with the finding invites landing it unargued.
+- **Behavioral questions are excluded** and belong to the regression
+  harness, because a reader cannot answer what an agent will do.
+
+**Evidence that the axes earn their places**, in the form each axis
+had already produced before this entry: over-application caught the
+prior-art move over-firing 0/3 on two successive fixtures, which no
+other axis would have looked for; the test-suite axis found two rubric
+bugs and one miscalibrated scenario, each of which had already
+produced a misleading result; language self-compliance found the
+document breaking rules it enforces on everyone else, concentrated in
+the sections an assistant imitates; and coherence found a correction
+that had landed in one document of two.
+
+**Losing arguments and where the winner absorbs them:**
+
+- *"One reviewer covering several axes, for cost."* Rejected on the
+  anchoring the axes exist to avoid. The absorption is that axes are
+  not all run every time: the literature axis runs only for mechanisms
+  added since the last mapping, and the revision-interaction axis is
+  scoped to one diff.
+- *"Reviewers should propose fixes, since they have the context."*
+  Rejected: the context that produces a good finding is not the
+  context that produces good wording, and the editing discipline
+  requires the wording to be argued separately anyway.
+
+**Tripwires**: an axis produces nothing actionable across two
+consecutive reviews, which would mean it is asking a question the
+documents have stopped being able to answer; two axes repeatedly
+report the same findings, which would mean they have collapsed into
+one and one of them should go.
+
+### 2026-08-03 — the coherence pass, and three things it found unrecorded
+
+**Verdict: change.** The document-coherence axis was re-run against the
+current documents rather than triaged from the earlier review, because
+all four had been rewritten continuously since that review was
+written. It returned eleven findings. Six are stale-text fixes, four
+are recorded here as decisions, and two need no action.
+
+**Mechanism**: a correction landing in one document of two leaves the
+other stating the defeated position, and nothing detects that except a
+pass that reads them against each other.
+
+**Evidence at decision time, on the four that were decisions.**
+
+- **`docs/reviews/` had no documented lifecycle**, while a dozen
+  entries cited its finding identifiers. It is ephemeral evidence,
+  identical in kind to a field report, and the head sections now say
+  so. The consequence is written into the referencing rule: an entry
+  may cite a finding identifier for traceability, never as the carrier
+  of the argument, because after deletion the identifier is a label in
+  history. The 2026-08-03 review file is deleted in this change.
+- **"Ledger" named two opposite things.** The skill defines it as the
+  in-discussion thread set, "carried in the discussion and never in a
+  file"; this repository called a file the ledger. An assistant
+  running the skill inside this repository — a routine event here —
+  met both. The sharpest case was the standing risk, "a repository
+  with no docs, no ledger, and no conventions", which under the
+  skill's own vocabulary reads as a repository where no discussion is
+  being tracked. Maintainer prose now says *decision record*; the
+  skill's term is the one that ships, so the skill did not move.
+- **Most of the skill predates this record and no entry argues it.**
+  Back-filling all of it is out of proportion to the gain, so the
+  referencing rule now states the gap instead: it cannot be followed
+  for the loop's steps, the state enum, the premortem, the record
+  step, or *When NOT to use*. Stating it stops the gap being
+  rediscovered as a finding at every review. Sections are back-filled
+  when a decision touches them.
+- **The frontmatter broke the contract stated for it.** "Requires a
+  frontier-tier model" is a capability gate and not a triggering
+  condition, and the 2026-08-02 entry had removed the previous
+  sentence on exactly that ground. The sentence is worth keeping — a
+  model below the bar produces the format without the discipline, and
+  the description is the only place an installer sees that before
+  running it — so the contract is amended to allow one capability
+  gate rather than the sentence being deleted.
+
+**A correction to an entry made earlier the same day.** The
+six-triggers entry prescribed the verification run as
+`only: ['prior-art-fires','prior-art-holds']` at `reps: 3`. That is
+wrong: `only` filters the MODE's lists, `prior-art-fires` is in the
+full list alone, and the run as prescribed would have executed the
+holds arm by itself — green from the arm that cannot detect the
+regression that loosening the gate risks. The run needs `mode: 'full'`.
+The harness now warns when `only` names a scenario the selected mode
+does not carry, which is the same class of hole as the zero-selection
+green repaired in Class A, and was left open by the same reasoning.
+
+**Class F is resolved, not carried.** The earlier review ranked
+seventeen missing fixtures. Under the evidence standard adopted today
+a fixture originates no edit and the suite is a canary, so a missing
+fixture is a gap in a canary rather than an untested rule. The bulk
+are not written. Three rules are recorded as untestable by this
+harness rather than left looking uncovered: the no-selection-dialogs
+rule (a probe agent has no tools to emit one), After-convergence
+recording (it needs a spec-to-implementation boundary the harness does
+not span), and frontmatter triggering (the harness loads the skill by
+path and never exercises the description).
+
+**Also decided:** three review axes are added, described in
+`CLAUDE.md`. Scope and conciseness answers "can anything be shortened
+without losing intent or clarity", bounded so it hunts inert text and
+never length — a size budget arriving through that axis would
+reinstate the criterion the 2026-08-02 entry retired, so every finding
+must name what changes behaviorally if the text is deleted. Revision
+interaction is diff-scoped and asks whether any two edits in one
+revision interact badly; it exists because in this revision the
+grant-boundary edit routed more findings into a default that a later
+edit had to repair, and the two were connected by hand rather than by
+process. The expectation-conformance question is folded into axis 8
+rather than given its own agent, since both ask whether a rule should
+be removed.
+
+**Tripwires**: a correction lands in one document and the coherence
+axis finds its counterpart stale at the next review, meaning the
+"same change" discipline is not being applied across documents; an
+entry cites a review finding identifier and a reader cannot tell what
+the finding said.
 
 ### 2026-08-03 — the skill is made to obey its own Language section
 

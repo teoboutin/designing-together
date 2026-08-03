@@ -11,28 +11,39 @@ and its grounding in the literature.
 - `.claude-plugin/marketplace.json` — the repo is its own marketplace, so
   `/plugin marketplace add <owner>/designing-together` works directly.
 - `skills/designing-together/SKILL.md` — the skill. The frontmatter
-  `description` states triggering conditions only, never the workflow
-  (a description that summarizes the process becomes a shortcut agents
-  follow instead of reading the skill).
-- `docs/decisions.md` — the decision home: a present-tense head plus a
-  dated append-only ledger.
+  `description` states triggering conditions and, at most, a capability
+  gate — never the workflow (a description that summarizes the process
+  becomes a shortcut agents follow instead of reading the skill). The
+  gate is the one non-triggering sentence allowed, because a model
+  below the bar produces the format without the discipline and the
+  description is the only place an installer sees that before running
+  it.
+- `docs/decisions.md` — the decision record: a present-tense head plus
+  dated append-only entries.
 - `docs/field-reports/` — observations from real sessions using the
   skill; evidence, not decisions.
+- `docs/reviews/` — consolidated pre-release review findings; the same
+  kind of ephemeral evidence, with the same lifecycle.
+- `tests/scenarios/` and `tests/conductor.md` — the regression
+  fixtures; `.claude/workflows/skill-regression.js` — the harness.
 
 **Where a decision lands.** Every decision about this repository goes
 in `docs/decisions.md`: the head is rewritten as if the design had
 always been so, and the dated entry is appended, in the same change as
 the work. This file states the operational rules and points at a
-ledger entry when a rule needs its justification — it does not retell
+dated entry when a rule needs its justification — it does not retell
 the argument. Point at a head for *what* and *how*, at a dated entry
 for *why*, never at a field report or a convergence spec.
 
-**Field reports are ephemeral.** A report is committed under
-`docs/field-reports/`, and deleted from the tip once every one of its
-findings is resolved or rejected — kept in history, recoverable, never
-referenced from a durable document. The entry that resolves a finding
-must carry enough of the evidence to stand without the report. This is
-the lifecycle the origin project gives specs and plans.
+**Field reports and review findings are ephemeral.** A report is
+committed under `docs/field-reports/`, a consolidated review under
+`docs/reviews/`, and each is deleted from the tip once every one of
+its findings is resolved or rejected — kept in history, recoverable,
+never referenced from a durable document. The entry that resolves a
+finding must carry enough of the evidence to stand without it; a
+finding identifier may be cited for traceability but never as the
+carrier of the argument. This is the lifecycle the origin project
+gives specs and plans.
 
 **Target tier is a non-goal, not a limitation.** The skill is for
 frontier-tier models and is not simplified for smaller ones; their
@@ -106,7 +117,7 @@ patched.
 
 Axes 1 to 4 are COLD: the agent is given the skill file alone and told
 not to read the README, the tests, or anything else. Their value is
-arriving without context. Axes 5 to 7 need the surrounding material
+arriving without context. Axes 5 to 9 need the surrounding material
 and are given exactly what they need and no more.
 
 1. **Cold flaw review** — internal contradictions, loopholes an agent
@@ -141,8 +152,8 @@ and are given exactly what they need and no more.
    rubric bugs and one miscalibrated scenario, and each had already
    produced a misleading result.
 6. **Document coherence** — `SKILL.md`, `README.md`, `docs/decisions.md`
-   and this file checked against each other. Rules with no ledger
-   entry, ledger entries the skill does not implement, stale paths and
+   and this file checked against each other. Rules with no dated
+   entry, entries the skill does not implement, stale paths and
    section names, README claims the skill no longer satisfies, and
    whether any document is doing another's job under the
    audience-separation rule.
@@ -155,6 +166,29 @@ and are given exactly what they need and no more.
    from practice and mapped afterwards, so a contradicted verdict goes
    on a watch list rather than opening an edit (`docs/decisions.md`,
    2026-08-03 — the regression harness is a canary, not a gate).
+8. **Scope and conciseness** — given the skill and the README's *What
+   it expects of you*, find text that does NO WORK: a rule another
+   rule already covers, a sentence restating the one before it, an
+   example adding nothing its rule does not, a clause handling a user
+   behavior the expectation set excludes. **This axis hunts for
+   inert text, never for length.** Length is explicitly not a
+   criterion here (`docs/decisions.md`, 2026-08-02 — length is not the
+   binding constraint), and a size budget arriving through this axis
+   is the failure to guard against. Every finding must name what would
+   change behaviorally if the text were deleted; "nothing" is the
+   finding, and anything else is not one. Findings that propose
+   cutting the rules implementing *Structure the flow, not the
+   content* are rejected on sight — that head section is what the axis
+   is measured against, not material for it.
+9. **Revision interaction** — given the diff of the revision under
+   review, not the whole file: do any two edits in it interact badly?
+   Rules landed one at a time are argued one at a time, and their
+   combined effect is nobody's job. Report pairs where one edit makes
+   another unreachable, redundant, contradictory, or newly urgent.
+   This axis has demonstrated value: in the 2026-08-03 revision the
+   grant-boundary edit routed more findings into a default that a
+   later edit had to repair, and the two were connected by hand rather
+   than by process.
 
 Behavioral questions that reading cannot answer are NOT a review axis:
 they belong to the regression harness below, which supersedes the
@@ -163,7 +197,8 @@ ad-hoc pressure probes used before 0.3.0.
 ## The standing risk to edit against
 
 The generic skill must stay self-sufficient. When editing, ask: does
-this rule still bind in a repository with no docs, no ledger, and no
+this rule still bind in a repository with no docs, no decision record,
+and no
 conventions? The extraction history that makes this the standing risk
 is in `docs/decisions.md` (head: Origin, and the standing risk).
 

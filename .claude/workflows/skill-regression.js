@@ -61,6 +61,16 @@ const SINGLE = only(MODE === 'quick' ? SINGLE_QUICK : SINGLE_FULL)
 const MULTI = only(MODE === 'quick' ? [] : ['notification-multiturn', 'assumed-convergence'])
 const GROUNDED = only(MODE === 'quick' ? [] : ['real-project-sds'])
 
+// A PARTIAL selection is the dangerous case, not an empty one: `only` filters
+// the MODE's lists, so naming a scenario the mode does not carry drops it in
+// silence. Asking for prior-art-fires + prior-art-holds under `quick` runs the
+// holds arm alone — green from the arm that cannot see the regression.
+const selected = [...SINGLE, ...MULTI, ...GROUNDED]
+const dropped = (A.only || []).filter((s) => !selected.includes(s))
+if (dropped.length) {
+  log(`WARNING: ${dropped.length} requested scenario(s) are not in mode "${MODE}" and will NOT run: ${dropped.join(', ')}. Use mode "full" if they belong to it.`)
+}
+
 const STATES = ['new', 'in-discussion', 'presumed-settled', 'approved', 'ruled-out', 'parked', 'superseded', 'withdrawn', 'delegated']
 
 const VERDICT = {
@@ -295,6 +305,7 @@ return {
   skill: SKILL,
   reps: REPS,
   runs: runs.length,
+  droppedScenarios: dropped,
   vendoredTreeDirty: treeIntegrity ? treeIntegrity.dirty : null,
   vendoredTreeStatus: treeIntegrity && treeIntegrity.dirty ? treeIntegrity.output : undefined,
   pass: !selectedNothing && failed.length === 0,
