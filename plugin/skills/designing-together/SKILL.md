@@ -8,34 +8,36 @@ description: Use when a design discussion has an open solution space — require
 ## Overview
 
 Design by open, argued exchange: both parties propose, push back with
-arguments, and converge through rounds. **The discussion is fully
-symmetric; only the decision is not.** Both parties' proposals are
-held to one standard — loop step 4 states it in full — and the
-asymmetry lives in decision authority alone: closure and reopening
+arguments, and converge through rounds.
+**The discussion is fully symmetric; only the decision is not.**
+Both parties' proposals are held to one standard, stated in loop step 4.
+The asymmetry lives in decision authority alone: closure and reopening
 belong to the user's word (see Decision authority).
 
-Terms this skill defines and then uses as vocabulary: a **thread** is
-one open question or proposal — the unit that carries state (below);
-an **argument** is the prose that causes a thread's state to change;
-a **stall** is a move that repeats existing positions without a new
-argument or new evidence; a **tripwire** is named future evidence that
-would flip a verdict or a deferral; **open state** is what a project
-currently has outstanding — live tripwires, parked threads with their
-re-entry points — differing from the decision record in that an item
-LEAVES it when it fires; a
-**round** is one user message and the reply to it; the **ledger** is
-the whole set of named threads with their states, carried in the
-discussion and never in a file; a **delta** is the table of the
-threads whose state or note changed in one round; a **bucket** is the
-group of threads sharing one state in a table. Distinct from every one
-of these is the project's **decision record** — the durable argued
-history of design decisions a project keeps, under whatever name —
-which the discussion grounds against and records into. A metaphor that
-names a defined concept is legitimate vocabulary after its
+Terms this skill defines and then uses as vocabulary:
+
+- a **thread** is one open question or proposal, the unit that carries state (below).
+- an **argument** is what causes a thread's state to change.
+  It has to be backed by facts, proven with examples, drawings, snippets of code, references...
+- a **stall** is a move that repeats existing positions without a new
+  argument or new evidence
+- a **tripwire** is named future evidence that would flip a verdict or a deferral
+- **open state** is what a project currently has outstanding.
+  Live issues, defects, tripwires, parked threads with their re-entry points.
+  Differing from the decision record in that an item LEAVES it when it fires
+- a **round** is one user message and the reply to it.
+- the **ledger** is the whole set of named threads with their states.
+- a **delta** is the table of the threads whose state or note changed in one round
+- a **bucket** is the group of threads sharing one state in a table.
+
+Distinct from every one of these is the project's **decision record**:
+the durable argued history of design decisions a project keeps, under whatever name,
+which the discussion grounds against and records into.
+A metaphor that names a defined concept is legitimate vocabulary after its
 definition; undefined metaphors are not (see Language).
 
 This mode fits an OPEN solution space: what the feature needs is not
-a requirement waiting to be extracted from the user — neither party
+a requirement waiting to be extracted from the user, because neither party
 knows it yet. It is discovered by proposing, arguing, and following
 the open threads.
 
@@ -43,12 +45,12 @@ the open threads.
 
 The user owns every decision. Their explicit word — an approval, a
 rejection, "stop, do X" — ends the argument on that point at any
-time, converged or not. It ends the argument; it does not end your
-duties around it:
+time, converged or not.
+It ends the argument, but it does not end your duties around it:
 
 - **Never assume the decision saw all its consequences.** A decision
   can be given before the implications, feasibility, and interactions
-  of the chosen path were explored — especially one made to shorten a
+  of the chosen path were explored, especially one made to shorten a
   discussion. Verifying what the choice entails remains your job
   after the decision is given: check it against the other approved
   threads, the named criteria, and the system as you know it.
@@ -149,7 +151,7 @@ where it is stored.
 
 Rigor: prefer explicit quantities, units, and invariants over
 qualitative wording. A qualitative claim may open a thread, never
-close one — plainly: as a stated goal or observation ("the app should
+close one. As a stated goal or observation ("the app should
 feel responsive") it is legitimate input, and it stays open until
 converted into a discriminating observable: a count, a bound, an
 invariant, a named failure it prevents, or a test either party could
@@ -274,14 +276,14 @@ each announced in the delta:
   event or checkpoint at which it is re-proposed. A parked thread
   missing either one is open. A tripwire with no re-entry point names
   evidence nobody is scheduled to look for.
-`superseded` is not a third case, though it is easily read as one:
-threads absorbed by a proposal close on the user's word approving that
-proposal by name, and until it comes the absorbed threads keep their
-state. A displayed checkpoint showing the absorbing thread and the
-threads it absorbs satisfies that by-name requirement, for the reason
-the batch confirmation works there at all: the table is what makes an
-otherwise vague word specific. Away from a displayed table, the word
-has to name the proposal.
+  `superseded` is not a third case, though it is easily read as one:
+  threads absorbed by a proposal close on the user's word approving that
+  proposal by name, and until it comes the absorbed threads keep their
+  state. A displayed checkpoint showing the absorbing thread and the
+  threads it absorbs satisfies that by-name requirement, for the reason
+  the batch confirmation works there at all: the table is what makes an
+  otherwise vague word specific. Away from a displayed table, the word
+  has to name the proposal.
 
 **Criteria.** A criterion is what proposals are judged against, so it
 takes none of the states above: those are fates for a proposal — won,
@@ -339,6 +341,13 @@ cannot show — and the note column already carries the relations that
 have to be visible. An argument that outgrows its thread is promoted
 to a thread of its own, explicitly.
 
+**No selection dialogs.** Within a design discussion, harness choice
+dialogs (button pickers, option prompts) are not a discussion move:
+they truncate the option space to a label, hide the reasoning that
+belongs next to each option, and collect a click where the exchange
+needs an argument. They stay legitimate for out-of-band practical
+choices whose option space genuinely is closed and consequence-free.
+
 ## The loop
 
 1. **Ground first**: find where the project records design intent
@@ -373,6 +382,7 @@ to a thread of its own, explicitly.
    the answer to exist. Not knowing WHICH mechanism others shipped is
    the reason to survey; being unable to say the class has been
    answered outside this project is the reason not to.
+
 2. **Name the criteria**: state early what the decision must
    achieve — the constraints and goals proposals will be judged
    against. Criteria are argued and refined like anything else, and
@@ -388,7 +398,14 @@ to a thread of its own, explicitly.
    solution that also covers an adjacent problem when bundling them
    is implementation-cheaper; an adjacent concern raised now because
    deciding it would shape this implementation. Each is argued like
-   any proposal. When genuinely distinct defensible shapes exist,
+   any proposal.
+
+   When presenting a proposal, do not assume the user is an expert.
+   You have to make sure he undertands the implications of every proposal.
+   In order to achieve that, add drawings, snippets of pseudocode,
+   and any other descriptive content that would help the user understand better.
+
+   When genuinely distinct defensible shapes exist,
    present them as separate threads. To claim one shape dominates,
    name its nearest rival and the discriminating fact that defeats
    that rival — "no rival worth naming" is itself a claim, tested
@@ -397,6 +414,7 @@ to a thread of its own, explicitly.
    grounding — ask them freely and early. Preference questions need
    an argued default attached, and earn their place only when the
    answer would change your proposal.
+
 4. **Argue both ways**: the exchange is symmetric until a decision,
    and this step owns the rule: every proposal, whichever party made
    it, owes the same slots — why it should work, what it costs, what
@@ -462,16 +480,52 @@ to a thread of its own, explicitly.
    argument. Otherwise the new material opens as threads and
    convergence is re-proposed. The banned form is an approval question
    in place of closing open threads.
-7. **Premortem before recording**: assume the converged design
-   shipped and failed — name the most plausible causes, each naming
-   the approved thread it stresses; a premortem whose causes stress
-   no decided thread is not finished. What survives becomes
-   tripwires, which are open state and go where step 8 sends open
-   state; what invalidates the design reopens the relevant
-   threads. Every tripwire, here and everywhere else, meets the
+
+   When convergence can be proposed, prepare a premortem. See below.
+
+7. **Premortem before convergence**: assume the design shipped and failed.
+   Name the most plausible causes, each naming the approved thread it stresses.
+   A premortem whose causes stress no decided thread is not finished.
+
+   During this step, it is possible for a new MATERIAL finding to surface against
+   a decided thread. In that case, convergence cannot hold, the invalidated thread reopens,
+   and the discussion continues.
+
+   If the design holds against the premortem, what survives becomes tripwires,
+   which are open state and go where step 8 sends open state.
+   Ask the user whether the tripwire should actually be recorded.
+   Some may be out of scope of the project, and the user is the only judge of that.
+
+   Every tripwire, here and everywhere else, meets the
    falsifiability bar: evidence specific enough that both parties
    would agree it fired — an event, a count crossing a bound.
-8. **Record**: the winning design AND the losing arguments with why
+
+8. **Write the converged design as a spec document**
+   Write an artefact document, with the winning design in full,
+   the losing arguments and why they lost. Approved threads become the decisions; ruled-out
+   threads become the losing arguments with their recorded reasons
+   (the Reopening rule reads those reasons later)
+   withdrawn threads become the retractions with their defeating reasons, which the Reopening rule
+   also reads; superseded threads are recorded under the thread that
+   absorbed them, so the absorption is visible rather than a gap.
+
+   The spec is written in the same shape as the conversation, with the full table,
+   the arguments and the facts and materials they depended on,
+   the detailed explanation of the winning designs, as presented to the user during the conversation,
+   the premortem and the tripwires.
+
+   It follows with a implementation sequencing plan.
+
+   Once written, give it to the user for review.
+   Always provide the full path to the document.
+
+9. **Record in the project**:
+   This is the first step before implementation. The decided design
+   from the spec gets harvested and recorded in the project,
+   foloowing the conventions of the project.
+
+   **What to record**:
+   The winning design AND the losing arguments with why
    they lost. Approved threads become the decisions; ruled-out
    threads become the losing arguments with their recorded reasons
    (the Reopening rule reads those reasons later); parked threads
@@ -500,6 +554,16 @@ to a thread of its own, explicitly.
    grows cannot hold open state: a tripwire recorded there is one
    nobody can retire and nobody can count. Timing follows After
    convergence.
+
+The two artifacts are not duplicates, and their relationship is fixed.
+The spec is the full account of the converged design: every thread
+with its final state, the losing arguments with their reasons, and the
+tripwires the premortem produced.
+The decision record is the durable harvest of that account.
+The spec is a working document. Whether a project keeps it after harvesting is that project's convention.
+So nothing may survive only in the spec. Findings made
+during planning or implementation surface through the
+material-findings protocol (Decision authority).
 
 ## Keep-or-change (evaluating an incumbent design)
 
@@ -559,59 +623,3 @@ the shape for it.
 - Losing arguments: what they were, and where the winner absorbs them
 - Recorded at: the project's decision home
 
-## Stop and reopen the exchange
-
-Each of these means the exchange has gone wrong and needs reopening:
-
-- Closed multiple-choice menus or harness selection dialogs used as a
-  discussion move
-- A list of questions where an argued proposal should lead
-- Defaulting to the minimal solution when the problem is open-ended
-- Padding one real approach with alternatives added only to be
-  rejected
-- Approval questions in place of closing open threads — including
-  yes/no assent-collection on single options
-- Narrowing to the user's literal request instead of building on it
-- Counting `presumed-settled` threads toward convergence
-- Adjectives doing argumentative work without a checkable claim
-  behind them
-
-| Excuse | Reality |
-|---|---|
-| "The user is short on time" | Time pressure means fewer, better-argued proposals — not menus, not question lists. It never overrides the user's authority to simply decide. |
-| "Minimal is the safe default" | Minimalism answers a bounded problem. On an open one it closes the discussion before it starts. |
-| "The user seems to agree, or probably meant to close it" | An interpreted word is a presumption. Mark `presumed-settled` and state the reading; only their explicit word closes. |
-| "The user decided, so checking would be disrespectful" | The word ends the argument, not the verification. Material findings return once, via the material-findings protocol. |
-| "The user probably considered this already" | Never assume a proposal was fully examined — the rule Decision authority applies to decisions holds for proposals too. Examining them is what the discussion is for. |
-| "Raising flaws in their idea is unhelpful" | Untested agreement is the sycophancy failure this mode exists to counter. The argued objection is the help. |
-| "I'll build on their idea instead of testing it" | Building on an idea before testing it accepts it implicitly. Test it first; extend only what survives. |
-| "I can recommend the redesign right now" | During a bug hunt, every framing favors repair. Record the observation; argue direction in a fresh discussion. |
-| "Both options have merits" | Without a synthesis proposal, a stall. Argue until one wins, build the evidence that discriminates, or declare an argued tie and hand the pick to the user. |
-| "Everyone knows what 'cleaner' means" | They do not. Convert it into a count, a bound, or an invariant, or drop it. |
-
-**No selection dialogs.** Within a design discussion, harness choice
-dialogs (button pickers, option prompts) are not a discussion move:
-they truncate the option space to a label, hide the reasoning that
-belongs next to each option, and collect a click where the exchange
-needs an argument. They stay legitimate for out-of-band practical
-choices whose option space genuinely is closed and consequence-free.
-
-## After convergence
-
-Write the converged design down as a spec, get the user's review of
-the written document, then plan the implementation
-(superpowers:writing-plans, where installed). The decision record
-lands in the project's decision home in the same change as the
-implementation; a decision with no code change (a keep verdict, an
-abandoned direction) is recorded as its own change.
-
-The two artifacts are not duplicates, and their relationship is fixed.
-The spec is the full account of the converged design: every thread
-with its final state, the losing arguments with their reasons, and the
-tripwires the premortem produced. The decision record is the durable
-harvest of that account. The spec is a working document — whether a
-project keeps it after harvesting is that project's convention — so
-nothing may survive only in the spec. Findings made
-during planning or implementation surface through the
-material-findings protocol (Decision authority); convergence does not
-bar them.
