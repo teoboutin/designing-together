@@ -463,10 +463,9 @@ choices whose option space genuinely is closed and consequence-free.
    depth of every piece.
 6. **Converge**: convergence HOLDS when every PROPOSAL thread is
    closed, every criterion carries a satisfaction line, no binding
-   criterion is unmet, and the discussion is quiescent — the round in
-   which the last thread closed introduced no new thread, no
-   reopening, no new argument. It
-   is proposed before it holds, so a `presumed-settled` thread may be
+   criterion is unmet, and the discussion is quiescent: the previous round
+   introduced no new thread, no reopening and no new argument, from either of you or the user.
+   It is proposed before it holds, so a `presumed-settled` thread may be
    live when convergence is PROPOSED — putting that bucket in front of
    the user is what the proposal is for — and never once it holds.
    Silence you produced is not quiescence: before proposing
@@ -514,49 +513,13 @@ choices whose option space genuinely is closed and consequence-free.
    - the detailed explanation of the winning designs, as presented to the user during the conversation.
    - the premortem and the tripwires.
 
-   It follows with an implementation sequencing plan.
+   It follows with a short implementation sequencing proposal.
 
    This is the working document, which will drive implementation.
 
    Once written, give it to the user for review.
    Always provide the full path to the document.
 
-9. **Record in the project**:
-   This is the first step before implementation. The decided design
-   from the spec gets harvested and recorded in the project,
-   following the conventions of the project.
-
-   The thread table and the criteria table are the SOURCE for what to
-   write, not the shape to write it in. Write what the destination
-   does not already state: where the project's own documents carry
-   the current design, the record carries the argument and does not
-   repeat them; where nothing else carries it, the record carries
-   both. A sentence a reader could delete without losing anything the
-   destination did not already give them is restatement, and the
-   losing alternatives are what restatement crowds out.
-
-   Destination: wherever the project keeps decisions.
-   If it keeps them nowhere, propose a home proportionate to the project (a decision file, an issue, a commit message).
-   Prefer recording approved decisions and losing alternatives in separate files:
-   in the same file, the losing alternatives are reachable by grep without
-   knowledge that they are _losing_, which may create confusion.
-
-   Decisions and losing alternatives always carry the arguments that motivated the choice.
-
-   Open state has its own destination, found the same way: where does this project track
-   what is outstanding, and propose a home only if it tracks it nowhere.
-   Its one requirement is that an entry can LEAVE it when its tripwire fires or is voided:
-   deleted, closed, checked off, whatever the project's own mechanism is.
-   A record that only ever grows cannot hold open state: a tripwire recorded there is one nobody can retire and nobody can count.
-
-
-The two artifacts are not duplicates, and their relationship is fixed.
-The spec is the full account of the converged design: every thread
-with its final state, the losing alternatives with their reasons, and the tripwires the premortem produced.
-The decision record is the durable harvest of that account.
-The spec is a working document. Whether a project keeps it after harvesting is that project's convention.
-Findings made during planning or implementation surface through the
-material-findings protocol (Decision authority).
 
 ## Keep-or-change (evaluating an incumbent design)
 
